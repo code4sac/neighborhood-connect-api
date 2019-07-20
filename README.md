@@ -119,3 +119,15 @@ Structure of response:
       /priorities/district/:district_id    -- returns sorted list of priorities for all orgs in that district .
       /priorities/type/:type_id  -- returns sorted list of priorities which have this type .  Can be combined with org or district forms
       /priorities/org/42/type/77  -- returns sorted list of priorities for organization 42 which have type 77
+
+actions:
+
+CRUD for:
+
+- priority
+- priority type
+- priority level
+- user
+- organization
+- organization type
+- event

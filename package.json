@@ -2,10 +2,6 @@
   "name": "neighborhood-connect-api",
   "version": "0.1.0",
   "description": "Connects you to your neighbors",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/code4sac/neighborhood-connect-api.git"
@@ -15,5 +11,67 @@
   "bugs": {
     "url": "https://github.com/code4sac/neighborhood-connect-api/issues"
   },
-  "homepage": "https://github.com/code4sac/neighborhood-connect-api#readme"
+  "homepage": "https://github.com/code4sac/neighborhood-connect-api#readme",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.9"
+  },
+  "scripts": {
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "clean": "lb-clean dist *.tsbuildinfo",
+    "lint": "npm run prettier:check && npm run eslint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run clean && npm run build",
+    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+    "posttest": "npm run lint",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
+    "docker:build": "docker build -t neighborhood-connect-api .",
+    "docker:run": "docker run -p 3000:3000 -d neighborhood-connect-api",
+    "migrate": "node ./dist/migrate",
+    "prestart": "npm run build",
+    "start": "node -r source-map-support/register .",
+    "prepublishOnly": "npm run test"
+  },
+  "files": [
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/boot": "^1.4.5",
+    "@loopback/context": "^1.20.3",
+    "@loopback/core": "^1.8.6",
+    "@loopback/openapi-v3": "^1.8.0",
+    "@loopback/repository": "^1.9.0",
+    "@loopback/rest": "^1.16.4",
+    "@loopback/rest-explorer": "^1.2.6",
+    "@loopback/service-proxy": "^1.2.6"
+  },
+  "devDependencies": {
+    "@loopback/build": "^2.0.4",
+    "source-map-support": "^0.5.12",
+    "@loopback/testlab": "^1.7.0",
+    "@types/node": "^10.14.13",
+    "@typescript-eslint/parser": "^1.12.0",
+    "@typescript-eslint/eslint-plugin": "^1.12.0",
+    "@loopback/eslint-config": "^2.0.1",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-eslint-plugin": "^2.1.0",
+    "eslint-plugin-mocha": "^6.0.0",
+    "typescript": "~3.5.3"
+  }
 }
