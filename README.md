@@ -11,8 +11,13 @@ API and backend for the Neighborhood Connect project
   - [Organization_Contact](#organization_contact)
   - [Organization_Owner](#organization_owner)
 - [Endpoints](#endpoints)
-  - [All endpoints](#all-endpoints)
-  - [`/api/auth`](#apiauth)
+  - [`/orgs/:org_id/users`](#/orgs/:org_id/users)
+  - [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id)
+  - [`/orgs/`](#/orgs/)
+  - [`/orgs/:org_id/`](#/orgs/:org_id/)
+  - [`/org/priorities`](#/org/priorities)
+  - [`/org/:org_id/priorities`](#/org/:org_id/priorities)
+  - [`/org/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id)
 
 # Database Tables
 
@@ -60,56 +65,275 @@ API and backend for the Neighborhood Connect project
 
 # Endpoints
 
-## All endpoints
+### Users
 
-| Endpoint    | METHOD | Description                                              |
-| ----------- | ------ | -------------------------------------------------------- |
-| `/api/auth` | POST   | Adds user to db (if they don't exist), returns user info |
+| Endpoint                       | METHOD | Description |
+| ------------------------------ | ------ | ----------- |
+| `/orgs/:org_id/users`          | POST   |             |
+| `/orgs/:org_id/users/:user_id` | PATCH  |             |
+| `/orgs/:org_id/users/:user_id` | GET    |             |
+| `/orgs/:org_id/users/:user_id` | UPDATE |             |
+| `/orgs/:org_id/users/:user_id` | DELETE |             |
 
-Users
-| `/org/users` POST
-| `/org/users/:user_id` c
-| `/org/users/:user_id` r
-| `/org/users/:user_id` u
-| `/org/users/:user_id` d
+### Org
 
-`org/:org_id/prefixroute`
+| Endpoint         | METHOD | Description |
+| ---------------- | ------ | ----------- |
+| `/orgs/`         | GET    |             |
+| `/orgs/:org_id/` | GET    |             |
+| `/orgs/:org_id/` | PATCH  |             |
 
-Org
-`org/:org_id` get
-`/org/` get
-`/orgs/:org_id` push
+### Priorities
 
-Priorities
-`/org/priorities/` Get all priorities
-`/org/:org_id/priorities` R
-`/org/:org_id/priorities/:priority_id` R
+| Endpoint                                 | METHOD | Description |
+| ---------------------------------------- | ------ | ----------- |
+| `/org/priorities/`                       | GET    |             |
+| `/org/:org_id/priorities`                | GET    |             |
+| `/org/:org_id/priorities/:priorities_id` | GET    |             |
 
 # Data requests and responses
 
 Below are all expected request body shapes and data responses
 
-## `/api/auth`
+## `/orgs/:org_id/users`
 
 **Method:** POST
 
-Structure of request object (if registering for first time):
+Structure of request
 
 ```
 {
-    email: "example@email.com" // required
-    name: "John Doe" // required
+
 }
 ```
 
-**HTTP Status:** 201 Created
+**HTTP Status:**
 
 Structure of response:
 
 ```
 {
-    message: "Account created successfully",
-    newUser
+
+}
+```
+
+## `/orgs/:org_id/users/:user_id`
+
+**Method:** PATCH
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+---
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+---
+
+**Method:** UPDATE
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+---
+
+**Method:** DELETE
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+## `/orgs/`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+## `/orgs/:org_id/`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+---
+
+**Method:** PATH
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+## `/orgs/priorities/`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+## `/orgs/:org_id/priorities`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+## `/orgs/:org_id/priorities/:priorities_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
 }
 ```
 

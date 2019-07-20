@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 node_modules
+=======
+node_modules/
+config.js
+>>>>>>> 51c9206cd1fb1095c843c23713f7c6b4b9a32822
