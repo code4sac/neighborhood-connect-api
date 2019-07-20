@@ -5,6 +5,6 @@
   "host": "ncsac-database-1.cis9e3tzvsds.us-east-2.rds.amazonaws.com/",
   "port": 5432,
   "user": "postgres",
-  "password": "passwordHurrr",
+  "password": "${process.env.DB_PASS}",
   "database": "postgres"
 }
