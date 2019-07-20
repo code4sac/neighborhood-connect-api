@@ -1,6 +1,12 @@
 const app = require('express')();
-const router = require('./server/controllers/router.js');
+const organizations = require('./server/controllers/orgRouter.js/index.js.js');
 
-app.use('/orgs', router)
+
+app.use('/orgs', organizations);
+// app.use('/users', userRouter)
+// app.use('/priorities', priorityRouter)
+
+
+app.use('/types', function(){});
 
 app.listen(3000);
