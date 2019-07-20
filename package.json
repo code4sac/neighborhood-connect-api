@@ -1,12 +1,7 @@
 {
   "name": "neighborhood-connect-api",
-<<<<<<< Updated upstream
   "version": "0.1.0",
   "description": "Connects you to your neighbors",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/code4sac/neighborhood-connect-api.git"
@@ -16,10 +11,7 @@
   "bugs": {
     "url": "https://github.com/code4sac/neighborhood-connect-api/issues"
   },
-  "homepage": "https://github.com/code4sac/neighborhood-connect-api#readme"
-=======
-  "version": "1.0.0",
-  "description": "neighborhood-connect-api",
+  "homepage": "https://github.com/code4sac/neighborhood-connect-api#readme",
   "keywords": [
     "loopback-application",
     "loopback"
@@ -50,11 +42,6 @@
     "start": "node -r source-map-support/register .",
     "prepublishOnly": "npm run test"
   },
-  "repository": {
-    "type": "git"
-  },
-  "author": "",
-  "license": "",
   "files": [
     "README.md",
     "index.js",
@@ -87,5 +74,4 @@
     "eslint-plugin-mocha": "^6.0.0",
     "typescript": "~3.5.3"
   }
->>>>>>> Stashed changes
 }
