@@ -1,0 +1,19 @@
+{
+  "name": "neighborhood-connect-api",
+  "version": "0.1.0",
+  "description": "Connects you to your neighbors",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code4sac/neighborhood-connect-api.git"
+  },
+  "author": "Code4Sac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code4sac/neighborhood-connect-api/issues"
+  },
+  "homepage": "https://github.com/code4sac/neighborhood-connect-api#readme"
+}
