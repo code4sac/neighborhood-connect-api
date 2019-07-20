@@ -1,0 +1,10 @@
+{
+  "name": "NeighborhoodConnectDb",
+  "connector": "postgresql",
+  "url": "postgres://postgres:ncSAC2019@ncsac-database-1.cis9e3tzvsds.us-east-2.rds.amazonaws.com/postgres",
+  "host": "ncsac-database-1.cis9e3tzvsds.us-east-2.rds.amazonaws.com/",
+  "port": 5432,
+  "user": "postgres",
+  "password": "passwordHurrr",
+  "database": "postgres"
+}
