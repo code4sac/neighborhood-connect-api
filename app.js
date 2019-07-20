@@ -1,5 +1,5 @@
 const app = require('express')();
-const organizations = require('./server/controllers/orgRouter.js/index.js.js');
+const organizations = require('./server/controllers/orgRouter.js');
 
 
 app.use('/orgs', organizations);

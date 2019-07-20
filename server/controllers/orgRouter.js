@@ -8,7 +8,13 @@ router.get('/:ordId/users', () => {});
 router.get('/:orgId', (req, res) => {
   console.log(req.params, req.params.orgId);
 
-  res.send(getAll(req.params.orgId));
+  getAll(req.params.orgId, (err, payload) => {
+    if (err) {
+      res.send(400);
+    } else {
+      res.send(payload);
+    }
+  });
 })
 
 module.exports = router;
