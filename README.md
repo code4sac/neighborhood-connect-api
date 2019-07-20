@@ -6,7 +6,10 @@ API and backend for the Neighborhood Connect project
 
 - [Database Tables](#database-tables)
   - [Schema](#schema)
-  - [Roles](#roles)
+  - [User](#user)
+  - [User_Type](#user_type)
+  - [Organization_Contact](#organization_contact)
+  - [Organization_Owner](#organization_owner)
 - [Endpoints](#endpoints)
   - [All endpoints](#all-endpoints)
   - [`/api/auth`](#apiauth)
@@ -25,10 +28,33 @@ API and backend for the Neighborhood Connect project
 | password        | int     |         |
 | first_name      | varchar |         |
 | last_name       | varchar |         |
-| user_type_id    | int     |         |
+| user_type_id    | int     | FK      |
 | phone           | varchar |         |
 | email           | varchar |         |
-| organization_id | varchar |         |
+| organization_id | varchar | FK      |
+
+## user_type
+
+| Name | Type    | Details |
+| ---- | ------- | ------- |
+| id   | int     | PK      |
+| name | varchar |         |
+
+## organization_contact
+
+| Name            | Type    | Details |
+| --------------- | ------- | ------- |
+| id              | int     | PK      |
+| user_id         | int     | FK      |
+| organization_id | varchar | FK      |
+
+## organization_owner
+
+| Name            | Type    | Details |
+| --------------- | ------- | ------- |
+| id              | int     | PK      |
+| user_id         | int     | FK      |
+| organization_id | varchar | FK      |
 
 [Back to table of Contents](#table-of-contents)
 
