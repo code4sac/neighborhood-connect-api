@@ -25,42 +25,6 @@ API and backend for the Neighborhood Connect project
 
 ![Schema Table](visualization.png)
 
-## User
-
-| Name            | Type    | Details |
-| --------------- | ------- | ------- |
-| id              | int     | PK      |
-| password        | int     |         |
-| first_name      | varchar |         |
-| last_name       | varchar |         |
-| user_type_id    | int     | FK      |
-| phone           | varchar |         |
-| email           | varchar |         |
-| organization_id | varchar | FK      |
-
-## user_type
-
-| Name | Type    | Details |
-| ---- | ------- | ------- |
-| id   | int     | PK      |
-| name | varchar |         |
-
-## organization_contact
-
-| Name            | Type    | Details |
-| --------------- | ------- | ------- |
-| id              | int     | PK      |
-| user_id         | int     | FK      |
-| organization_id | varchar | FK      |
-
-## organization_owner
-
-| Name            | Type    | Details |
-| --------------- | ------- | ------- |
-| id              | int     | PK      |
-| user_id         | int     | FK      |
-| organization_id | varchar | FK      |
-
 [Back to table of Contents](#table-of-contents)
 
 # Endpoints
@@ -91,6 +55,8 @@ API and backend for the Neighborhood Connect project
 | `/org/:org_id/priorities`                | GET    |             |
 | `/org/:org_id/priorities/:priorities_id` | GET    |             |
 
+[Back to table of Contents](#table-of-contents)
+
 # Data requests and responses
 
 Below are all expected request body shapes and data responses
@@ -116,6 +82,8 @@ Structure of response:
 
 }
 ```
+
+[Back to table of Contents](#table-of-contents)
 
 ## `/orgs/:org_id/users/:user_id`
 
@@ -205,6 +173,8 @@ Structure of response:
 }
 ```
 
+[Back to table of Contents](#table-of-contents)
+
 ## `/orgs/`
 
 **Method:** GET
@@ -226,6 +196,8 @@ Structure of response:
 
 }
 ```
+
+[Back to table of Contents](#table-of-contents)
 
 ## `/orgs/:org_id/`
 
@@ -271,6 +243,8 @@ Structure of response:
 }
 ```
 
+[Back to table of Contents](#table-of-contents)
+
 ## `/orgs/priorities/`
 
 **Method:** GET
@@ -293,6 +267,8 @@ Structure of response:
 }
 ```
 
+[Back to table of Contents](#table-of-contents)
+
 ## `/orgs/:org_id/priorities`
 
 **Method:** GET
@@ -314,6 +290,8 @@ Structure of response:
 
 }
 ```
+
+[Back to table of Contents](#table-of-contents)
 
 ## `/orgs/:org_id/priorities/:priorities_id`
 
@@ -339,10 +317,13 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-      /priorities/org/:org_id       -- returns a list of priorities for this organization
-      /priorities/district/:district_id    -- returns sorted list of priorities for all orgs in that district .
-      /priorities/type/:type_id  -- returns sorted list of priorities which have this type .  Can be combined with org or district forms
-      /priorities/org/42/type/77  -- returns sorted list of priorities for organization 42 which have type 77
+/priorities/org/:org_id -- returns a list of priorities for this organization
+
+/priorities/district/:district_id -- returns sorted list of priorities for all orgs in that district .
+
+/priorities/type/:type_id -- returns sorted list of priorities which have this type . Can be combined with org or district forms
+
+/priorities/org/42/type/77 -- returns sorted list of priorities for organization 42 which have type 77
 
 actions:
 
