@@ -4,9 +4,9 @@ const organizations = require("./server/controllers/orgRouter.js");
 const users = require("./server/controllers/userRouter.js");
 const types = require("./server/controllers/typeRouter.js");
 const auth = require("./server/controllers/authRouter.js");
-const AuthService = require("./server/services/authService.js");
+//const AuthService = require("./server/services/authService.js");
 
-app.use("/", AuthService.checkToken);
+//app.use("/", AuthService.checkToken);
 app.use("/auth", auth);
 app.use("/priorities", priorities);
 app.use("/orgs", organizations);
