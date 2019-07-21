@@ -1,4 +1,5 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const {
   readUser,
   updateUser,
@@ -7,6 +8,7 @@ const {
   readAllUsers
 } = require("../model/Users");
 
+router.use(express.json());
 router.get("/", async (req, res) => {
   try {
     const results = await readAllUsers();
@@ -18,16 +20,16 @@ router.get("/", async (req, res) => {
 
 router.get("/:user_id", async (req, res) => {
   try {
-    const result = await readUser(req.params.userId);
+    const result = await readUser(req.params.user_id);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
   }
 });
 
-router.post("/:user_id", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const result = await createUser(req.params);
+    const result = await createUser(req.body);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
