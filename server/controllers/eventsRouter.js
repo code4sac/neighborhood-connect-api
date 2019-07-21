@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {
 	getEvents,
-	getEventByPriority,
+	getEventsByPriority,
 	getEventByType
 } = require('../model/Events');
 
@@ -26,7 +26,7 @@ router.get('/:event_id', (req, res) => {
 });
 
 router.get('/priorities/:priority_id', (req, res) => {
-	getEventByPriority(req.params.priority_id, (err, payload) => {
+	getEventsByPriority(req.params.priority_id, (err, payload) => {
 		if (err) {
 			res.sendStatus(400);
 		} else {

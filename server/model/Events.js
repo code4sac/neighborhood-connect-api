@@ -6,7 +6,7 @@ module.exports = {
 		db.query(query, cb);
 	},
 
-	getEventByPriority(id, cb) {
+	getEventsByPriority(id, cb) {
 		let query = `select * from action where priority_id = ${id}`;
 		db.query(query, cb);
 	},
