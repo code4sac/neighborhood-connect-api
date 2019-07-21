@@ -9,6 +9,7 @@ module.exports = {
     let query = `select ${fields} from ${tables} ${selectors}`;
     db.query(query, cb);
   },
+  
   getOrgUsers(id, cb) {
     // make option for more detail on user?
     let fields = `"user".first_name, "user".last_name, "user".email, "user".phone, user_type.name, notifiication_type.type`;
