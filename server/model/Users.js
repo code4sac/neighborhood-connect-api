@@ -13,7 +13,7 @@ module.exports = {
   },
   readAllUsers: async () => {
     try {
-      const result = await db.query(`select * from test.organization`);
+      const result = await db.query(`select * from test.user`);
       return result;
     } catch (err) {
       console.log(err);
