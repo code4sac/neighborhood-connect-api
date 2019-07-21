@@ -7,7 +7,10 @@ const db = require('./db');
 module.exports = {
     async getAllPriorities() {
         try {
-            const res = await db.query(`select * from test.priority`);
+            // const res = await db.query(`select * from test.priority`);
+            const res = await db.query(`select * from test.priority 
+                                        join test.priority_type 
+                                        on test.priority.priority_type_id = test.priority_type.id;`);
             return { rows } = res;
         } catch (err) {
             throw err;
