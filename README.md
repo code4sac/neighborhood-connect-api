@@ -60,11 +60,11 @@ API and backend for the Neighborhood Connect project
 | Endpoint                                                                    | METHOD | Description | Completed |
 | --------------------------------------------------------------------------- | ------ | ----------- | :-------: |
 | [`/priorities` ](#/priorities)                                              | GET    |             |     X     |
-| [`/priorities/orgs/:org_id` ](#)                                            | GET    |             |     X     |
-| [`/priorities/orgs/:org_id` ](#)                                            | POST   |             |     X     |
-| [`/priorities/orgs/:org_id/:priority_id` ](#)                               | GET    |             |     X     |
-| [`/priorities/orgs/:org_id/:priority_id` ](#)                               | PATCH  |             |     X     |
-| [`/priorities/orgs/:org_id/:priority_id` ](#)                               | DELETE |             |     X     |
+| [`/priorities/orgs/:org_id` ](#/priorities/orgs/:org_id)                    | GET    |             |     X     |
+| [`/priorities/orgs/:org_id` ](#/priorities/orgs/:org_id)                    | POST   |             |     X     |
+| [`/priorities/orgs/:org_id/:priority_id` ](#/priorities/orgs/:org_id)       | GET    |             |     X     |
+| [`/priorities/orgs/:org_id/:priority_id` ](#/priorities/orgs/:org_id)       | PATCH  |             |     X     |
+| [`/priorities/orgs/:org_id/:priority_id` ](#/priorities/orgs/:org_id)       | DELETE |             |     X     |
 | [`/priorities/type/:type_id` ](#/priorities/type/:type_id)                  | GET    |             |     X     |
 | [`/priorities/district/:disctrict_id`](#/priorities/district/:disctrict_id) | GET    |             |     X     |
 

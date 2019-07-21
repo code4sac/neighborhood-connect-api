@@ -1,7 +1,7 @@
 // TODO:
 // 1. Get all priorities by district
 
-const express = require('express').Router();
+const router = require('express').Router();
 
 const {
 	getAllPriorities,

@@ -1,10 +1,6 @@
 const app = require('express')();
 const morgan = require('morgan');
-const {
-	priorityRouter,
-	priorityOrganizationRouter,
-	priorityDistrictRouter
-} = require('./server/controllers/priorityRouter');
+const priorityRouter = require('./server/controllers/priorityRouter');
 const organizations = require('./server/controllers/orgRouter.js');
 const users = require('./server/controllers/userRouter.js');
 const types = require('./server/controllers/typeRouter.js');
