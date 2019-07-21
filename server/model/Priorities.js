@@ -35,14 +35,38 @@ module.exports = {
     },
 
     // *** By Organization ***
-    async createPriority(props) {
-        console.log(`Creating priority for ORG ${orgId}`);
+    async createPriority(body) {
+        // console.log(`${Object.keys(props)}`);
+        // try {
+        //     // insert into test.priority () values ()
+        //     const res = await db.query(``);
+        //     return { rows } = res;
+        // } catch (err) {
+        //     throw err;
+        // }
+
+        // const rankResponse = await db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
+        // const rank = rankResponse.rows[0].max + 1;
+
+        const dbColString = Object.keys(body).join(", ");
+
+        const dbValueString = Object.values(body)
+            .map(value => {
+                if (value === null) return "null";
+                if (typeof value === "string") return "'" + value + "'";
+                return value;
+            })
+            .join(", ");
+
+        const dbStatement = `insert into test.priority (${dbColString}) values (${dbValueString});`;
+
+        console.log(dbStatement);
+
         try {
-            // insert into test.priority () values ()
-            const res = await db.query(``);
-            return { rows } = res;
+            const result = await db.query(dbStatement);
+            return result;
         } catch (err) {
-            throw err;
+            return err;
         }
     },
 

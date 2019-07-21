@@ -1,4 +1,4 @@
-const app = require('express')();
+const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const {
@@ -11,8 +11,11 @@ const users = require('./server/controllers/userRouter.js');
 const types = require('./server/controllers/typeRouter.js');
 const events = require('./server/controllers/eventsRouter.js');
 
+const app = express();
+
 app.use(cors());
 // Middleware
+app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
 
