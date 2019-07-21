@@ -33,7 +33,7 @@ router.get("/:userId", async (req, res) => {
 
 router.get("/org/:orgId", async (req, res) => {
   try {
-    const results = await readOrgUsers(req.params.orgId);
+    const results = await getAll(table, req.params.orgId);
     res.status(200).send(results);
   } catch (err) {
     return res.status(404).send(err);
