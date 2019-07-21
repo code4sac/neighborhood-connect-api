@@ -1,57 +1,63 @@
 const router = require("express").Router();
+const express = require("express");
+
 const {
   readUser,
   updateUser,
   createUser,
   deleteUser,
-  readAllUsers
+  readAllUsers,
+  readOrgUsers
 } = require("../model/Users");
+const { getAll, getOne, create, update } = require("../model/CRUD");
+const table = "test.user";
 
+router.use(express.json());
 router.get("/", async (req, res) => {
   try {
-    const results = await readAllUsers();
+    const results = await getAll(table);
     res.status(200).send(results);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
-router.get("/:user_id", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
-    const result = await readUser(req.params.userId);
+    const result = await getOne(table, req.params.userId);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
   }
 });
 
-router.post("/:user_id", async (req, res) => {
+router.get("/org/:orgId", async (req, res) => {
   try {
-    const result = await createUser(req.params);
+    const results = await getAll(table, req.params.orgId);
+    res.status(200).send(results);
+  } catch (err) {
+    return res.status(404).send(err);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const result = await create(table, req.body);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
   }
 });
 
-router.patch("/:user_id", async (req, res) => {
+router.patch("/:userId", async (req, res) => {
   try {
-    const result = await updateUser(req.params);
+    const result = await update(table, req.params.userId, req.body);
     res.status(201).send(result);
   } catch (err) {
+    console.log(err);
     return res.status(404).send(err);
   }
 });
-
-// router.update("/org/users/:user_id", (req, res) => {
-//   updateUser(req.params.userId, (req, res) => {
-//     if (err) {
-//       res.send(400);
-//     } else {
-//       res.send(payload);
-//     }
-//   });
-// });
 
 router.delete("org/users/:user_id", (req, res) => {});
 
