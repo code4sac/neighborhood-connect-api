@@ -5,28 +5,38 @@ const db = require('./db');
 // 2. Write update statement
 
 module.exports = {
-    async createPriority(props) {
+    async getAllPriorities() {
+        try {
+            const res = await db.query(`select * from test.priority`);
+            return { rows } = res;
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    // *** By Organization ***
+    async createPriority(orgId, props) {
+        console.log(`Creating priority for ORG ${orgId}`);
         try {
             // insert into test.priority () values ()
             const res = await db.query(``);
             return { rows } = res;
         } catch (err) {
-            throw new Error('Could not create priority');
+            throw err;
         }
     },
 
-    async getAllPriorities(orgId) {
-        console.log(orgId);
+    async getAllPrioritiesByOrganization(orgId) {
         try {
             const res = await db.query(`select * from test.priority where test.priority.organization_id = ${orgId};`);
             return { rows } = res;
         } catch (err) {
-            console.log(err);
-            throw new Error('Could not get priorities');
+            // console.log(err);
+            throw err;
         }
     },
 
-    async getPriority(orgId, priorityId) {
+    async getPriorityByOrganization(orgId, priorityId) {
         try {
             const res = await db.query(`select * from test.priority
                                         where test.priority.organization_id = ${orgId}
@@ -35,19 +45,43 @@ module.exports = {
             return { rows } = res;
         } catch (err) {
             console.log(err);
-            throw new Error('Could not get priority');
+            throw err;
         }
     },
 
-    async updatePriority(orgId, priorityId) {
+    async updatePriorityByOrganization(orgId, priorityId) {
+        console.log(`Updating priority for ORG ${orgId}`);
         try {
             // update test.priority set 
             const res = await db.query(``);
             return { rows } = res;
         } catch (err) {
             console.log(err);
-            throw new Error('Could not update priority');
+            throw err;
+        }
+    },
+
+    // *** By District ***
+    async getAllPrioritiesByDistrict(distId) {
+        try {
+            const res = await db.query(`select * from test.priority where test.priority.organization_id = ${orgId};`);
+            return { rows } = res;
+        } catch (err) {
+            // console.log(err);
+            throw err;
+        }
+    },
+
+    async getPriorityByDistrict(distId, priorityId) {
+        try {
+            const res = await db.query(`select * from test.priority
+                                        where test.priority.organization_id = ${orgId}
+                                        and test.priority.id = ${priorityId}
+                                        `);
+            return { rows } = res;
+        } catch (err) {
+            console.log(err);
+            throw err;
         }
     }
-
 }
