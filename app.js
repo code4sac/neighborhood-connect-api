@@ -1,12 +1,13 @@
-const app = require("express")();
-const priorities = require("./server/controllers/priorityRouter.js");
+const express = require("express");
+const userRoutes = require("./server/controllers/userRouter");
 const organizations = require("./server/controllers/orgRouter.js");
-const users = require("./server/controllers/userRouter.js");
-const types = require("./server/controllers/typeRouter.js");
+const app = express();
 
-app.use("/priorities", priorities);
 app.use("/orgs", organizations);
-app.use("/users", users);
-app.use("/types", types);
+app.use("/users", userRoutes);
 
-app.listen(3000);
+// app.use(express.static(path.join(__dirname, './build')));
+
+app.listen(3000, () => {
+  console.log("Hido ho, Captn! Listending on port 3000.");
+});
