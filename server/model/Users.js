@@ -8,7 +8,6 @@ module.exports = {
       );
       return result;
     } catch (err) {
-      console.log(err);
       return err;
     }
   },
@@ -19,14 +18,14 @@ module.exports = {
         `select * from test.user where organization_id = ${orgId}`
       );
       return result;
-    } catch {
+    } catch(err) {
       console.log(err);
       return err;
     }
   },
 
   createUser: async body => {
-    const dbColString = Object.keys(body).join(', ');
+    const dbColString = Object.keys(body).join(", ");
 
     const dbValueString = Object.values(body).map(value => {
       if (value === null) return 'null';
@@ -34,9 +33,8 @@ module.exports = {
       return value;
     }).join(', ');
 
-    const dbStatement = `insert into test.user (${dbColString}) values (${dbValueString});`
+    const dbStatement = `insert into test.user (${dbColString}) values (${dbValueString});`;
 
-    // console.log(dbStatement);
     try {
       const result = await db.query(dbStatement);
       return result;
@@ -44,25 +42,23 @@ module.exports = {
       return err;
     }
   },
-
-  updateUser: async params => {
-    const {
-      id,
-      password,
-      first_name,
-      last_name,
-      user_type,
-      phone,
-      email,
-      organization_id,
-      notification_type_id
-    } = params;
-    console.log(id);
-    try {
-      const result = await db.query("update");
-      return result;
-    } catch (err) {
-      return err;
+  updateUser: async (id, data) => {
+    const keys = Object.keys(data);
+    let setStr = "";
+    for (let i = 0; i < keys.length; i += 1) {
+      let newStr = `${keys[i]} = ${db.escape(data[keys[i]])}`;
+      if (i !== keys.length - 1) {
+        newStr = `${newStr},`;
+      }
+      setStr = `${setStr} ${newStr}`;
     }
+    const query = `
+      INSERT test.user
+      SET ${setStr} 
+      WHERE ${table}.id = ${db.escape(id)}
+    `;
+    console.log(query);
+    const results = await db.query(query);
+    return results;
   }
 };

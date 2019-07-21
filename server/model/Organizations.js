@@ -1,27 +1,37 @@
 const db = require('./db');
 
 module.exports = {
-  // INNER JOIN to:
-  // --> org type
-  // --> contact
-  // --> owner
   async getOrg(id) {
     // needs type
-    let fields = id ? '*' : 'organization.name, organization.district, organization.logo_url';
-    let tables = id ? 'organization' : 'organization';
-    let selectors = id ? `where id = ${id}` : '';
-    return db.query(`select ${fields} from ${tables} ${selectors}`);
+    let fields = id 
+      ? `org.*, ot.name,
+      concat(contact.first_name, ' ', contact.last_name) as contact_name,
+      contact.phone as contact_phone, contact.email as contact_email,
+      concat(owner.first_name, ' ', owner.last_name) as owner_name`
+      : 'org.name, org.district, org.logo_url';
+    let tables = id
+      ? `organization org
+      INNER JOIN organization_type ot ON ot.id = org.organization_type_id
+      LEFT JOIN organization_contact oc ON org.id = oc.organization_id
+      LEFT JOIN "user" contact ON contact.id = oc.user_id
+      LEFT JOIN organization_owner ow ON org.id = ow.organization_id
+      LEFT JOIN "user" owner ON owner.id = oc.user_id`
+      : 'organization org';
+    let selectors = id
+      ? `WHERE org.id = ${id}`
+      : '';
+    return db.query(`SELECT ${fields} FROM ${tables} ${selectors}`);
   },
   
   async getOrgUsers(id) {
     // make option for more detail on user?
-    let fields = `"user".first_name, "user".last_name, "user".email, "user".phone, user_type.name, notifiication_type.type`;
-    let tables = `"user"`;
-    let selectors = `INNER JOIN user_type ON "user".user_type_id = user_type.id
-                    INNER JOIN notifiication_type ON "user".notification_type_id = notifiication_type.id`;
+    let fields = `u.first_name, u.last_name, u.email, u.phone, ut.name, nt.type`;
+    let tables = `"user" u`;
     if (id !== undefined) {
-      selectors += ` WHERE "user".id = ${id}`; 
+      tables += ` INNER JOIN user_type ut ON u.user_type_id = ut.id
+        INNER JOIN notifiication_type nt ON u.notification_type_id = nt.id`;
     }
+    let selectors = `WHERE u.id = ${id}`; 
     return db.query(`SELECT (${fields}) FROM ${tables} ${selectors}`);
   },
   // -> check if name already exists

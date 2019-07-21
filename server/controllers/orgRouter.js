@@ -15,6 +15,7 @@ router.get("/:orgId", async (req, res) => {
   try {
     res.status(200).send(await getOrg(req.params.orgId))
   } catch (err) {
+    console.log(err);
     res.status(404).send(err);
   }
 });
