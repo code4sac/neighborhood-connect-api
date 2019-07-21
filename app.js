@@ -1,14 +1,18 @@
 const app = require('express')();
 const morgan = require('morgan');
+
+
+// const priorities = require("./server/controllers/priorityRouter.js");
+const organizations = require('./server/controllers/orgRouter.js');
+const users = require('./server/controllers/userRouter.js');
+const types = require('./server/controllers/typeRouter.js');
+const events = require('./server/controllers/eventsRouter.js');
 const {
     priorityRouter,
     priorityOrganizationRouter,
     priorityDistrictRouter
 } = require('./server/controllers/priorityRouter');
-const organizations = require('./server/controllers/orgRouter.js');
-const users = require('./server/controllers/userRouter.js');
-const types = require('./server/controllers/typeRouter.js');
-const events = require('./server/controllers/eventsRouter.js');
+
 
 // Middleware
 app.use(morgan('dev'));
