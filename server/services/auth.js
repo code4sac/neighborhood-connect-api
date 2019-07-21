@@ -1,11 +1,27 @@
 const AWS = require('aws-sdk');
+const crypto = require('crypto');
+
+AWS.config.region = 'us-west-2'; // Region
+
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f'
+});
 
 const cognitoIdentityOptions = {
     UserPoolId : 'us-west-2_q2Y6U8uuY',
-    ClientId : '224kjog47ojnt9ov773erj7qn9'
+    ClientId : '224kjog47ojnt9ov773erj7qn9',
+    ClientSecret: '224kjog47ojnt9ov773erj7qn9(*#*('
 };
 
 const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
+
+// A keyed-hash message authentication code (HMAC) calculated using the secret key
+// of a user pool client and username plus the client ID in the message.
+const generateSecretHash = (username) => {
+    const message = `${username}${cognitoIdentityOptions.ClientId}`;
+    const hmac = crypto.createHmac('SHA256', cognitoIdentityOptions.ClientSecret);
+    return hmac.write(message).digest('base64');
+};
 
 const Auth = {
     getUserAccount: async (accessToken) => {
@@ -29,15 +45,16 @@ const Auth = {
         }
     },
 
-    refreshUserToken: async (refreshToken, secretHash, deviceKey) => {
+    refreshUserToken: async (refreshToken, username) => {
+        const secretHash = generateSecretHash(username);
+
         try {
             const params = {
                 AuthFlow: 'REFRESH_TOKEN_AUTH', /* required */
                 ClientId: cognitoIdentityOptions.ClientId, /* required */
                 AuthParameters: {
                     'REFRESH_TOKEN': refreshToken,
-                    'SECRET_HASH': secretHash,
-                    'DEVICE_KEY': deviceKey
+                    'SECRET_HASH': secretHash
                 }
             };
 
@@ -129,14 +146,13 @@ const Auth = {
     },
 
     registerUser: async (username, password) => {
+        const secretHash = generateSecretHash(username);
+
         const params = {
-            ClientId: 'STRING_VALUE', /* required */
+            ClientId: cognitoIdentityOptions.ClientId, /* required */
             Password: password, /* required */
             Username: username, /* required */
-            AnalyticsMetadata: {
-                AnalyticsEndpointId: 'STRING_VALUE'
-            },
-            SecretHash: 'STRING_VALUE',
+            SecretHash: secretHash,
             UserAttributes: [
                 {
                     Name: 'STRING_VALUE', /* required */
@@ -144,9 +160,6 @@ const Auth = {
                 },
                 /* more items */
             ],
-            UserContextData: {
-                EncodedData: 'STRING_VALUE'
-            },
             ValidationData: [
                 {
                     Name: 'STRING_VALUE', /* required */
