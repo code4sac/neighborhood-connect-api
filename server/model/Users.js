@@ -24,18 +24,19 @@ module.exports = {
       return err;
     }
   },
+
   createUser: async body => {
     const dbColString = Object.keys(body).join(', ');
 
     const dbValueString = Object.values(body).map(value => {
       if (value === null) return 'null';
-      if (typeof value === 'string') return "'" + value + "'";
+      if (typeof value === 'string') return `'${value}'`;
       return value;
     }).join(', ');
 
     const dbStatement = `insert into test.user (${dbColString}) values (${dbValueString});`
 
-    console.log(dbStatement);
+    // console.log(dbStatement);
     try {
       const result = await db.query(dbStatement);
       return result;
@@ -43,6 +44,7 @@ module.exports = {
       return err;
     }
   },
+
   updateUser: async params => {
     const {
       id,
