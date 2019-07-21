@@ -1,6 +1,6 @@
 const { Client } = require("pg");
 // const { dbConf } = require("../../config");
-const db = require("../model/db");
+const db = require("./db");
 
 module.exports = {
   getAll: async table => {
@@ -20,34 +20,46 @@ module.exports = {
     const results = await db.query(query);
     return results;
   },
-  create: async (table, data) => {
+  create: async (table, body) => {
+    const dbColString = Object.keys(body).join(", ");
+
+    const dbValueString = Object.values(body)
+      .map(value => {
+        if (value === null) return "null";
+        if (typeof value === "string") return "'" + value + "'";
+        return value;
+      })
+      .join(", ");
+
+    const dbStatement = `insert into ${table} (${dbColString}) values (${dbValueString});`;
+
     try {
-      const keys = Object.keys(data);
-      const values = keys.map(value => data[value]);
-      const placeholders = values.map((value, index) => `$${index + 1}`);
-      const query = `
-        INSERT INTO ${table}(${keys.join(",")})
-        VALUES(${placeholders.join(",")})
-        RETURNING *
-      `;
-      const results = await db.query(query, values);
-      return results;
-    } catch (error) {
-      return error;
+      const result = await db.query(dbStatement);
+      return result;
+    } catch (err) {
+      return err;
     }
   },
   update: async (table, id, data) => {
     const keys = Object.keys(data);
     let setStr = "";
     for (let i = 0; i < keys.length; i += 1) {
-      let newStr = `${keys[i]} = ${data[keys[i]]}`;
+      let value = data[keys[i]];
+      if (typeof value === "string") {
+        value = `'${value}'`;
+      }
+      if (typeof value === null) {
+        value = `'null'`;
+      }
+      let newStr = `${keys[i]} = ${value}`;
       if (i !== keys.length - 1) {
         newStr = `${newStr},`;
       }
       setStr = `${setStr} ${newStr}`;
     }
+
     const query = `
-      INSERT ${table} 
+      UPDATE ${table} 
       SET ${setStr} 
       WHERE ${table}.id = ${id}
     `;
