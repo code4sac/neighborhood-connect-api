@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Auth = require('../services/auth.js');
+const AuthService = require('../services/authService.js');
 
 // signup: create user with username and password, validating confirmPassword.
 router.post('/', async (req, res) => {
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
         if (fieldsDontExist || password !== confirmPassword) {
             res.send(400);
         } else {
-            const result = await Auth.registerUser(username, password);
+            const result = await AuthService.registerUser(username, password);
 
             if (!result.err) {
                 res.send(500, result.err);
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
         if (fieldsDontExist) {
             res.send(403);
         } else {
-            const result = await Auth.authenticateUser(username, password);
+            const result = await AuthService.authenticateUser(username, password);
 
             if (result.err) {
                 res.send(403);
@@ -56,7 +56,7 @@ router.get('/reset', async (req, res) => {
        if (fieldsDontExist) {
            res.send(400);
        } else {
-           const result = await Auth.resetPassword(username);
+           const result = await AuthService.resetPassword(username);
 
            if (result.err) {
                res.send(500);
@@ -80,7 +80,7 @@ router.patch('/', async (req, res) => {
         if (fieldsDontExist || newMatchOldDoesnt) {
             res.send(400);
         } else {
-            const result = await Auth.changePassword(username, currentPassword, newPassword);
+            const result = await AuthService.changePassword(username, currentPassword, newPassword);
 
             if (result.err) {
                 res.send(500);

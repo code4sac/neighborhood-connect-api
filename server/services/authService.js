@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const crypto = require('crypto');
+let jwt = require('jsonwebtoken');
 
 AWS.config.region = 'us-west-2'; // Region
 
@@ -20,10 +21,41 @@ const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
 const generateSecretHash = (username) => {
     const message = `${username}${cognitoIdentityOptions.ClientId}`;
     const hmac = crypto.createHmac('SHA256', cognitoIdentityOptions.ClientSecret);
-    return hmac.write(message).digest('base64');
+    return hmac.update(message).digest('base64');
 };
 
-const Auth = {
+const AuthService = {
+    checkToken: (req, res, next) => {
+        // Express headers are auto converted to lowercase
+        let token = req.headers['x-access-token'] || req.headers['authorization'];
+
+        if (token.startsWith('Bearer ')) {
+            // Remove Bearer from string
+            token = token.slice(7, token.length);
+        }
+
+        if (token) {
+            next();
+            /*
+            jwt.verify(token, config.secret, (err, decoded) => {
+                if (err) {
+                    return res.json({
+                        success: false,
+                        message: 'Token is not valid'
+                    });
+                } else {
+                    req.decoded = decoded;
+                    next();
+                }
+            });*/
+        } else {
+            return res.json({
+                success: false,
+                message: 'Auth token is not supplied'
+            });
+        }
+    },
+
     getUserAccount: async (accessToken) => {
         try {
             const params = {
@@ -183,4 +215,4 @@ const Auth = {
 };
 
 
-module.exports = Auth;
+module.exports = AuthService;
