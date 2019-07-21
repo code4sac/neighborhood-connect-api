@@ -47,4 +47,50 @@ router.get('/', async (req, res) => {
     }
 });
 
+// forgotPassword: user forgot password reset it.
+router.get('/reset', async (req, res) => {
+   try {
+       const { username } = req.body;
+       const fieldsDontExist = !(username);
+
+       if (fieldsDontExist) {
+           res.send(400);
+       } else {
+           const result = await Auth.resetPassword(username);
+
+           if (result.err) {
+               res.send(500);
+           } else {
+               res.send(200);
+           }
+       }
+   }  catch(err) {
+       res.send(400, err);
+   }
+});
+
+// changePassword: user wants to change their password.
+router.patch('/', async (req, res) => {
+    try {
+        const { username, currentPassword, newPassword, confirmNewPassword } = req.body;
+
+        const fieldsDontExist = !(username && currentPassword && newPassword && confirmNewPassword);
+        const newMatchOldDoesnt = (newPassword === confirmNewPassword && newPassword !== currentPassword);
+
+        if (fieldsDontExist || newMatchOldDoesnt) {
+            res.send(400);
+        } else {
+            const result = await Auth.changePassword(username, currentPassword, newPassword);
+
+            if (result.err) {
+                res.send(500);
+            } else {
+                res.send(200);
+            }
+        }
+    }  catch(err) {
+        res.send(400, err);
+    }
+});
+
 module.exports = router;
