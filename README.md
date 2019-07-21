@@ -15,6 +15,7 @@ API and backend for the Neighborhood Connect project
 - [Data requests and responses](#Data-requests-and-responses)
 
 # Getting Started
+
 - Run `npm i` from the command line
 - copy the file at /server/model/config.example.js -> config.js and fill in the password and host information
 - Run `npm start`
@@ -72,10 +73,10 @@ API and backend for the Neighborhood Connect project
 
 | Endpoint                                                             | METHOD | Description | Completed |
 | -------------------------------------------------------------------- | ------ | ----------- | :-------: |
-| [`/events` ](#/events)                                               | GET    |             |           |
-| [`/events/priorities/:priority_id` ](#/events/priority/:priority_id) | GET    |             |           |
-| [`/events/types/:type_id` ](#/events/types/:types_id)                | GET    |             |           |
-| [`/events/:event_id` ](#/events/:events_id)                          | GET    |             |           |
+| [`/events` ](#/events)                                               | GET    |             |     X     |
+| [`/events/priorities/:priority_id` ](#/events/priority/:priority_id) | GET    |             |     X     |
+| [`/events/types/:type_id` ](#/events/types/:types_id)                | GET    |             |     X     |
+| [`/events/:event_id` ](#/events/:events_id)                          | GET    |             |     X     |
 
 [Back to table of Contents](#table-of-contents)
 
