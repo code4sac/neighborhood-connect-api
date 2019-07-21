@@ -1,12 +1,8 @@
-const app = require('express')();
-const organizations = require('./server/controllers/orgRouter.js');
+const express = require('express');
+const PORT = process.env.PORT || 3000;
+
+const app = express();
 
 
-app.use('/orgs', organizations);
-// app.use('/users', userRouter)
-// app.use('/priorities', priorityRouter)
 
-
-app.use('/types', function(){});
-
-app.listen(3000);
+app.listen(PORT);

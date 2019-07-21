@@ -41,19 +41,21 @@ API and backend for the Neighborhood Connect project
 
 ### Org
 
-| Endpoint         | METHOD | Description |
-| ---------------- | ------ | ----------- |
-| `/orgs/`         | GET    |             |
-| `/orgs/:org_id/` | GET    |             |
-| `/orgs/:org_id/` | PATCH  |             |
+| Endpoint                                  | METHOD | Description |
+| ----------------------------------------- | ------ | ----------- |
+| `/orgs/`                                  | GET    |             |
+| `/orgs/:org_id/`                          | GET    |             |
+| `/orgs/:org_id/`                          | PATCH  |             |
+| `/orgs/:org_id/priorities`                | GET    |             |
+| `/orgs/:org_id/priorities/:priorities_id` | GET    |             |
 
 ### Priorities
 
-| Endpoint                                 | METHOD | Description |
-| ---------------------------------------- | ------ | ----------- |
-| `/org/priorities/`                       | GET    |             |
-| `/org/:org_id/priorities`                | GET    |             |
-| `/org/:org_id/priorities/:priorities_id` | GET    |             |
+| Endpoint                             | METHOD | Description |
+| ------------------------------------ | ------ | ----------- |
+| `/priorities/`                       | GET    |             |
+| `/priorities/type/:type_id`          | GET    |             |
+| `/priorities/disctict/:disctrict_id` | GET    |             |
 
 [Back to table of Contents](#table-of-contents)
 
