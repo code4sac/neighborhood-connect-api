@@ -5,9 +5,9 @@ const users = require('./server/controllers/userRouter.js');
 const types = require('./server/controllers/typeRouter.js');
 
 
-app.use('/priorities', priorities);
+//app.use('/priorities', priorities);
 app.use('/orgs', organizations);
-app.use('/users', users);
+//app.use('/users', users);
 app.use('/types', types);
 
 app.listen(3000);

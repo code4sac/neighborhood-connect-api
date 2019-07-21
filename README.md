@@ -4,6 +4,7 @@ API and backend for the Neighborhood Connect project
 
 ## Table of Contents
 
+- [Getting Started](#getting-started)
 - [Database Tables](#database-tables)
   - [Schema](#schema)
   - [User](#user)
@@ -18,6 +19,11 @@ API and backend for the Neighborhood Connect project
   - [`/org/priorities`](#/org/priorities)
   - [`/org/:org_id/priorities`](#/org/:org_id/priorities)
   - [`/org/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id)
+
+# Getting Started
+- Run `npm i` from the command line
+- copy the file at /server/model/config.example.js -> config.js and fill in the password and host information
+- Run `npm start`
 
 # Database Tables
 
