@@ -9,11 +9,13 @@ const {
   readAllUsers,
   readOrgUsers
 } = require("../model/Users");
+const { getAll, getOne, create, update } = require("../model/CRUD");
+const table = "test.user";
 
 router.use(express.json());
 router.get("/", async (req, res) => {
   try {
-    const results = await readUser();
+    const results = await getAll(table);
     res.status(200).send(results);
   } catch (err) {
     res.status(404).send(err);
@@ -22,7 +24,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:userId", async (req, res) => {
   try {
-    const result = await readUser(req.params.user_id);
+    const result = await getOne(table, req.params.userId);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
@@ -40,33 +42,22 @@ router.get("/org/:orgId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const result = await createUser(req.body);
+    const result = await create(table, req.body);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
   }
 });
 
-// router.patch("/:user_id", express.json(), async (req, res) => {
-//   console.log(req.body);
-
-//   try {
-//     const result = await updateUser(req.body);
-//     res.status(201).send(result);
-//   } catch (err) {
-//     return res.status(404).send(err);
-//   }
-// });
-
-// router.update("/org/users/:user_id", (req, res) => {
-//   updateUser(req.params.userId, (req, res) => {
-//     if (err) {
-//       res.send(400);
-//     } else {
-//       res.send(payload);
-//     }
-//   });
-// });
+router.patch("/:userId", async (req, res) => {
+  try {
+    const result = await update(table, req.params.userId, req.body);
+    res.status(201).send(result);
+  } catch (err) {
+    console.log(err);
+    return res.status(404).send(err);
+  }
+});
 
 router.delete("org/users/:user_id", (req, res) => {});
 
