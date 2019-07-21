@@ -16,4 +16,9 @@ app.use('/orgs', organizations);
 // app.use("/users", users);
 app.use('/types', types);
 
-app.listen(3000);
+
+// app.use(express.static(path.join(__dirname, './build')));
+
+app.listen(3000, () => {
+  console.log("Hido ho, Captn! Listending on port 3000.");
+});
