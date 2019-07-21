@@ -1,6 +1,7 @@
 const app = require('express')();
 const morgan = require('morgan');
 const cors = require('cors');
+
 const {
 	priorityRouter,
 	priorityOrganizationRouter,
@@ -9,7 +10,7 @@ const {
 const organizations = require('./server/controllers/orgRouter.js');
 const users = require('./server/controllers/userRouter.js');
 const types = require('./server/controllers/typeRouter.js');
-const actions = require('./server/controllers/actionsRouter.js/');
+const actions = require('./server/controllers/actionsRouter.js');
 
 // Middleware
 app.use(morgan('dev'));

@@ -3,18 +3,16 @@ const router = require('express').Router();
 const {
 	getActions,
 	getActionsByPriority,
-	getEventByType,
+	getActionsByType,
 	createAction
 } = require('../model/Actions');
 
-router.get('/', (req, res) => {
-	getActions(null, (err, payload) => {
-		if (err) {
-			res.sendStatus(400);
-		} else {
-			res.send(payload);
-		}
-	});
+router.get('/', async (req, res) => {
+	try {
+		res.status(200).send(await getActions());
+	} catch (err) {
+		res.status(404).send(err);
+	}
 });
 // router.post('/', express.json(), (req, res) => {
 // 	let result = createAction(req.body);
@@ -26,34 +24,30 @@ router.get('/', (req, res) => {
 // 	}
 // });
 
-router.get('/:action_id', (req, res) => {
-	getActions(req.params.action_id, (err, payload) => {
-		if (err) {
-			res.sendStatus(400);
-		} else {
-			res.send(payload);
-		}
-	});
+router.get('/:action_id', async (req, res) => {
+	try {
+		res.status(200).send(await getActions(req.params.action_id));
+	} catch (err) {
+		res.status(404).send(err);
+	}
 });
 
-router.get('/priorities/:priority_id', (req, res) => {
-	getActionsByPriority(req.params.priority_id, (err, payload) => {
-		if (err) {
-			res.sendStatus(400);
-		} else {
-			res.send(payload);
+router.get('/priorities/:priority_id', async (req, res) => {
+		try {
+			res.status(200).send(await getActionsByPriority(req.params.priority_id));
+		} catch (err) {
+			res.status(404).send(err);
 		}
-	});
 });
 
-router.get('/types/:type_id', (req, res) => {
-	getEventByType(req.params.type_id, (err, payload) => {
-		if (err) {
-			res.sendStatus(400);
-		} else {
-			res.send(payload);
-		}
-	});
+router.get('/types/:type_id', async (req, res) => {
+	console.log('got here?');
+	console.log(req.params.type_id);
+	try {
+		res.status(200).send(await getActionsByType(req.params.type_id));
+	} catch (err) {
+		res.status(404).send(err);
+	}
 });
 
 module.exports = router;
