@@ -1,7 +1,17 @@
 {
   "name": "neighborhood-connect-api",
-  "version": "1.0.0",
-  "description": "neighborhood-connect-api",
+  "version": "0.1.0",
+  "description": "Connects you to your neighbors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code4sac/neighborhood-connect-api.git"
+  },
+  "author": "Code4Sac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code4sac/neighborhood-connect-api/issues"
+  },
+  "homepage": "https://github.com/code4sac/neighborhood-connect-api#readme",
   "keywords": [
     "loopback-application",
     "loopback"
@@ -32,11 +42,6 @@
     "start": "node -r source-map-support/register .",
     "prepublishOnly": "npm run test"
   },
-  "repository": {
-    "type": "git"
-  },
-  "author": "",
-  "license": "",
   "files": [
     "README.md",
     "index.js",
