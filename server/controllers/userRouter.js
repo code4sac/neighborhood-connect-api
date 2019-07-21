@@ -7,7 +7,7 @@ const {
   readAllUsers
 } = require("../model/Users");
 
-router.get("", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const results = await readAllUsers();
     res.status(200).send(results);
