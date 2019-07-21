@@ -8,14 +8,67 @@ const cognitoIdentityOptions = {
 const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
 
 const Auth = {
-    getUserAccount: async (username) => {
+    getUserAccount: async (accessToken) => {
         try {
             const params = {
-                UserPoolId: cognitoIdentityOptions.UserPoolId, /* required */
-                Username: username /* required */
+                AccessToken: accessToken /* required */
             };
 
-            const {err, data} = await cognitoIdentityServiceProvider.adminGetUser(params);
+            const { err, data } = await cognitoIdentityServiceProvider.getUser(params);
+
+            if (err) {
+                console.log(err, err.stack);
+                return err;
+            }
+
+            console.log(data);
+            return data;
+        } catch (err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
+
+    refreshUserToken: async (refreshToken, secretHash, deviceKey) => {
+        try {
+            const params = {
+                AuthFlow: 'REFRESH_TOKEN_AUTH', /* required */
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                AuthParameters: {
+                    'REFRESH_TOKEN': refreshToken,
+                    'SECRET_HASH': secretHash,
+                    'DEVICE_KEY': deviceKey
+                }
+            };
+
+            const { err, data } = cognitoIdentityServiceProvider.initiateAuth(params);
+
+            if (err) {
+                console.log(err, err.stack);
+                return err;
+            }
+
+            console.log(data);
+            return data;
+
+        } catch (err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
+
+    authenticateUser: async (username, password) => {
+        try {
+            const params = {
+                AuthFlow: 'USER_PASSWORD_AUTH', /* required */
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                AuthParameters: {
+                    'USERNAME': username,
+                    'PASSWORD': password
+                }
+            };
+
+            const { err, data } = cognitoIdentityServiceProvider.initiateAuth(params);
 
             if (err) {
                 console.log(err, err.stack);

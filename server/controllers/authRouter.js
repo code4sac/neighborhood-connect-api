@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
         if (fieldsDontExist) {
             res.send(403);
         } else {
-            const result = { err : true }; //todo do something here;
+            const result = await Auth.authenticateUser(username, password);
 
             if (result.err) {
                 res.send(403);
