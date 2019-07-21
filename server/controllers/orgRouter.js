@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const {getOrg, getOrgUsers} = require('../model/Organizations');
+const router = require("express").Router();
+const { getOrg, getOrgUsers } = require("../model/Organizations");
 
 // DRY consider refactoring
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   getOrg(null, (err, payload) => {
     console.log(err, payload);
     if (err) {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:orgId', (req, res) => {
+router.get("/:orgId", (req, res) => {
   getOrg(req.params.orgId, (err, payload) => {
     console.log(err, payload);
     if (err) {
@@ -24,8 +24,7 @@ router.get('/:orgId', (req, res) => {
   });
 });
 
-
-router.get('/:orgId/users', (req, res) => {
+router.get("/:orgId/users", (req, res) => {
   getOrgUsers(null, (err, payload) => {
     console.log(err, payload);
     if (err) {
@@ -34,9 +33,9 @@ router.get('/:orgId/users', (req, res) => {
       res.send(payload);
     }
   });
-})
+});
 
-router.get('/:orgId/users/:userId', (req,res) => {
+router.get("/:orgId/users/:userId", (req, res) => {
   getOrgUsers(req.params.orgId, (err, payload) => {
     console.log(err, payload);
     if (err) {
@@ -45,6 +44,6 @@ router.get('/:orgId/users/:userId', (req,res) => {
       res.send(payload);
     }
   });
-})
+});
 
 module.exports = router;
