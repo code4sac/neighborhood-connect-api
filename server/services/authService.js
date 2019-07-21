@@ -201,10 +201,12 @@ const AuthService = {
             ]
         };
 
-        const { err, data } = await cognitoIdentityServiceProvider.signUp(params);
+        const response = await cognitoIdentityServiceProvider.signUp(params);
 
-        if (err) {
-            console.log(err, err.stack);
+        const { error, data} = response.response;
+
+        if (error) {
+            console.log(error, err.stack);
             return err;
         }
 
