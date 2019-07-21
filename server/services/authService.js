@@ -34,9 +34,11 @@ const AuthService = {
             token = token.slice(7, token.length);
         }
 
+        next();
+
+        /*
+
         if (token) {
-            next();
-            /*
             jwt.verify(token, config.secret, (err, decoded) => {
                 if (err) {
                     return res.json({
@@ -47,13 +49,13 @@ const AuthService = {
                     req.decoded = decoded;
                     next();
                 }
-            });*/
+            });
         } else {
             return res.json({
                 success: false,
                 message: 'Auth token is not supplied'
             });
-        }
+        }*/
     },
 
     getUserAccount: async (accessToken) => {
