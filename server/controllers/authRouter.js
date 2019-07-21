@@ -14,8 +14,8 @@ const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider({
 const signup = async (username, password) => {
     const params = {
         ClientId: 'STRING_VALUE', /* required */
-        Password: 'STRING_VALUE', /* required */
-        Username: 'STRING_VALUE', /* required */
+        Password: password, /* required */
+        Username: username, /* required */
         AnalyticsMetadata: {
             AnalyticsEndpointId: 'STRING_VALUE'
         },
