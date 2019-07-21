@@ -49,7 +49,7 @@ API and backend for the Neighborhood Connect project
 | --------------------------------------------------------------------------- | ------ | ----------- |
 | [`/priorities/` ](#/priorities/)                                            | GET    |             |
 | [`/priorities/type/:type_id` ](#/priorities/type/:type_id)                  | GET    |             |
-| [`/priorities/disctict/:disctrict_id`](#/priorities/disctict/:disctrict_id) | GET    |             |
+| [`/priorities/district/:disctrict_id`](#/priorities/district/:disctrict_id) | GET    |             |
 
 [Back to table of Contents](#table-of-contents)
 
@@ -361,7 +361,7 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-## `/priorities/disctict/:disctrict_id`
+## `/priorities/district/:disctrict_id`
 
 **Method:** GET
 
