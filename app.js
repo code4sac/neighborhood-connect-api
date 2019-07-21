@@ -1,10 +1,21 @@
-const express = require("express");
-const userRoutes = require("./server/controllers/userRouter");
-const organizations = require("./server/controllers/orgRouter.js");
-const app = express();
+const app = require('express')();
+const morgan = require('morgan');
 
-app.use("/orgs", organizations);
-app.use("/users", userRoutes);
+// const priorities = require("./server/controllers/priorityRouter.js");
+const organizations = require('./server/controllers/orgRouter.js');
+// const users = require("./server/controllers/userRouter.js");
+const types = require('./server/controllers/typeRouter.js');
+
+// Middleware
+app.use(morgan('dev'));
+
+// Routes
+
+// app.use("/priorities", priorities);
+app.use('/orgs', organizations);
+// app.use("/users", users);
+app.use('/types', types);
+
 
 // app.use(express.static(path.join(__dirname, './build')));
 
