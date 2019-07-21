@@ -72,7 +72,10 @@ module.exports = {
 
     async getAllPrioritiesByOrganization(orgId) {
         try {
-            const res = await db.query(`select * from test.priority where test.priority.organization_id = ${orgId};`);
+            const res = await db.query(`select p.*, pt.name as priorityName 
+                            from test.priority p inner join test.priority_type pt on p.priority_type_id = pt.id 
+                            where p.organization_id = ${orgId};`);
+            // const res = await db.query(`select * from test.priority where test.priority.organization_id = ${orgId};`);
             return { rows } = res;
         } catch (err) {
             // console.log(err);
