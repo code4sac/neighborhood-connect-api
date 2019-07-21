@@ -11,7 +11,8 @@ const {
     createPriority,
     getAllPrioritiesByOrganization,
     getPriorityByOrganization,
-    updatePriorityByOrganization
+    updatePriorityByOrganization,
+    getActions
 } = require('../model/Priorities.js');
 
 // Get all Priorities
@@ -23,10 +24,20 @@ priorityRouter.get('/', async (req, res) => {
     }
 });
 
-// Priorities based on Organization
-priorityOrganizationRouter.post('/:orgId', async (req, res) => {
+// Get actions for a priority
+priorityRouter.get('/:priorityId/actions', async (req, res) => {
     try {
-        res.status(200).send(await createPriority(req.params.orgId, req.body));
+        console.log(req.params.priorityId);
+        res.status(200).send(await getActions(req.params.priorityId));
+    } catch (err) {
+        res.status(400).send();
+    }
+});
+
+// Priorities based on Organization
+priorityRouter.post('/', async (req, res) => {
+    try {
+        res.status(200).send(await createPriority(req.body));
     } catch (err) {
         res.status(400).send();
     }

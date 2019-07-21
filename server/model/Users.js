@@ -18,7 +18,7 @@ module.exports = {
         `select * from test.user where organization_id = ${orgId}`
       );
       return result;
-    } catch {
+    } catch(err) {
       console.log(err);
       return err;
     }
