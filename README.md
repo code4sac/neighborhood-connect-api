@@ -11,6 +11,7 @@ API and backend for the Neighborhood Connect project
   - [Organization_Contact](#organization_contact)
   - [Organization_Owner](#organization_owner)
 - [Endpoints](#endpoints)
+- [Data requests and responses](#Data-requests-and-responses)
 
 # Database Tables
 
