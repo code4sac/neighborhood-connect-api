@@ -11,13 +11,6 @@ API and backend for the Neighborhood Connect project
   - [Organization_Contact](#organization_contact)
   - [Organization_Owner](#organization_owner)
 - [Endpoints](#endpoints)
-  - [`/orgs/:org_id/users`](#/orgs/:org_id/users)
-  - [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id)
-  - [`/orgs/`](#/orgs/)
-  - [`/orgs/:org_id/`](#/orgs/:org_id/)
-  - [`/org/priorities`](#/org/priorities)
-  - [`/org/:org_id/priorities`](#/org/:org_id/priorities)
-  - [`/org/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id)
 
 # Database Tables
 
@@ -31,31 +24,31 @@ API and backend for the Neighborhood Connect project
 
 ### Users
 
-| Endpoint                       | METHOD | Description |
-| ------------------------------ | ------ | ----------- |
-| `/orgs/:org_id/users`          | POST   |             |
-| `/orgs/:org_id/users/:user_id` | PATCH  |             |
-| `/orgs/:org_id/users/:user_id` | GET    |             |
-| `/orgs/:org_id/users/:user_id` | UPDATE |             |
-| `/orgs/:org_id/users/:user_id` | DELETE |             |
+| Endpoint                                                        | METHOD | Description |
+| --------------------------------------------------------------- | ------ | ----------- |
+| [`/orgs/:org_id/users`](#/orgs/:org_id/users)                   | POST   |             |
+| [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id) | PATCH  |             |
+| [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id) | GET    |             |
+| [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id) | UPDATE |             |
+| [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id) | DELETE |             |
 
 ### Org
 
-| Endpoint                                  | METHOD | Description |
-| ----------------------------------------- | ------ | ----------- |
-| `/orgs/`                                  | GET    |             |
-| `/orgs/:org_id/`                          | GET    |             |
-| `/orgs/:org_id/`                          | PATCH  |             |
-| `/orgs/:org_id/priorities`                | GET    |             |
-| `/orgs/:org_id/priorities/:priorities_id` | GET    |             |
+| Endpoint                                                                             | METHOD | Description |
+| ------------------------------------------------------------------------------------ | ------ | ----------- |
+| [`/orgs/` ](#/orgs/)                                                                 | GET    |             |
+| [`/orgs/:org_id/` ](#/orgs/:org_id/)                                                 | GET    |             |
+| [`/orgs/:org_id/` ](#/orgs/:org_id/)                                                 | PATCH  |             |
+| [`/orgs/:org_id/priorities`](#/org/:org_id/priorities)                               | GET    |             |
+| [`/orgs/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id) | GET    |             |
 
 ### Priorities
 
-| Endpoint                             | METHOD | Description |
-| ------------------------------------ | ------ | ----------- |
-| `/priorities/`                       | GET    |             |
-| `/priorities/type/:type_id`          | GET    |             |
-| `/priorities/disctict/:disctrict_id` | GET    |             |
+| Endpoint                                                                    | METHOD | Description |
+| --------------------------------------------------------------------------- | ------ | ----------- |
+| [`/priorities/` ](#/priorities/)                                            | GET    |             |
+| [`/priorities/type/:type_id` ](#/priorities/type/:type_id)                  | GET    |             |
+| [`/priorities/disctict/:disctrict_id`](#/priorities/disctict/:disctrict_id) | GET    |             |
 
 [Back to table of Contents](#table-of-contents)
 
@@ -296,6 +289,78 @@ Structure of response:
 [Back to table of Contents](#table-of-contents)
 
 ## `/orgs/:org_id/priorities/:priorities_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/priorities`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/priorities/type/:type_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/priorities/disctict/:disctrict_id`
 
 **Method:** GET
 
