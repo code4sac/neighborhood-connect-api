@@ -10,6 +10,7 @@ const {
   readOrgUsers
 } = require("../model/Users");
 
+router.use(express.json());
 router.get("/", async (req, res) => {
   try {
     const results = await readUser();
@@ -21,7 +22,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:userId", async (req, res) => {
   try {
-    const result = await readUser(req.params.userId);
+    const result = await readUser(req.params.user_id);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
@@ -37,9 +38,9 @@ router.get("/org/:orgId", async (req, res) => {
   }
 });
 
-router.post("/:user_id", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const result = await createUser(req.params);
+    const result = await createUser(req.body);
     res.status(200).send(result);
   } catch (err) {
     return res.status(404).send(err);
