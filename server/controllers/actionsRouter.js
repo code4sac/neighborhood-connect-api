@@ -1,12 +1,14 @@
+const express = require('express');
 const router = require('express').Router();
 const {
-	getEvents,
-	getEventsByPriority,
-	getEventByType
-} = require('../model/Events');
+	getActions,
+	getActionsByPriority,
+	getEventByType,
+	createAction
+} = require('../model/Actions');
 
 router.get('/', (req, res) => {
-	getEvents(null, (err, payload) => {
+	getActions(null, (err, payload) => {
 		if (err) {
 			res.sendStatus(400);
 		} else {
@@ -14,9 +16,18 @@ router.get('/', (req, res) => {
 		}
 	});
 });
+// router.post('/', express.json(), (req, res) => {
+// 	let result = createAction(req.body);
+// 	console.log(result);
+// 	if (result === 1) {
+// 		res.status(201).send(result);
+// 	} else {
+// 		res.status(500).send(result);
+// 	}
+// });
 
-router.get('/:event_id', (req, res) => {
-	getEvents(req.params.event_id, (err, payload) => {
+router.get('/:action_id', (req, res) => {
+	getActions(req.params.action_id, (err, payload) => {
 		if (err) {
 			res.sendStatus(400);
 		} else {
@@ -26,7 +37,7 @@ router.get('/:event_id', (req, res) => {
 });
 
 router.get('/priorities/:priority_id', (req, res) => {
-	getEventsByPriority(req.params.priority_id, (err, payload) => {
+	getActionsByPriority(req.params.priority_id, (err, payload) => {
 		if (err) {
 			res.sendStatus(400);
 		} else {

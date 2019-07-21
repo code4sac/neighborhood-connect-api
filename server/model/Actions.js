@@ -1,12 +1,12 @@
 const db = require('./db');
 
 module.exports = {
-	getEvents(id, cb) {
+	getActions(id, cb) {
 		let query = `select * from action ${id ? `where id = ${id}` : ''}`;
 		db.query(query, cb);
 	},
 
-	getEventsByPriority(id, cb) {
+	getActionsByPriority(id, cb) {
 		let query = `select * from action where priority_id = ${id}`;
 		db.query(query, cb);
 	},
@@ -19,7 +19,7 @@ module.exports = {
 		WHERE t.id = ${id}`;
 		db.query(query, cb);
 	},
-	async createEvent(eventObject) {
+	async createAction(eventObject) {
 		const {
 			action_type_id,
 			description,
@@ -28,17 +28,19 @@ module.exports = {
 			user_id,
 			title
 		} = eventObject;
+
 		const query = `INSERT INTO action (action_type_id, description, visibility, priority_id, user_id, title)
 			VALUES (${action_type_id},
-			${description},
+			'${description}',
 			${visibility},
 			${priority_id},
 			${user_id},
-			${title}),`;
+			'${title}'),`;
 		try {
-			db.query(query);
+			await db.query(query);
+			return 1;
 		} catch (err) {
-			throw err;
+			return err;
 		}
 	}
 };
