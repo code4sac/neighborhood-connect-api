@@ -5,11 +5,6 @@ const {
 	getEventByType
 } = require('../model/Events');
 
-// /events	GET
-// /events/priorities/:priority_id	GET
-// /events/types/:type_id	GET
-// /events/:event_id
-
 router.get('/', (req, res) => {
 	getEvents(null, (err, payload) => {
 		if (err) {
