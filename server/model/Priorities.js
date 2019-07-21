@@ -1,8 +1,8 @@
-const db = require('./db');
-
 // TODO:
 // 1. Write insert statement
 // 2. Write update statement
+
+const db = require('./db');
 
 module.exports = {
     async getAllPriorities() {
@@ -72,16 +72,16 @@ module.exports = {
         }
     },
 
-    async getPriorityByDistrict(distId, priorityId) {
-        try {
-            const res = await db.query(`select * from test.priority
-                                        where test.priority.organization_id = ${orgId}
-                                        and test.priority.id = ${priorityId}
-                                        `);
-            return { rows } = res;
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
-    }
+    // async getPriorityByDistrict(distId, priorityId) {
+    //     try {
+    //         const res = await db.query(`select * from test.priority
+    //                                     where test.priority.organization_id = ${orgId}
+    //                                     and test.priority.id = ${priorityId}
+    //                                     `);
+    //         return { rows } = res;
+    //     } catch (err) {
+    //         console.log(err);
+    //         throw err;
+    //     }
+    // }
 }
