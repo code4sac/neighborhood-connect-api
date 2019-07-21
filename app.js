@@ -4,7 +4,7 @@ const organizations = require("./server/controllers/orgRouter.js");
 const app = express();
 
 app.use("/orgs", organizations);
-app.use("/org/user", userRoutes);
+app.use("/users", userRoutes);
 
 // app.use(express.static(path.join(__dirname, './build')));
 

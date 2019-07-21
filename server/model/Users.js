@@ -4,18 +4,22 @@ module.exports = {
   readUser: async id => {
     try {
       const result = await db.query(
-        `select * from test.users where id = ${id}`
+        `select * from test.user ${id ? `where id = ${id}` : ""}`
       );
-      db.end();
+      return result;
     } catch (err) {
+      console.log(err);
       return err;
     }
   },
-  readAllUsers: async () => {
+
+  readOrgUsers: async orgId => {
     try {
-      const result = await db.query(`select * from test.user`);
+      const result = await db.query(
+        `select * from test.user where organization_id = ${orgId}`
+      );
       return result;
-    } catch (err) {
+    } catch {
       console.log(err);
       return err;
     }
@@ -40,7 +44,18 @@ module.exports = {
     }
   },
   updateUser: async params => {
-    // todo params
+    const {
+      id,
+      password,
+      first_name,
+      last_name,
+      user_type,
+      phone,
+      email,
+      organization_id,
+      notification_type_id
+    } = params;
+    console.log(id);
     try {
       const result = await db.query("update");
       return result;
