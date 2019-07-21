@@ -1,12 +1,15 @@
 const router = require('express').Router();
-const { getEvents } = require('../model/Events');
+const {
+	getEvents,
+	getEventByPriority,
+	getEventByType
+} = require('../model/Events');
 
 // /events	GET
 // /events/priorities/:priority_id	GET
 // /events/types/:type_id	GET
 // /events/:event_id
 
-// DRY consider refactoring
 router.get('/', (req, res) => {
 	getEvents(null, (err, payload) => {
 		if (err) {
@@ -28,15 +31,23 @@ router.get('/:event_id', (req, res) => {
 });
 
 router.get('/priorities/:priority_id', (req, res) => {
-	// getOrg(req.params.orgId, (err, payload) => {
-	// 	if (err) {
-	// 		res.sendStatus(400);
-	// 	} else {
-	// 		res.send(payload);
-	// 	}
-	// });
+	getEventByPriority(req.params.priority_id, (err, payload) => {
+		if (err) {
+			res.sendStatus(400);
+		} else {
+			res.send(payload);
+		}
+	});
 });
 
-router.get('/types/:type_id', (req, res) => {});
+router.get('/types/:type_id', (req, res) => {
+	getEventByType(req.params.type_id, (err, payload) => {
+		if (err) {
+			res.sendStatus(400);
+		} else {
+			res.send(payload);
+		}
+	});
+});
 
 module.exports = router;
