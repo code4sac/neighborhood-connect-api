@@ -6,7 +6,7 @@ router.get('/:ordId/priorities', ()=>{});
 router.get('/:ordId/users', () => {});
 
 router.get('/:orgId', (req, res) => {
-  console.log(req.params, req.params.orgId);
+  // console.log(req.params, req.params.orgId);
 
   getAll(req.params.orgId, (err, payload) => {
     if (err) {
