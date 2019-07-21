@@ -1,20 +1,45 @@
-const router = require('express').Router();
-const {getAll} = require('../model/Organizations');
+const router = require("express").Router();
+const { getOrg, getOrgUsers } = require("../model/Organizations");
 
-router.get('/:ordId/priorities', ()=>{});
-
-router.get('/:ordId/users', () => {});
-
-router.get('/:orgId', (req, res) => {
-  console.log(req.params, req.params.orgId);
-
-  getAll(req.params.orgId, (err, payload) => {
+// DRY consider refactoring
+router.get("/", (req, res) => {
+  getOrg(null, (err, payload) => {
     if (err) {
-      res.send(400);
+      res.sendStatus(400);
     } else {
       res.send(payload);
     }
   });
-})
+});
+
+router.get("/:orgId", (req, res) => {
+  getOrg(req.params.orgId, (err, payload) => {
+    if (err) {
+      res.sendStatus(400);
+    } else {
+      res.send(payload);
+    }
+  });
+});
+
+router.get("/:orgId/users", (req, res) => {
+  getOrgUsers(null, (err, payload) => {
+    if (err) {
+      res.sendStatus(400);
+    } else {
+      res.send(payload);
+    }
+  });
+});
+
+router.get("/:orgId/users/:userId", (req, res) => {
+  getOrgUsers(req.params.orgId, (err, payload) => {
+    if (err) {
+      res.sendStatus(400);
+    } else {
+      res.send(payload);
+    }
+  });
+});
 
 module.exports = router;
