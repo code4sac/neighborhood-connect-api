@@ -4,16 +4,8 @@ module.exports = {
   readUser: async id => {
     try {
       const result = await db.query(
-        `select * from test.users where id = ${id}`
+        `select * from test.user ${id ? `where id = ${id}` : ""}`
       );
-      db.end();
-    } catch (err) {
-      return err;
-    }
-  },
-  readAllUsers: async () => {
-    try {
-      const result = await db.query(`select * from test.user`);
       return result;
     } catch (err) {
       console.log(err);

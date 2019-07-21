@@ -9,14 +9,14 @@ const {
 
 router.get("/", async (req, res) => {
   try {
-    const results = await readAllUsers();
+    const results = await readUser();
     res.status(200).send(results);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
-router.get("/:user_id", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
     const result = await readUser(req.params.userId);
     res.status(200).send(result);
