@@ -1,8 +1,7 @@
-const { Client } = require("pg");
-const config = require("./config.js");
+const { Client } = require('pg');
+const config = require('./config.js');
 const client = new Client(config);
-client.connect(() => {
-  console.log("Hido ho, Captn! We are connected");
-});
+client.query(`set search_path to 'test'`);
+client.connect();
 
 module.exports = client;

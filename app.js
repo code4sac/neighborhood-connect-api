@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const organizations = require('./server/controllers/orgRouter.js');
 // const users = require("./server/controllers/userRouter.js");
 const types = require('./server/controllers/typeRouter.js');
+const events = require('./server/controllers/eventsRouter.js');
 
 // Middleware
 app.use(morgan('dev'));
@@ -15,10 +16,10 @@ app.use(morgan('dev'));
 app.use('/orgs', organizations);
 // app.use("/users", users);
 app.use('/types', types);
-
+app.use('/events', events);
 
 // app.use(express.static(path.join(__dirname, './build')));
 
 app.listen(3000, () => {
-  console.log("Hido ho, Captn! Listending on port 3000.");
+	console.log('Hido ho, Captn! Listending on port 3000.');
 });
