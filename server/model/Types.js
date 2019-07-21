@@ -1,4 +1,4 @@
-const db = require('../model/db');
+const db = require('./db');
 
 module.exports = {
   getTypes(cb) {
