@@ -15,6 +15,7 @@ API and backend for the Neighborhood Connect project
 - [Data requests and responses](#Data-requests-and-responses)
 
 # Getting Started
+
 - Run `npm i` from the command line
 - copy the file at /server/model/config.example.js -> config.js and fill in the password and host information
 - Run `npm start`
@@ -34,7 +35,8 @@ API and backend for the Neighborhood Connect project
 | Endpoint                                      | METHOD | Description | Completed |
 | --------------------------------------------- | ------ | ----------- | :-------: |
 | [`/users`](#/users)                           | GET    |             |     X     |
-| [`/users/:user_id`](#/users/:user_id)         | GET    |             |           |
+| [`/users`](#/users)                           | POST   |             |     X     |
+| [`/users/:user_id`](#/users/:user_id)         | GET    |             |     X     |
 | [`/users/orgs/:org_id`](#/users/orgs/:org_id) | GET    |             |     X     |
 
 ### Orgs
@@ -57,9 +59,14 @@ API and backend for the Neighborhood Connect project
 
 | Endpoint                                                                    | METHOD | Description | Completed |
 | --------------------------------------------------------------------------- | ------ | ----------- | :-------: |
-| [`/priorities` ](#/priorities)                                              | GET    |             |           |
-| [`/priorities/type/:type_id` ](#/priorities/type/:type_id)                  | GET    |             |           |
-| [`/priorities/district/:disctrict_id`](#/priorities/district/:disctrict_id) | GET    |             |           |
+| [`/priorities` ](#/priorities)                                              | GET    |             |     X     |
+| [`/priorities/orgs/:org_id` ](#)                                            | GET    |             |     X     |
+| [`/priorities/orgs/:org_id` ](#)                                            | POST   |             |     X     |
+| [`/priorities/orgs/:org_id/:priority_id` ](#)                               | GET    |             |     X     |
+| [`/priorities/orgs/:org_id/:priority_id` ](#)                               | PATCH  |             |     X     |
+| [`/priorities/orgs/:org_id/:priority_id` ](#)                               | DELETE |             |     X     |
+| [`/priorities/type/:type_id` ](#/priorities/type/:type_id)                  | GET    |             |     X     |
+| [`/priorities/district/:disctrict_id`](#/priorities/district/:disctrict_id) | GET    |             |     X     |
 
 ### Types
 
@@ -72,10 +79,10 @@ API and backend for the Neighborhood Connect project
 
 | Endpoint                                                             | METHOD | Description | Completed |
 | -------------------------------------------------------------------- | ------ | ----------- | :-------: |
-| [`/events` ](#/events)                                               | GET    |             |           |
-| [`/events/priorities/:priority_id` ](#/events/priority/:priority_id) | GET    |             |           |
-| [`/events/types/:type_id` ](#/events/types/:types_id)                | GET    |             |           |
-| [`/events/:event_id` ](#/events/:events_id)                          | GET    |             |           |
+| [`/events` ](#/events)                                               | GET    |             |     X     |
+| [`/events/:event_id` ](#/events/:events_id)                          | GET    |             |     X     |
+| [`/events/priorities/:priority_id` ](#/events/priority/:priority_id) | GET    |             |     X     |
+| [`/events/types/:type_id` ](#/events/types/:types_id)                | GET    |             |     X     |
 
 [Back to table of Contents](#table-of-contents)
 
@@ -414,6 +421,114 @@ Structure of response:
 ## `/priorities`
 
 **Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/priorities/orgs/:org_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+**Method:** POST
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/priorities/orgs/:org_id/:priority_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+**Method:** PATCH
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+**Method:** DELETE
 
 Structure of request
 
