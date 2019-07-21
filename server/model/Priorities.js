@@ -8,9 +8,12 @@ module.exports = {
     async getAllPriorities() {
         try {
             // const res = await db.query(`select * from test.priority`);
-            const res = await db.query(`select * from test.priority 
-                                        join test.priority_type 
-                                        on test.priority.priority_type_id = test.priority_type.id;`);
+            const res = await db.query(`select pt.name, p.description, pst.name as status, CONCAT(u.first_name, ' ', u.last_name) as creator, o.name as neighborhood
+            from test.priority p
+                   inner join test.priority_type pt on p.priority_type_id = pt.id
+                   inner join test.priority_status_type pst on p.priority_status_type_id = pst.id
+                   inner join test.user u on p.user_id = u.id
+                   inner join test.organization o on p.organization_id = o.id;`);
             return { rows } = res;
         } catch (err) {
             throw err;
