@@ -1,11 +1,11 @@
-const router = require('express').Router();
-const {getAll} = require('../model/Organizations');
+const router = require("express").Router();
+const { getAll } = require("../model/Organizations");
 
-router.get('/:ordId/priorities', ()=>{});
+router.get("/:ordId/priorities", () => {});
 
-router.get('/:ordId/users', () => {});
+router.get("/:ordId/users", () => {});
 
-router.get('/:orgId', (req, res) => {
+router.get("/:orgId", (req, res) => {
   console.log(req.params, req.params.orgId);
 
   getAll(req.params.orgId, (err, payload) => {
@@ -15,6 +15,6 @@ router.get('/:orgId', (req, res) => {
       res.send(payload);
     }
   });
-})
+});
 
 module.exports = router;
