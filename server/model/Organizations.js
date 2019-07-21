@@ -1,10 +1,12 @@
-const db = require('../model/db');
+const db = require('./db');
 
 module.exports = {
-  getOne(id, cb) {
-    db.query(`select * from test.organization where id = ${id}`, cb)
+  getOrg(id, cb) {
+    let query = `select * from test.organization ${id ? `where id = ${id}` : ''}`;
+    db.query(query, cb);
   },
-  getAll(cb) {
-    db.query(`select * from test.organization`, cb);
+  getOrgUsers(id, cb) {
+    let query = `select * from test.user ${id ? `where organization_id = ${id}` : ''}`;
+    db.query(query, cb);
   }
 }
