@@ -18,5 +18,27 @@ module.exports = {
 		INNER JOIN priority_status_type p on p.id = a.priority_id
 		WHERE t.id = ${id}`;
 		db.query(query, cb);
+	},
+	async createEvent(eventObject) {
+		const {
+			action_type_id,
+			description,
+			visibility,
+			priority_id,
+			user_id,
+			title
+		} = eventObject;
+		const query = `INSERT INTO action (action_type_id, description, visibility, priority_id, user_id, title)
+			VALUES (${action_type_id},
+			${description},
+			${visibility},
+			${priority_id},
+			${user_id},
+			${title}),`;
+		try {
+			db.query(query);
+		} catch (err) {
+			throw err;
+		}
 	}
 };
