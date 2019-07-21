@@ -2,11 +2,12 @@ const router = require('express').Router();
 const {getTypes, getType} = require('../model/Types');
 
 router.get('/:typeId', (req, res) => {
+
   getType(req.params.orgId, (err, payload) => {
     if (err) {
       res.send(400);
     } else {
-      res.send(payload);
+      res.send(payload).status(200);
     }
   });
 });
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
     if (err) {
       res.send(400);
     } else {
-      res.send(payload);
+      res.send(payload).status(200);
     }
   });
 });
