@@ -23,16 +23,15 @@ module.exports = {
       return err;
     }
   },
+
   createUser: async body => {
     const dbColString = Object.keys(body).join(", ");
 
-    const dbValueString = Object.values(body)
-      .map(value => {
-        if (value === null) return "null";
-        if (typeof value === "string") return "'" + value + "'";
-        return value;
-      })
-      .join(", ");
+    const dbValueString = Object.values(body).map(value => {
+      if (value === null) return 'null';
+      if (typeof value === 'string') return `'${value}'`;
+      return value;
+    }).join(', ');
 
     const dbStatement = `insert into test.user (${dbColString}) values (${dbValueString});`;
 

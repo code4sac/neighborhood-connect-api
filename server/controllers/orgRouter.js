@@ -1,45 +1,49 @@
-const router = require("express").Router();
-const { getOrg, getOrgUsers } = require("../model/Organizations");
+const express = require('express');
+const router = express.Router();
+const { getOrg, getOrgUsers, postOrg } = require("../model/Organizations");
 
 // DRY consider refactoring
-router.get("/", (req, res) => {
-  getOrg(null, (err, payload) => {
-    if (err) {
-      res.sendStatus(400);
-    } else {
-      res.send(payload);
-    }
-  });
+router.get("/", async (req, res) => {
+  try {
+    res.status(200).send(await getOrg(null))
+  } catch (err) {
+    res.status(404).send(err);
+  }
 });
 
-router.get("/:orgId", (req, res) => {
-  getOrg(req.params.orgId, (err, payload) => {
-    if (err) {
-      res.sendStatus(400);
-    } else {
-      res.send(payload);
-    }
-  });
+router.get("/:orgId", async (req, res) => {
+  try {
+    res.status(200).send(await getOrg(req.params.orgId))
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
 });
 
-router.get("/:orgId/users", (req, res) => {
-  getOrgUsers(null, (err, payload) => {
-    if (err) {
-      res.sendStatus(400);
-    } else {
-      res.send(payload);
-    }
-  });
+router.get("/:orgId/users", async (req, res) => {
+  try {
+    res.status(200).send(await getOrgUsers())
+  } catch (err) {
+    res.status(404).send(err);
+  }
 });
 
-router.get("/:orgId/users/:userId", (req, res) => {
-  getOrgUsers(req.params.orgId, (err, payload) => {
-    if (err) {
-      res.sendStatus(400);
-    } else {
-      res.send(payload);
-    }
-  });
+router.post('/', express.json(), async(req, res) => {
+  try {
+    await postOrg(req.body);
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+})
+
+router.get("/:orgId/users/:userId", async (req, res) => {
+  try {
+    res.status(200).send(await getOrgUsers(req.params.orgId))
+  } catch (err) {
+    res.status(404).send(err);
+  }
 });
 
 module.exports = router;
