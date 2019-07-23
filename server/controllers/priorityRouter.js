@@ -2,9 +2,9 @@
 // 1. Get all priorities by district
 
 const express = require('express');
-const priorityRouter = new express.Router();
-const priorityOrganizationRouter = new express.Router();
-const priorityDistrictRouter = new express.Router();
+const priorityRouter = express.Router();
+const priorityOrganizationRouter = express.Router();
+const priorityDistrictRouter = express.Router();
 
 const {
     getAllPriorities,
@@ -61,7 +61,7 @@ priorityOrganizationRouter.get('/:orgId/:priorityId', async (req, res) => {
 
 priorityOrganizationRouter.patch('/:orgId/:priorityId', async (req, res) => {
     try {
-        res.status(200).send(await updatePriorityByOrganization(req.params.orgId, req.params.priorityId));
+        res.status(200).send(await updatePriorityByOrganization(req.params.orgId, req.params.priorityId, req.body));
     } catch (err) {
         res.status(400).send();
     }

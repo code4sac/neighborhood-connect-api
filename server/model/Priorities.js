@@ -36,17 +36,7 @@ module.exports = {
 
     // *** By Organization ***
     async createPriority(body) {
-        // console.log(`${Object.keys(props)}`);
-        // try {
-        //     // insert into test.priority () values ()
-        //     const res = await db.query(``);
-        //     return { rows } = res;
-        // } catch (err) {
-        //     throw err;
-        // }
-
-        // const rankResponse = await db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
-        // const rank = rankResponse.rows[0].max + 1;
+        delete body.id;
 
         const dbColString = Object.keys(body).join(", ");
 
@@ -59,8 +49,6 @@ module.exports = {
             .join(", ");
 
         const dbStatement = `insert into test.priority (${dbColString}) values (${dbValueString});`;
-
-        console.log(dbStatement);
 
         try {
             const result = await db.query(dbStatement);
@@ -96,18 +84,33 @@ module.exports = {
         }
     },
 
-    async updatePriorityByOrganization(orgId, priorityId) {
-        console.log(`Updating priority for ORG ${orgId}`);
+    async updatePriorityByOrganization(orgId, priorityId, body) {
+        console.log(`UPDATE org_id = ${orgId}, priority_id = ${priorityId}`);
+        const newValues = Object.entries(body).map(([key, value]) => {
+            let formattedValue;
+            if (value === null) {
+                formattedValue = "null";
+            } else if (typeof value === "string") {
+                formattedValue = "'" + value + "'";
+            } else {
+                formattedValue = value;
+            }
+
+            return `${key} = ${formattedValue}`
+        }).join(', ');
+
+        const query = `UPDATE test.priority SET ${newValues} WHERE organization_id = ${orgId} and id = ${priorityId};`;
+        console.log(query);
+
         try {
-            // update test.priority set 
-            const res = await db.query(``);
-            return { rows } = res;
+            const res = await db.query(query);
+            if (res.rowCount === 0) throw Error("Priority does not exist");
+            return res;
         } catch (err) {
             console.log(err);
             throw err;
         }
     },
-
     // *** By District ***
     async getAllPrioritiesByDistrict(distId) {
         try {
