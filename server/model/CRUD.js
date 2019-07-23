@@ -21,6 +21,8 @@ module.exports = {
     return results;
   },
   create: async (table, body) => {
+    delete data.id;
+    
     const dbColString = Object.keys(body).join(", ");
 
     const dbValueString = Object.values(body)
