@@ -22,6 +22,7 @@ module.exports = {
   },
   create: async (table, data) => {
     try {
+      delete data.id;
       const keys = Object.keys(data);
       const values = keys.map(value => data[value]);
       const placeholders = values.map((value, index) => `$${index + 1}`);
