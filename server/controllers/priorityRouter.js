@@ -11,6 +11,7 @@ const {
     createPriority,
     getAllPrioritiesByOrganization,
     getPriorityByOrganization,
+    getAllPrioritiesByDistrict,
     updatePriorityByOrganization,
     getActions
 } = require('../model/Priorities.js');
