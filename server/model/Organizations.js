@@ -8,7 +8,7 @@ module.exports = {
       concat(contact.first_name, ' ', contact.last_name) as contact_name,
       contact.phone as contact_phone, contact.email as contact_email,
       concat(owner.first_name, ' ', owner.last_name) as owner_name`
-      : 'org.name, org.district, org.logo_url';
+      : 'org.id, org.name, org.district, org.logo_url';
     let tables = id
       ? `organization org
       INNER JOIN organization_type ot ON ot.id = org.organization_type_id
@@ -31,7 +31,7 @@ module.exports = {
       tables += ` INNER JOIN user_type ut ON u.user_type_id = ut.id
         INNER JOIN notifiication_type nt ON u.notification_type_id = nt.id`;
     }
-    let selectors = `WHERE u.id = ${id}`; 
+    let selectors = `WHERE u.id = ${id}`;
     return db.query(`SELECT (${fields}) FROM ${tables} ${selectors}`);
   },
   // -> check if name already exists
