@@ -7,7 +7,7 @@ const db = require('./db');
 module.exports = {
   async getAllPriorities() {
     return db.query(`
-      SELECT pt.name AS type, p.description, pst.name AS status, 
+      SELECT pt.id, pt.name AS type, p.description, pst.name AS status,
       CONCAT(u.first_name, ' ', u.last_name) AS creator, o.name AS neighborhood
       FROM test.priority p
       INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
@@ -19,7 +19,7 @@ module.exports = {
 
   async getActionsByPriority(priorityId) {
     return db.query(`
-      SELECT p.id, p.rank, a.id, a.title, a.description AS event, a.timestamp, 
+      SELECT p.id, p.rank, a.id, a.title, a.description AS event, a.timestamp,
       CONCAT(u.first_name, ' ', u.last_name) AS creator
       FROM test.action a INNER JOIN test.priority p ON a.priority_id = p.id
       INNER JOIN test.user u ON a.user_id = u.id
@@ -66,8 +66,8 @@ module.exports = {
   async getAllPrioritiesByOrganization(orgId) {
     try {
       return db.query(`
-        SELECT p.*, pt.name AS priorityType 
-        FROM test.priority p INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id 
+        SELECT p.*, pt.name AS priorityType
+        FROM test.priority p INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
         WHERE p.organization_id = ${orgId};`
       );
     } catch (err) {
