@@ -2,7 +2,6 @@ const AWS = require('aws-sdk');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-AWS.config.region = 'us-west-2'; // Region
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f',
@@ -14,7 +13,15 @@ const cognitoIdentityOptions = {
   ClientSecret: '224kjog47ojnt9ov773erj7qn9(*#*(',
 };
 
-const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
+// NOTE: Creds need to be added here. Something about the AWS SDK failing to get the information
+// from AWS.config global instance correctly.
+const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider({
+    credentials: {
+        accessKeyId: cognitoIdentityOptions.ClientId,
+        secretAccessKey: cognitoIdentityOptions.ClientSecret }
+    }, {
+    region: 'us-west-2'
+});
 
 // A keyed-hash message authentication code (HMAC) calculated using the secret key
 // of a user pool client and username plus the client ID in the message.
@@ -25,9 +32,10 @@ const generateSecretHash = (username) => {
 };
 
 const AuthService = {
-  checkToken: (req, res, next) => {
-    // Express headers are auto converted to lowercase
-    let token = req.headers['x-access-token'] || req.headers['authorization'];
+    // TODO: Test this.
+    checkToken: (req, res, next) => {
+        // Express headers are auto converted to lowercase
+        let token = req.headers['x-access-token'] || req.headers['authorization'];
 
     if (token.startsWith('Bearer ')) {
       // Remove Bearer from string
@@ -55,160 +63,178 @@ const AuthService = {
                 success: false,
                 message: 'Auth token is not supplied'
             });
-        } */
-  },
+        }*/
+    },
 
-  getUserAccount: async (accessToken) => {
-    try {
-      const params = {
-        AccessToken: accessToken, /* required */
-      };
+    getUserAccount: async (accessToken) => {
+        try {
+            const params = {
+                AccessToken: accessToken /* required */
+            };
 
-      const {err, data} = await cognitoIdentityServiceProvider.getUser(params);
+            const data = await cognitoIdentityServiceProvider.getUser(params).promise();
 
-      if (err) {
-        console.log(err, err.stack);
-        return err;
-      }
+            console.log(data);
+            return data;
+        } catch (err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
 
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err, err.stack);
-      return err;
-    }
-  },
+    // TODO: Getting back "Unable to verify secret hash for client xxx" even though secret hash is same for given username
+    // TODO: Determine how refresh token workflow will be handled. Front end or back end.
+    refreshUserToken: async (refreshToken, username) => {
+        try {
+            const secretHash = generateSecretHash(username);
 
-  refreshUserToken: async (refreshToken, username) => {
-    const secretHash = generateSecretHash(username);
+            const params = {
+                AuthFlow: 'REFRESH_TOKEN_AUTH', /* required */
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                AuthParameters: {
+                    'REFRESH_TOKEN': refreshToken,
+                    'SECRET_HASH': secretHash
+                }
+            };
 
-    try {
-      const params = {
-        AuthFlow: 'REFRESH_TOKEN_AUTH', /* required */
-        ClientId: cognitoIdentityOptions.ClientId, /* required */
-        AuthParameters: {
-          REFRESH_TOKEN: refreshToken,
-          SECRET_HASH: secretHash,
-        },
-      };
+            const data = await cognitoIdentityServiceProvider.initiateAuth(params).promise();
 
-      const {err, data} = cognitoIdentityServiceProvider.initiateAuth(params);
+            console.log(data);
+            return data;
+        } catch (err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
 
-      if (err) {
-        console.log(err, err.stack);
-        return err;
-      }
+    // NOTE: Confirm USER_PASSWORD_AUTH is enabled for application
+    // User Pool > General Settings > App clients > Check 'Enable username-password (non-SRP) flow for app-based authentication (USER_PASSWORD_AUTH)'
+    authenticateUser: async (username, password) => {
+        try {
+            const secretHash = generateSecretHash(username)
 
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err, err.stack);
-      return err;
-    }
-  },
+            const params = {
+                AuthFlow: 'USER_PASSWORD_AUTH', /* required */
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                AuthParameters: {
+                    'USERNAME': username,
+                    'PASSWORD': password,
+                    'SECRET_HASH': secretHash
+                }
+            };
 
-  authenticateUser: async (username, password) => {
-    try {
-      const params = {
-        AuthFlow: 'USER_PASSWORD_AUTH', /* required */
-        ClientId: cognitoIdentityOptions.ClientId, /* required */
-        AuthParameters: {
-          USERNAME: username,
-          PASSWORD: password,
-        },
-      };
+            const data = await cognitoIdentityServiceProvider.initiateAuth(params).promise();
 
-      const {err, data} = cognitoIdentityServiceProvider.initiateAuth(params);
+            console.log(data);
+            return data;
+        } catch (err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
 
-      if (err) {
-        console.log(err, err.stack);
-        return err;
-      }
+    changePassword: async (accessToken, currentPassword, newPassword) => {
+        try {
+            const params = {
+                AccessToken: accessToken, /* required */
+                PreviousPassword: currentPassword, /* required */
+                ProposedPassword: newPassword /* required */
+            };
 
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err, err.stack);
-      return err;
-    }
-  },
+            const { err, data } = await cognitoIdentityServiceProvider.changePassword(params);
 
-  changePassword: async (accessToken, currentPassword, newPassword) => {
-    try {
-      const params = {
-        AccessToken: accessToken, /* required */
-        PreviousPassword: currentPassword, /* required */
-        ProposedPassword: newPassword, /* required */
-      };
+            if (err) {
+                console.log(err, err.stack);
+                return err;
+            }
 
-      const {err, data} = await cognitoIdentityServiceProvider.changePassword(params);
+            console.log(data);
+            return data;
+        } catch(err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
 
-      if (err) {
-        console.log(err, err.stack);
-        return err;
-      }
+    confirmPasswordReset: async (username, newPassword, confirmationCode) => {
+        try {
+            const secretHash = generateSecretHash(username)
 
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err, err.stack);
-      return err;
-    }
-  },
+            const params = {
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                Username: username, /* required */
+                SecretHash: secretHash, /* required */
+                ConfirmationCode: confirmationCode, /* required */
+                Password: newPassword, /* required */
+            };
 
-  resetPassword: async (username) => {
-    try {
-      const params = {
-        UserPoolId: cognitoIdentityOptions.UserPoolId, /* required */
-        Username: username, /* required */
-      };
+            const data = await cognitoIdentityServiceProvider.confirmForgotPassword(params).promise()
 
-      const {err, data} = await cognitoIdentityServiceProvider.adminResetUserPassword(params);
+            console.log(data);
+            return data;
+        } catch(err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
 
-      if (err) {
-        console.log(err, err.stack);
-        return err;
-      }
+    requestPasswordReset: async (username) => {
+        try {
+            const secretHash = generateSecretHash(username)
 
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err, err.stack);
-      return err;
-    }
-  },
+            const params = {
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                Username: username, /* required */
+                SecretHash: secretHash, /* required */
+            };
 
-  registerUser: async (username, password) => {
-    const secretHash = generateSecretHash(username);
+            const data = await cognitoIdentityServiceProvider.forgotPassword(params).promise()
 
-    const params = {
-      ClientId: cognitoIdentityOptions.ClientId, /* required */
-      Password: password, /* required */
-      Username: username, /* required */
-      SecretHash: secretHash,
-      UserAttributes: [
-        {
-          Name: 'STRING_VALUE', /* required */
-          Value: 'STRING_VALUE',
-        },
-        /* more items */
-      ],
-      ValidationData: [
-        {
-          Name: 'STRING_VALUE', /* required */
-          Value: 'STRING_VALUE',
-        },
-        /* more items */
-      ],
-    };
+            console.log(data);
+            return data;
+        } catch(err) {
+            console.log(err, err.stack);
+            return err;
+        }
+    },
 
-    const response = await cognitoIdentityServiceProvider.signUp(params);
+    // NOTE: If verifying user via email link, an app domain must be configured.
+    // User Pool settings > App Integration > Domain Name
+    // TODO: Figure how how to validate data
+    registerUser: async (username, password) => {
+        try {
+            const secretHash = generateSecretHash(username);
 
-    const {error, data} = response.response;
+            const params = {
+                ClientId: cognitoIdentityOptions.ClientId, /* required */
+                Password: password, /* required */
+                Username: username, /* required */
+                SecretHash: secretHash, /* required */
+                UserAttributes: [
+                    {
+                        Name: 'email', /* required */
+                        Value: username
+                    },
+                    /* more items */
+                ],
+                ValidationData: [
+                    {
+                        Name: 'STRING_VALUE', /* required */
+                        Value: 'STRING_VALUE'
+                    },
+                    /* more items */
+                ]
+            };
 
-    if (error) {
-      console.log(error, err.stack);
-      return err;
+            const data = await cognitoIdentityServiceProvider.signUp(params).promise();
+
+            // successfully signed-up
+            console.log(data);
+            return data;
+        } catch (err) {
+            console.log(err, err.stack);
+            return err;
+        }
     }
 
     // successfully signed-up

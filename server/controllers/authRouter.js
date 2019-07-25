@@ -56,7 +56,28 @@ router.get('/reset', async (req, res) => {
     if (fieldsDontExist) {
       res.send(400);
     } else {
-      const result = await AuthService.resetPassword(username);
+      const result = await AuthService.requestPasswordReset(username);
+
+      if (result.err) {
+        res.send(500);
+      } else {
+        res.send(200);
+      }
+    }
+  } catch (err) {
+    res.send(400, err);
+  }
+});
+
+router.get('/confirmReset', async (req, res) => {
+  try {
+    const {username, newPassword, confirmationCode} = req.body;
+    const fieldsDontExist = !(username && newPassword && confirmationCode);
+
+    if (fieldsDontExist) {
+      res.send(400);
+    } else {
+      const result = await AuthService.confirmPasswordReset(username, newPassword, confirmationCode);
 
       if (result.err) {
         res.send(500);
