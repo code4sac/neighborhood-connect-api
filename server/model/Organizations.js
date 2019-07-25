@@ -22,7 +22,7 @@ module.exports = {
       : '';
     return db.query(`SELECT ${fields} FROM ${tables} ${selectors}`);
   },
-  
+
   async getOrgUsers(id) {
     // make option for more detail on user?
     let fields = `u.first_name, u.last_name, u.email, u.phone, ut.name, nt.type`;
