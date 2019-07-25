@@ -5,130 +5,119 @@
 const db = require('./db');
 
 module.exports = {
-    async getAllPriorities() {
-        try {
-            const res = await db.query(`select pt.name as type, p.description, pst.name as status, CONCAT(u.first_name, ' ', u.last_name) as creator, o.name as neighborhood
-                   from test.priority p
-                   inner join test.priority_type pt on p.priority_type_id = pt.id
-                   inner join test.priority_status_type pst on p.priority_status_type_id = pst.id
-                   inner join test.user u on p.user_id = u.id
-                   inner join test.organization o on p.organization_id = o.id`);
-            return { rows } = res;
-        } catch (err) {
-            throw err;
-        }
-    },
+  async getAllPriorities() {
+    return db.query(`
+      SELECT pt.name AS type, p.description, pst.name AS status, 
+      CONCAT(u.first_name, ' ', u.last_name) AS creator, o.name AS neighborhood
+      FROM test.priority p
+      INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
+      INNER JOIN test.priority_status_type pst ON p.priority_status_type_id = pst.id
+      INNER JOIN test.user u ON p.user_id = u.id
+      INNER JOIN test.organization o ON p.organization_id = o.id`
+    );
+  },
 
-    async getActions(priorityId) {
-        console.log('pId', priorityId);
-        try {
-            const res = await db.query(`select p.id, p.rank, a.id, a.title, a.description as event, a.timestamp, concat(u.first_name, ' ', u.last_name) as creator
-                from test.action a inner join test.priority p on a.priority_id = p.id
-                 inner join test.user u on a.user_id = u.id
-                 where p.id = ${priorityId};`);
+  async getActionsByPriority(priorityId) {
+    return db.query(`
+      SELECT p.id, p.rank, a.id, a.title, a.description AS event, a.timestamp, 
+      CONCAT(u.first_name, ' ', u.last_name) AS creator
+      FROM test.action a INNER JOIN test.priority p ON a.priority_id = p.id
+      INNER JOIN test.user u ON a.user_id = u.id
+      WHERE p.id = ${priorityId};`
+    );
+  },
 
-            return { rows } = res;
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
-    },
-
-    // *** By Organization ***
-    async createPriority(body) {
-        // console.log(`${Object.keys(props)}`);
-        // try {
-        //     // insert into test.priority () values ()
-        //     const res = await db.query(``);
-        //     return { rows } = res;
-        // } catch (err) {
-        //     throw err;
-        // }
-
-        // const rankResponse = await db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
-        // const rank = rankResponse.rows[0].max + 1;
-
-        const dbColString = Object.keys(body).join(", ");
-
-        const dbValueString = Object.values(body)
-            .map(value => {
-                if (value === null) return "null";
-                if (typeof value === "string") return "'" + value + "'";
-                return value;
-            })
-            .join(", ");
-
-        const dbStatement = `insert into test.priority (${dbColString}) values (${dbValueString});`;
-
-        console.log(dbStatement);
-
-        try {
-            const result = await db.query(dbStatement);
-            return result;
-        } catch (err) {
-            return err;
-        }
-    },
-
-    async getAllPrioritiesByOrganization(orgId) {
-        try {
-            const res = await db.query(`select p.*, pt.name as priorityType 
-                            from test.priority p inner join test.priority_type pt on p.priority_type_id = pt.id 
-                            where p.organization_id = ${orgId};`);
-            // const res = await db.query(`select * from test.priority where test.priority.organization_id = ${orgId};`);
-            return { rows } = res;
-        } catch (err) {
-            // console.log(err);
-            throw err;
-        }
-    },
-
-    async getPriorityByOrganization(orgId, priorityId) {
-        try {
-            const res = await db.query(`select * from test.priority
-                                        where test.priority.organization_id = ${orgId}
-                                        and test.priority.id = ${priorityId}
-                                        `);
-            return { rows } = res;
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
-    },
-
-    async updatePriorityByOrganization(orgId, priorityId) {
-        console.log(`Updating priority for ORG ${orgId}`);
-        try {
-            // update test.priority set 
-            const res = await db.query(``);
-            return { rows } = res;
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
-    },
-
-    // *** By District ***
-    async getAllPrioritiesByDistrict(distId) {
-        try {
-            const res = await db.query(`select * from test.priority where test.priority.organization_id = ${orgId};`);
-            return { rows } = res;
-        } catch (err) {
-            // console.log(err);
-            throw err;
-        }
-    },
-
-    // async getPriorityByDistrict(distId, priorityId) {
-    //     try {
-    //         const res = await db.query(`select * from test.priority
-    //                                     where test.priority.organization_id = ${orgId}
-    //                                     and test.priority.id = ${priorityId}
-    //                                     `);
-    //         return { rows } = res;
-    //     } catch (err) {
-    //         console.log(err);
-    //         throw err;
-    //     }
+  // *** By Organization ***
+  async createPriority(body) {
+    // console.log(`${Object.keys(body)}`);
+    // try {
+    //     // insert into test.priority () values ()
+    //     const res = await db.query(``);
+    //     return { rows } = res;
+    // } catch (err) {
+    //     throw err;
     // }
-}
+
+    // const rankResponse = await db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
+    // const rank = rankResponse.rows[0].max + 1;
+
+    const dbColString = Object.keys(body).join(', ');
+
+    const dbValueString = Object.values(body)
+        .map((value) => {
+          if (value === null) return 'null';
+          if (typeof value === 'string') return '\'' + value + '\'';
+          return value;
+        })
+        .join(', ');
+
+    const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString});`;
+
+    console.log(dbStatement);
+
+    try {
+      const result = await db.query(dbStatement);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async getAllPrioritiesByOrganization(orgId) {
+    try {
+      return db.query(`
+        SELECT p.*, pt.name AS priorityType 
+        FROM test.priority p INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id 
+        WHERE p.organization_id = ${orgId};`
+      );
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  async getPriorityByOrganization(orgId, priorityId) {
+    try {
+      return db.query(`
+        SELECT * FROM test.priority
+        WHERE test.priority.organization_id = ${orgId}
+        AND test.priority.id = ${priorityId}
+      `);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  async updatePriorityByOrganization(orgId, priorityId) {
+    try {
+      const res = await db.query(``);
+      return {rows} = res;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  // *** By District ***
+  async getAllPrioritiesByDistrict(distId) {
+    try {
+      return db.query(`
+        SELECT * FROM test.priority
+        WHERE test.priority.organization_id = ${orgId};`
+      );
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  // async getPriorityByDistrict(distId, priorityId) {
+  //     try {
+  //         const res = await db.query(`SELECT * FROM test.priority
+  //                                     WHERE test.priority.organization_id = ${orgId}
+  //                                     AND test.priority.id = ${priorityId}
+  //                                     `);
+  //         return { rows } = res;
+  //     } catch (err) {
+  //         console.log(err);
+  //         throw err;
+  //     }
+  // }
+};
