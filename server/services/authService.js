@@ -1,16 +1,16 @@
 const AWS = require('aws-sdk');
 const crypto = require('crypto');
-let jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f'
+  IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f',
 });
 
 const cognitoIdentityOptions = {
-    UserPoolId : 'us-west-2_q2Y6U8uuY',
-    ClientId : '224kjog47ojnt9ov773erj7qn9',
-    ClientSecret: '224kjog47ojnt9ov773erj7qn9(*#*('
+  UserPoolId: 'us-west-2_q2Y6U8uuY',
+  ClientId: '224kjog47ojnt9ov773erj7qn9',
+  ClientSecret: '224kjog47ojnt9ov773erj7qn9(*#*(',
 };
 
 // NOTE: Creds need to be added here. Something about the AWS SDK failing to get the information
@@ -26,9 +26,9 @@ const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider({
 // A keyed-hash message authentication code (HMAC) calculated using the secret key
 // of a user pool client and username plus the client ID in the message.
 const generateSecretHash = (username) => {
-    const message = `${username}${cognitoIdentityOptions.ClientId}`;
-    const hmac = crypto.createHmac('SHA256', cognitoIdentityOptions.ClientSecret);
-    return hmac.update(message).digest('base64');
+  const message = `${username}${cognitoIdentityOptions.ClientId}`;
+  const hmac = crypto.createHmac('SHA256', cognitoIdentityOptions.ClientSecret);
+  return hmac.update(message).digest('base64');
 };
 
 const AuthService = {
@@ -37,14 +37,14 @@ const AuthService = {
         // Express headers are auto converted to lowercase
         let token = req.headers['x-access-token'] || req.headers['authorization'];
 
-        if (token.startsWith('Bearer ')) {
-            // Remove Bearer from string
-            token = token.slice(7, token.length);
-        }
+    if (token.startsWith('Bearer ')) {
+      // Remove Bearer from string
+      token = token.slice(7, token.length);
+    }
 
-        next();
+    next();
 
-        /*
+    /*
 
         if (token) {
             jwt.verify(token, config.secret, (err, decoded) => {
@@ -236,7 +236,11 @@ const AuthService = {
             return err;
         }
     }
-};
 
+    // successfully signed-up
+    console.log(data);
+    return data;
+  },
+};
 
 module.exports = AuthService;

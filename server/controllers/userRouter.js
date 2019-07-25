@@ -1,55 +1,31 @@
-const router = require("express").Router();
-const express = require("express");
+// eslint-disable-next-line new-cap
+const router = require('express').Router();
 
-const {
-  readUser,
-  updateUser,
-  createUser,
-  deleteUser,
-  readAllUsers,
-  readOrgUsers
-} = require("../model/Users");
-const { getAll, getOne, create, update } = require("../model/CRUD");
-const table = "test.user";
+// unused?
+// const users = require('../model/Users');
+const {getAll, getOne, create, update} = require('../model/CRUD');
+const table = 'test.user';
 
-router.use(express.json());
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const results = await getAll(table);
-    res.status(200).send(results);
+    const result = await getAll(table);
+    res.status(200).send(result.rows);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
-router.get("/:userId", async (req, res) => {
-  try {
-    const result = await getOne(table, req.params.userId);
-    res.status(200).send(result);
-  } catch (err) {
-    return res.status(404).send(err);
-  }
-});
-
-router.get("/org/:orgId", async (req, res) => {
-  try {
-    const results = await getAll(table, req.params.orgId);
-    res.status(200).send(results);
-  } catch (err) {
-    return res.status(404).send(err);
-  }
-});
-
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const result = await create(table, req.body);
-    res.status(200).send(result);
+    res.status(200).send(result); // should only send confirmation
   } catch (err) {
     return res.status(404).send(err);
   }
 });
 
-router.patch("/:userId", async (req, res) => {
+// is userId found from path or from req body?
+router.patch('/:userId', async (req, res) => {
   try {
     const result = await update(table, req.params.userId, req.body);
     res.status(201).send(result);
@@ -59,6 +35,29 @@ router.patch("/:userId", async (req, res) => {
   }
 });
 
-router.delete("org/users/:user_id", (req, res) => {});
+// should not send all columns, as pw is still in the db tables
+router.get('/:userId', async (req, res) => {
+  const {userId} = req.params;
+  try {
+    const result = await getOne(table, userId);
+    res.status(200).send(result.rows);
+  } catch (err) {
+    return res.status(404).send(err);
+  }
+});
+
+router.get('/orgs/:orgId', async (req, res) => {
+  const {orgId} = req.params;
+  try {
+    const result = await getAll(table, orgId);
+    res.status(200).send(result.rows);
+  } catch (err) {
+    return res.status(404).send(err);
+  }
+});
+
+router.delete('/:user_id', (req, res) => {
+  res.status(418).send('Route in development');
+});
 
 module.exports = router;

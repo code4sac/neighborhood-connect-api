@@ -1,64 +1,48 @@
-const db = require("../model/db");
+const db = require('../model/db');
 
 module.exports = {
-  readUser: async id => {
-    try {
-      const result = await db.query(
-        `select * from test.user ${id ? `where id = ${id}` : ""}`
-      );
-      return result;
-    } catch (err) {
-      return err;
-    }
+  // should not send all columns, as pw is still in the db tables
+  readUser: async (id) => {
+    return db.query(
+        `SELECT * FROM "user" ${id ? `WHERE id = ${id}` : ''}`
+    );
   },
 
-  readOrgUsers: async orgId => {
-    try {
-      const result = await db.query(
-        `select * from test.user where organization_id = ${orgId}`
-      );
-      return result;
-    } catch(err) {
-      console.log(err);
-      return err;
-    }
+  // should maybe not send all columns, depends on UI
+  readOrgUsers: async (orgId) => {
+    return db.query(
+        `SELECT * FROM "user" WHERE organization_id = ${orgId}`
+    );
   },
 
-  createUser: async body => {
-    const dbColString = Object.keys(body).join(", ");
+  createUser: async (body) => {
+    const ColString = Object.keys(body).join(', ');
 
-    const dbValueString = Object.values(body).map(value => {
+    const ValueString = Object.values(body).map((value) => {
       if (value === null) return 'null';
       if (typeof value === 'string') return `'${value}'`;
       return value;
     }).join(', ');
 
-    const dbStatement = `insert into test.user (${dbColString}) values (${dbValueString});`;
+    const query = `INSERT INTO "user" (${ColString}) VALUES (${ValueString});`;
 
-    try {
-      const result = await db.query(dbStatement);
-      return result;
-    } catch (err) {
-      return err;
-    }
+    return db.query(query);
   },
-  updateUser: async (id, data) => {
-    const keys = Object.keys(data);
-    let setStr = "";
+
+  // needs update to make create and update more idiomatic
+  updateUser: async (id, body) => {
+    const keys = Object.keys(body);
+    let setStr = '';
     for (let i = 0; i < keys.length; i += 1) {
-      let newStr = `${keys[i]} = ${db.escape(data[keys[i]])}`;
+      let newStr = `${keys[i]} = ${db.escape(body[keys[i]])}`;
       if (i !== keys.length - 1) {
         newStr = `${newStr},`;
       }
       setStr = `${setStr} ${newStr}`;
     }
     const query = `
-      INSERT test.user
-      SET ${setStr} 
-      WHERE ${table}.id = ${db.escape(id)}
+      INSERT "user" SET ${setStr} WHERE "user".id = ${db.escape(id)}
     `;
-    console.log(query);
-    const results = await db.query(query);
-    return results;
-  }
+    return db.query(query);
+  },
 };
