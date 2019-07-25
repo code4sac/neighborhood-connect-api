@@ -24,7 +24,7 @@ priorityRouter.get('/', async (req, res) => {
 priorityRouter.post('/', async (req, res) => {
   try {
     const result = await createPriority(req.body);
-    res.status(200).send(result.rows);
+    res.status(200).send(result);
   } catch (err) {
     res.status(400).send(err);
   }
@@ -68,7 +68,8 @@ priorityRouter.patch('/orgs/:orgId/:priorityId', async (req, res) => {
   const {orgId, priorityId} = req.params;
   res.status(418).send('route not constructed');
   try {
-    res.status(200).send(await updatePriorityByOrganization(orgId, priorityId));
+    const {rows} = await updatePriorityByOrganization(orgId, priorityId);
+    res.status(200).send(rows);
   } catch (err) {
     res.status(400).send();
   }

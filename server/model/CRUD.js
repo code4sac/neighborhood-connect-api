@@ -1,13 +1,13 @@
-const { Client } = require("pg");
-// const { dbConf } = require("../../config");
-const db = require("./db");
+const db = require('./db');
 
 module.exports = {
-  getAll: async table => {
+  // while this may be useful boilerplate, most queries should be
+  // returning more specific info
+  getAll: async (table) => {
     try {
       const query = `SELECT * FROM ${table}`;
       const results = await db.query(query);
-      return results.rows;
+      return results;
     } catch (error) {
       return error;
     }
@@ -21,15 +21,15 @@ module.exports = {
     return results;
   },
   create: async (table, body) => {
-    const dbColString = Object.keys(body).join(", ");
+    const dbColString = Object.keys(body).join(', ');
 
     const dbValueString = Object.values(body)
-      .map(value => {
-        if (value === null) return "null";
-        if (typeof value === "string") return "'" + value + "'";
-        return value;
-      })
-      .join(", ");
+        .map((value) => {
+          if (value === null) return 'null';
+          if (typeof value === 'string') return '\'' + value + '\'';
+          return value;
+        })
+        .join(', ');
 
     const dbStatement = `insert into ${table} (${dbColString}) values (${dbValueString});`;
 
@@ -42,10 +42,10 @@ module.exports = {
   },
   update: async (table, id, data) => {
     const keys = Object.keys(data);
-    let setStr = "";
+    let setStr = '';
     for (let i = 0; i < keys.length; i += 1) {
       let value = data[keys[i]];
-      if (typeof value === "string") {
+      if (typeof value === 'string') {
         value = `'${value}'`;
       }
       if (typeof value === null) {
@@ -73,5 +73,5 @@ module.exports = {
     `;
     const results = await db.query(query);
     return results;
-  }
+  },
 };

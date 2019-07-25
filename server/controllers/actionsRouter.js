@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const express = require('express');
+const router = new express.Router();
 
 const {
   getActions,
@@ -28,7 +29,8 @@ router.post('/', (req, res) => {
 router.get('/:actionId', async (req, res) => {
   const {actionId} = req.params;
   try {
-    res.status(200).send(await getActions(actionId));
+    const {rows} = await getActions(actionId);
+    res.status(200).send(rows);
   } catch (err) {
     res.status(404).send(err);
   }
@@ -37,7 +39,8 @@ router.get('/:actionId', async (req, res) => {
 router.get('/priorities/:priorityId', async (req, res) => {
   const {priorityId} = req.params;
   try {
-    res.status(200).send(await getActionsByPriority(priorityId));
+    const {rows} = await getActionsByPriority(priorityId);
+    res.status(200).send(rows);
   } catch (err) {
     res.status(404).send(err);
   }
@@ -45,10 +48,9 @@ router.get('/priorities/:priorityId', async (req, res) => {
 
 router.get('/types/:typeId', async (req, res) => {
   const {typeId} = req.params;
-  // console.log(typeId);
   try {
-    const result = await getActionsByType(typeId);
-    res.status(200).send(result.rows);
+    const {rows} = await getActionsByType(typeId);
+    res.status(200).send(rows);
   } catch (err) {
     res.status(404).send(err);
   }

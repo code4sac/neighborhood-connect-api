@@ -87,6 +87,7 @@ module.exports = {
     }
   },
 
+  // fill me in
   async updatePriorityByOrganization(orgId, priorityId) {
     try {
       const res = await db.query(``);
@@ -101,7 +102,7 @@ module.exports = {
     try {
       return db.query(`
         SELECT * FROM test.priority
-        WHERE test.priority.organization_id = ${orgId};`
+        WHERE test.priority.organization_id = ${distId};`
       );
     } catch (err) {
       throw err;

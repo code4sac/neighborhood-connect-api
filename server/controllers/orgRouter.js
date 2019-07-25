@@ -13,6 +13,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    await postOrg(req.body);
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send(err);
+  }
+});
+
 router.get('/:orgId', async (req, res) => {
   try {
     res.status(200).send(await getOrg(req.params.orgId));
@@ -26,16 +36,6 @@ router.get('/:orgId/users', async (req, res) => {
   try {
     res.status(200).send(await getOrgUsers());
   } catch (err) {
-    res.status(404).send(err);
-  }
-});
-
-router.post('/', async (req, res) => {
-  try {
-    await postOrg(req.body);
-    res.sendStatus(200);
-  } catch (err) {
-    console.log(err);
     res.status(404).send(err);
   }
 });
