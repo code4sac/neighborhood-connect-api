@@ -276,11 +276,6 @@ const AuthService = {
             return err;
         }
     }
-
-    // successfully signed-up
-    console.log(data);
-    return data;
-  },
 };
 
 module.exports = AuthService;
