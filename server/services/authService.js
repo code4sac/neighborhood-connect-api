@@ -1,7 +1,30 @@
 const AWS = require('aws-sdk');
 const crypto = require('crypto');
 let jwt = require('jsonwebtoken');
+const jwkToPem = require('jwk-to-pem');
+const promiseUtil = require('util')
 
+AWS.config.region = 'us-east-2'
+// The keys AWS uses to sign their JWTs are accessible in the URL below
+// https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json
+AWS.config.tokenKeys = [
+      {
+        "alg": "RS256",
+        "e": "AQAB",
+        "kid": "BwZcpZXwfVq8FnPpTwpL7eHINzY2/LvORb1r/bfWYvY=",
+        "kty": "RSA",
+        "n": "PUBLIC_KEY_EXAMPLE__ODVQXl5-mCqOg2fUWdd3aUkmnm_1Cob2_ZqIt-b3TV0X8VM_RiU4-3_8CwuelO0x2T_XhC467i5kw",
+        "use": "sig"
+      },
+      {
+        "alg": "RS256",
+        "e": "AQAB",
+        "kid": "O3gfL7u+/BSRMhInH/ZeTRwR9WVcHcGPQnEnTBVcpzM=",
+        "kty": "RSA",
+        "n": "PUBLIC_KEY_EXAMPLE__V56Ns0usul1qeGT4VJt_vJ5w24vRhTuPGR6SYuBccQx7MQQAbEk2b9b7woaTzTFRZV9M5OtCLWeow",
+        "use": "sig"
+      }
+    ]
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f'
@@ -30,6 +53,31 @@ const generateSecretHash = (username = null, userSubId = null) => {
     const message = `${userId}${cognitoIdentityOptions.ClientId}`;
     const hmac = crypto.createHmac('SHA256', cognitoIdentityOptions.ClientSecret);
     return hmac.update(message).digest('base64');
+};
+
+/**
+ * @param {String} token A base64 encoded JWT token.
+ * @returns Returns decoded token if token is valid. Else, returns false.
+ */
+const isTokenValid = async token => {
+    try {
+        if (token) {
+            let decoded = jwt.decode(token, {complete: true})
+            const key = AWS.config.tokenKeys.filter(key => key.kid === decoded.header.kid)
+            const pem = jwkToPem(key[0])
+            let jwtVerifyProm = promiseUtil.promisify(jwt.verify)
+            // PEM format required to decode JWT
+            const response = await jwtVerifyProm(token, pem)
+
+            console.log(response)
+            return response
+        } else {
+            return false
+        }
+    } catch (err) {
+        console.log(err)
+        return false
+    }
 };
 
 const AuthService = {
