@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const crypto = require('crypto');
-let jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const jwkToPem = require('jwk-to-pem');
 const promiseUtil = require('util')
 
@@ -27,13 +27,13 @@ AWS.config.tokenKeys = [
     ]
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f'
+  IdentityPoolId: 'us-east-1:b64bb629-ec73-4569-91eb-0d950f854f4f',
 });
 
 const cognitoIdentityOptions = {
-    UserPoolId : 'us-west-2_q2Y6U8uuY',
-    ClientId : '224kjog47ojnt9ov773erj7qn9',
-    ClientSecret: '224kjog47ojnt9ov773erj7qn9(*#*('
+  UserPoolId: 'us-west-2_q2Y6U8uuY',
+  ClientId: '224kjog47ojnt9ov773erj7qn9',
+  ClientSecret: '224kjog47ojnt9ov773erj7qn9(*#*(',
 };
 
 // NOTE: Creds need to be added here. Something about the AWS SDK failing to get the information
@@ -83,26 +83,26 @@ const isTokenValid = async token => {
 const AuthService = {
     checkToken: async (req, res, next) => {
         try {
-        // Express headers are auto converted to lowercase
-        let token = req.headers['x-access-token'] || req.headers['authorization'];
+          // Express headers are auto converted to lowercase
+          let token = req.headers['x-access-token'] || req.headers['authorization'];
 
-        if (token.startsWith('Bearer ')) {
+          if (token.startsWith('Bearer ')) {
             // Remove Bearer from string
             token = token.slice(7, token.length);
-        }
+          }
 
-        if (token) {
-                const decoded = await isTokenValid(token)
-                if (decoded) {
-                    req.decoded = decoded;
-                    next();
-                }
-        } else {
-            return res.json({
-                success: false,
-                message: 'Auth token is not supplied'
-            });
-            }
+          if (token) {
+              const decoded = await isTokenValid(token)
+              if (decoded) {
+                  req.decoded = decoded;
+                  next();
+              }
+          } else {
+              return res.json({
+                  success: false,
+                  message: 'Auth token is not supplied'
+              });
+          }
         } catch (err) {
             console.log(err, err.stack);
             return res.json({
@@ -276,7 +276,11 @@ const AuthService = {
             return err;
         }
     }
-};
 
+    // successfully signed-up
+    console.log(data);
+    return data;
+  },
+};
 
 module.exports = AuthService;
