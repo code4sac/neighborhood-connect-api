@@ -142,12 +142,7 @@ const AuthService = {
                 ProposedPassword: newPassword /* required */
             };
 
-            const { err, data } = await cognitoIdentityServiceProvider.changePassword(params);
-
-            if (err) {
-                console.log(err, err.stack);
-                return err;
-            }
+            const data = await cognitoIdentityServiceProvider.changePassword(params).promise();
 
             console.log(data);
             return data;
