@@ -36,10 +36,11 @@ module.exports = {
       INSERT INTO action (action_type_id, description,
         visibility, priority_id, user_id, title)
       VALUES (${action_type_id}, '${description}', ${visibility},
-      ${priority_id}, ${user_id}, '${title}'),
+      ${priority_id}, ${user_id}, '${title}')
     `;
     try {
       await db.query(query);
+      console.log('should return 1');
       return 1;
     } catch (err) {
       return err;
