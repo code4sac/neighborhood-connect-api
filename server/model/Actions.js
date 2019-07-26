@@ -40,7 +40,6 @@ module.exports = {
     `;
     try {
       await db.query(query);
-      console.log('should return 1');
       return 1;
     } catch (err) {
       return err;
