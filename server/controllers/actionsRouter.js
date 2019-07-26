@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-  const result = createAction(req.body);
+router.post('/', async (req, res) => {
+  const result = await createAction(req.body);
   if (result === 1) {
     res.status(201).send(result);
   } else {
