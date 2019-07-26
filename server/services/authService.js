@@ -24,7 +24,7 @@ const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider({
 });
 
 // A keyed-hash message authentication code (HMAC) calculated using the secret key
-// of a user pool client and username plus the client ID in the message.
+// of a user pool client and username or user subscriber id plus the client ID in the message.
 const generateSecretHash = (username = null, userSubId = null) => {
     const userId = username || userSubId
     const message = `${userId}${cognitoIdentityOptions.ClientId}`;
@@ -83,7 +83,6 @@ const AuthService = {
         }
     },
 
-    // TODO: Getting back "Unable to verify secret hash for client xxx" even though secret hash is same for given username
     // TODO: Determine how refresh token workflow will be handled. Front end or back end.
     refreshUserToken: async (refreshToken, userSubId) => {
         try {
