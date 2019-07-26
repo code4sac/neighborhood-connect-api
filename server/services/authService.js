@@ -81,8 +81,8 @@ const isTokenValid = async token => {
 };
 
 const AuthService = {
-    // TODO: Test this.
-    checkToken: (req, res, next) => {
+    checkToken: async (req, res, next) => {
+        try {
         // Express headers are auto converted to lowercase
         let token = req.headers['x-access-token'] || req.headers['authorization'];
 
@@ -91,28 +91,25 @@ const AuthService = {
             token = token.slice(7, token.length);
         }
 
-        next();
-
-        /*
-
         if (token) {
-            jwt.verify(token, config.secret, (err, decoded) => {
-                if (err) {
-                    return res.json({
-                        success: false,
-                        message: 'Token is not valid'
-                    });
-                } else {
+                const decoded = await isTokenValid(token)
+                if (decoded) {
                     req.decoded = decoded;
                     next();
                 }
-            });
         } else {
             return res.json({
                 success: false,
                 message: 'Auth token is not supplied'
             });
-        }*/
+            }
+        } catch (err) {
+            console.log(err, err.stack);
+            return res.json({
+                success: false,
+                message: 'Auth token is not valid'
+            });
+        }
     },
 
     getUserAccount: async (accessToken) => {
