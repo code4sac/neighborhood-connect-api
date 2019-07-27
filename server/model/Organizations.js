@@ -1,4 +1,5 @@
 const db = require('./db');
+const Utilities = require('../utilities.js');
 
 module.exports = {
   async getOrg(id) {
@@ -40,9 +41,9 @@ module.exports = {
     const values = [];
 
     Object.keys(body).forEach((field) => {
-      if (typeof field === 'string') fields.push(field);
+      if (Utilities.isValueString(field)) fields.push(field);
       else throw Error('Invalid column');
-      if (typeof body[field] === 'string') values.push(`'${body[field]}'`);
+      if (Utilities.isValueString(body[field])) values.push(`'${body[field]}'`);
       else values.push(body[field]);
     });
 

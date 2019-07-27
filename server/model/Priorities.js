@@ -2,7 +2,9 @@
 // 1. Write insert statement
 // 2. Write update statement
 
-const db = require("./db");
+const db = require('./db');
+const Utilities = require('../utilities.js');
+const Logger = require('../services/logService.js');
 
 module.exports = {
   async getAllPriorities() {
@@ -43,8 +45,8 @@ module.exports = {
 
     const dbValueString = Object.values(body)
       .map(value => {
-        if (value === null) return "null";
-        if (typeof value === "string") return "'" + value + "'";
+        if (value === null) return 'null';
+        if (Utilities.isValueString(value)) return "'" + value + "'";
         return value;
       })
       .join(", ");
@@ -115,7 +117,7 @@ module.exports = {
       `);
       return results;
     } catch (err) {
-      console.log(err);
+      Logger.logError(err);
       return err;
     }
   }
