@@ -9,7 +9,8 @@
     "db-migrate": "db-migrate up",
     "db-rollback": "db-migrate down",
     "db-reset": "db-migrate reset",
-    "db-refresh": "db-migrate reset; db-migrate up;"
+    "db-refresh": "db-migrate reset; db-migrate reset:seed; db-migrate up; db-migrate up:seed;",
+    "dev-db-refresh": "db-migrate reset; db-migrate reset:seed; db-migrate reset:seed-test-data; db-migrate up; db-migrate up:seed; db-migrate up:seed-test-data;"
   },
   "author": "",
   "license": "ISC",
