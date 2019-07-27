@@ -8,11 +8,13 @@ const users = require('./server/controllers/userRouter.js');
 const types = require('./server/controllers/typeRouter.js');
 const actions = require('./server/controllers/actionsRouter.js');
 
+const isProd = (process.env.NODE_ENV === 'production');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan((isProd) ? 'tiny' : 'dev'));
 app.use(cors());
 
 // Routes
