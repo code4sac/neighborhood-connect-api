@@ -791,19 +791,32 @@ INSERT INTO test.priority_type (id, name) VALUES (8, 'Homelessness');
 -- Data for Name: user; Type: TABLE DATA; Schema: test; Owner: postgres
 --
 
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (2, 'abc123', 'Kriztina', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.org', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (3, 'abc123', 'Ash', 'Roughani', 3, '9998887777', 'aroughani@cityofsacramento.org', 3, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (4, 'abc123', 'Harrison', 'McCey', 1, '5556667777', 'harrison@mccey.com', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (5, 'abc123', 'Jonathan', 'Throne', 1, '6667778888', 'jon@throne.com', 3, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (1, 'abc123', 'Earl', 'Damron', 1, '4156081374', 'e@earldamron.com', 1, 3);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (7, 'supersecret', 'Pablo', 'Francisco', 1, '1231231234', 'wow@gmail.com', 1, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (8, 'abc123', 'Fred', 'Smith', 1, '7776668888', 'fred@smith.com', 1, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (9, 'abc123', 'Jane', 'Doe', 1, '7778886666', 'jane@does.com', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (14, 'abc11', 'Joana', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.orgs', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (17, 'abc11', 'Joana', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.orgss', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (18, 'abc11', 'Joana', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.orgsss', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (29, 'abc11', 'TestD', 'Test', 2, '1112223333', 'kpalone@cityofsacramento.orgssssssssssssss', 2, 1);
-INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES (30, 'abc11', 'TestE', 'Test', 2, '1112223333', 'kpalone@cityofsacramento.orgssssssssssssssss', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(2, 'abc123', 'Kriztina', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.org', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(3, 'abc123', 'Ash', 'Roughani', 3, '9998887777', 'aroughani@cityofsacramento.org', 3, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(4, 'abc123', 'Harrison', 'McCey', 1, '5556667777', 'harrison@mccey.com', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(5, 'abc123', 'Jonathan', 'Throne', 1, '6667778888', 'jon@throne.com', 3, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(1, 'abc123', 'Earl', 'Damron', 1, '4156081374', 'e@earldamron.com', 1, 3);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(7, 'supersecret', 'Pablo', 'Francisco', 1, '1231231234', 'wow@gmail.com', 1, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(8, 'abc123', 'Fred', 'Smith', 1, '7776668888', 'fred@smith.com', 1, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(9, 'abc123', 'Jane', 'Doe', 1, '7778886666', 'jane@does.com', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(14, 'abc11', 'Joana', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.orgs', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(17, 'abc11', 'Joana', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.orgss', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(18, 'abc11', 'Joana', 'Palone', 2, '1112223333', 'kpalone@cityofsacramento.orgsss', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(29, 'abc11', 'TestD', 'Test', 2, '1112223333', 'kpalone@cityofsacramento.orgssssssssssssss', 2, 1);
+INSERT INTO test."user" (id, password, first_name, last_name, user_type_id, phone, email, organization_id, notification_type_id) VALUES 
+(30, 'abc11', 'TestE', 'Test', 2, '1112223333', 'kpalone@cityofsacramento.orgssssssssssssssss', 2, 1);
 
 
 --
