@@ -113,12 +113,6 @@ module.exports = {
         SET rank = ${rankId}
         WHERE id = ${priorityId}
       `);
-      console.log(`
-        UPDATE test.priority
-        SET rank = ${rankId}
-        WHERE id = ${priorityId}
-      `);
-      console.log("results", results);
       return results;
     } catch (err) {
       console.log(err);
