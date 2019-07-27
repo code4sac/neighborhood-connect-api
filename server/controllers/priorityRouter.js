@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const priorityRouter = new express.Router();
 
 const {
@@ -8,10 +8,11 @@ const {
   getPriorityByOrganization,
   updatePriorityByOrganization,
   getActionsByPriority,
-} = require('../model/Priorities.js');
+  updatePriorityRank
+} = require("../model/Priorities.js");
 
 // Get all Priorities
-priorityRouter.get('/', async (req, res) => {
+priorityRouter.get("/", async (req, res) => {
   try {
     const result = await getAllPriorities();
     res.status(200).send(result.rows);
@@ -21,7 +22,7 @@ priorityRouter.get('/', async (req, res) => {
 });
 
 // Post a new priority
-priorityRouter.post('/', async (req, res) => {
+priorityRouter.post("/", async (req, res) => {
   try {
     const result = await createPriority(req.body);
     res.status(200).send(result);
@@ -31,8 +32,8 @@ priorityRouter.post('/', async (req, res) => {
 });
 
 // Get actions for a priority
-priorityRouter.get('/:priorityId/actions', async (req, res) => {
-  const {priorityId} = req.params;
+priorityRouter.get("/:priorityId/actions", async (req, res) => {
+  const { priorityId } = req.params;
   try {
     const result = await getActionsByPriority(priorityId);
     res.status(200).send(result.rows);
@@ -41,9 +42,20 @@ priorityRouter.get('/:priorityId/actions', async (req, res) => {
   }
 });
 
+// Patch a priority rank
+priorityRouter.patch("/:priorityId/:rankId", async (req, res) => {
+  const { priorityId, rankId } = req.params;
+  try {
+    const results = updatePriorityRank(priorityId, rankId);
+    res.status(200).send();
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 // Get priorities by organization
-priorityRouter.get('/orgs/:orgId', async (req, res) => {
-  const {orgId} = req.params;
+priorityRouter.get("/orgs/:orgId", async (req, res) => {
+  const { orgId } = req.params;
   try {
     const result = await getAllPrioritiesByOrganization(orgId);
     res.status(200).send(result.rows);
@@ -53,8 +65,8 @@ priorityRouter.get('/orgs/:orgId', async (req, res) => {
 });
 
 // Get priority by organization
-priorityRouter.get('/orgs/:orgId/:priorityId', async (req, res) => {
-  const {orgId, priorityId} = req.params;
+priorityRouter.get("/orgs/:orgId/:priorityId", async (req, res) => {
+  const { orgId, priorityId } = req.params;
   try {
     res.status(200).send(await getPriorityByOrganization(orgId, priorityId));
   } catch (err) {
@@ -64,11 +76,11 @@ priorityRouter.get('/orgs/:orgId/:priorityId', async (req, res) => {
 
 // Function is not updating table row
 // Q: should this functionality be moved to PATCH /priority?
-priorityRouter.patch('/orgs/:orgId/:priorityId', async (req, res) => {
-  const {orgId, priorityId} = req.params;
-  res.status(418).send('route not constructed');
+priorityRouter.patch("/orgs/:orgId/:priorityId", async (req, res) => {
+  const { orgId, priorityId } = req.params;
+  res.status(418).send("route not constructed");
   try {
-    const {rows} = await updatePriorityByOrganization(orgId, priorityId);
+    const { rows } = await updatePriorityByOrganization(orgId, priorityId);
     res.status(200).send(rows);
   } catch (err) {
     res.status(400).send();
@@ -76,11 +88,11 @@ priorityRouter.patch('/orgs/:orgId/:priorityId', async (req, res) => {
 });
 
 // Q: should this functionality be moved to DELETE /priority?
-priorityRouter.delete('/orgs/:orgId/:priorityId', (req, res) => {
-  res.status(403).send({error: 'Delete operation not allowed'});
+priorityRouter.delete("/orgs/:orgId/:priorityId", (req, res) => {
+  res.status(403).send({ error: "Delete operation not allowed" });
 });
 
-priorityRouter.get('/dist/:distId', async (req, res) => {
+priorityRouter.get("/dist/:distId", async (req, res) => {
   try {
     res.status(200).send(await getAllPrioritiesByDistrict(req.params.distId));
   } catch (err) {
