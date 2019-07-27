@@ -15,21 +15,57 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.insert('organization', 
-                 ['id', 'organization_type_id',                                         'name', 'description', 'district', 'logo_url', 'map_url',                                'website_url',                          'mailing_address',                                                                'meeting_location'], 
-                 [   2,                      1, 'Avondale Glen Elder Neighborhood Association',            '',        '6',       null,      null, 'https://www.facebook.com/avondaleglenelder', '7805 Vallecitos Way Sacramento, CA 95828', 'George Sim Community Center 6207 Logan Street Sacramento, CA 95824 916-808-3761']
-                 )
-   .then(db.insert('organization', 
-                 ['id', 'organization_type_id',                                         'name', 'description', 'district', 'logo_url', 'map_url', 'website_url',                          'mailing_address',                                                'meeting_location'], 
-                 [   3,                      1,                'Ben Ali Community Association',            '',        '2',       null,      null,          null, '1725 Frienza Avenue Sacramento, CA 95815', 'Higher Learning Academy 2625 Plover Street Sacramento, CA 95815']
+  return db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                        'email', 'organization_id', 'notification_type_id'], 
+                  [   2,   'abc123',   'Kriztina',    'Palone',              2, '1112223333', 'kpalone@cityofsacramento.org',                 2,                      1]
+    )
+   .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                          'email', 'organization_id', 'notification_type_id'], 
+                  [   3,   'abc123',        'Ash', 'Roughani',               3, '9998887777', 'aroughani@cityofsacramento.org',                 3,                       1]
     ))
-   .then(db.insert('organization', 
-                 ['id', 'organization_type_id',                                         'name', 'description', 'district',    'logo_url',     'map_url', 'website_url',                   'mailing_address',                                                'meeting_location'], 
-                 [   4,                      1,                                      'Midtown', 'hip happenin',       '5', 'www.123.com', 'www.456.com', 'www.678.com', '555 davis road',                                                                   '789 balzak place']
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',               'email', 'organization_id', 'notification_type_id'], 
+                  [   4,   'abc123',   'Harrison',     'McCey',              1, '5556667777', 'harrison@mccey.com',                  2,                      1]
     ))
-   .then(db.insert('organization', 
-                 ['id', 'organization_type_id',                                                       'name', 'description', 'district',    'logo_url',     'map_url',                    'website_url',                    'mailing_address',                                                  'meeting_location'], 
-                 [   1,                      1, 'Alkali and Mansion Flats Historic Neighborhood Association',            '',        '4',          null,          null, 'http://alkalimansionflats.org/', '1326 E Street Sacramento, CA 95814', 'Boys and Girls Club of America 1117 G Street Sacramento, CA 95814']
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',          'email', 'organization_id', 'notification_type_id'], 
+                  [   5,   'abc123',   'Jonathan',    'Throne',              1, '6667778888', 'jon@throne.com',                 3,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                        'email', 'organization_id', 'notification_type_id'], 
+                  [   1,   'abc123',       'Earl',    'Damron',              1, '4156081374',             'e@earldamron.com',                 1,                      3]
+    ))
+    .then(db.insert('user', 
+                  ['id',    'password', 'first_name', 'last_name', 'user_type_id',      'phone',         'email', 'organization_id', 'notification_type_id'], 
+                  [   7, 'supersecret',      'Pablo', 'Francisco',              1, '1231231234', 'wow@gmail.com',                 1,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',          'email', 'organization_id', 'notification_type_id'], 
+                  [   8,   'abc123',       'Fred',     'Smith',              1, '7776668888', 'fred@smith.com',                 1,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',         'email', 'organization_id', 'notification_type_id'], 
+                  [   9,   'abc123',       'Jane',        'Doe',             1, '7778886666', 'jane@does.com',                 2,                     1 ]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                         'email', 'organization_id', 'notification_type_id'], 
+                  [   14,   'abc11',      'Joana',    'Palone',              2, '1112223333', 'kpalone@cityofsacramento.orgs',                 2,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                          'email', 'organization_id', 'notification_type_id'], 
+                  [  17,    'abc11',      'Joana',    'Palone',              2, '1112223333', 'kpalone@cityofsacramento.orgss',                 2,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                           'email', 'organization_id', 'notification_type_id'], 
+                  [  18,    'abc11',      'Joana',    'Palone',              2, '1112223333', 'kpalone@cityofsacramento.orgsss',                 2,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                                      'email', 'organization_id', 'notification_type_id'], 
+                  [  29,    'abc11',      'TestD',      'Test',              2, '1112223333', 'kpalone@cityofsacramento.orgssssssssssssss',                 2,                      1]
+    ))
+    .then(db.insert('user', 
+                  ['id', 'password', 'first_name', 'last_name', 'user_type_id',      'phone',                                        'email', 'organization_id', 'notification_type_id'], 
+                  [  30,    'abc11',      'TestE',      'Test',              2, '1112223333', 'kpalone@cityofsacramento.orgssssssssssssssss',                 2,                      1]
     ))
    ;
 };

@@ -37,7 +37,7 @@ exports.up = function(db) {
       type: 'int',
       notNull: true,
       foreignKey: {
-        table: 'user',
+        table: 'user_type',
         mapping: 'id',
         name: 'user_user_type_id_fk',
         rules: {
