@@ -69,10 +69,11 @@ const isTokenValid = async (token) => {
       const key = AWS.config.tokenKeys.filter((key) => key.kid === decoded.header.kid);
       const pem = jwkToPem(key[0]);
       const jwtVerifyProm = promiseUtil.promisify(jwt.verify);
+      
       // PEM format required to decode JWT
       const response = await jwtVerifyProm(token, pem);
 
-      Logger.logInfo(response);
+      Logger.logDebug(response);
       return response;
     } else {
       return false;
@@ -124,7 +125,7 @@ const AuthService = {
 
       const data = await cognitoIdentityServiceProvider.getUser(params).promise();
 
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);
@@ -148,7 +149,7 @@ const AuthService = {
 
       const data = await cognitoIdentityServiceProvider.initiateAuth(params).promise();
 
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);
@@ -176,7 +177,7 @@ const AuthService = {
 
       const data = await cognitoIdentityServiceProvider.initiateAuth(params).promise();
 
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);
@@ -194,7 +195,7 @@ const AuthService = {
 
       const data = await cognitoIdentityServiceProvider.changePassword(params).promise();
 
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);
@@ -216,7 +217,7 @@ const AuthService = {
 
       const data = await cognitoIdentityServiceProvider.confirmForgotPassword(params).promise();
 
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);
@@ -236,7 +237,7 @@ const AuthService = {
 
       const data = await cognitoIdentityServiceProvider.forgotPassword(params).promise();
 
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);
@@ -275,7 +276,7 @@ const AuthService = {
       const data = await cognitoIdentityServiceProvider.signUp(params).promise();
 
       // successfully signed-up
-      Logger.logInfo(data);
+      Logger.logDebug(data);
       return data;
     } catch (err) {
       Logger.logError(err);

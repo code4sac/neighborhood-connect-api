@@ -1,11 +1,10 @@
 const log4js = require('log4js');
-
-const isProd = (process.env.NODE_ENV === 'production');
+const Utilities = require('../utils.js');
 
 const logger = log4js.getLogger();
 
 // set level to error or fatal if in production.
-logger.setLevel(((isProd) ? 'error' : 'info'));
+logger.setLevel(((Utilities.isProdEnv()) ? 'error' : 'info'));
 
 const Logger = {
   logError: (message) => {

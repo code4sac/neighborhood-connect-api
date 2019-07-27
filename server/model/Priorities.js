@@ -53,8 +53,8 @@ module.exports = {
 
     const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString});`;
 
-    console.log(dbStatement);
-
+    Logger.logDebug(dbStatement);
+    
     try {
       const result = await db.query(dbStatement);
       return result;

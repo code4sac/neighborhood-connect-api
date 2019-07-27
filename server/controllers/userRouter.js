@@ -1,5 +1,6 @@
 // eslint-disable-next-line new-cap
 const router = require('express').Router();
+const Logger = require('../services/logService.js');
 
 // unused?
 // const users = require('../model/Users');
@@ -30,7 +31,7 @@ router.patch('/:userId', async (req, res) => {
     const result = await update(table, req.params.userId, req.body);
     res.status(201).send(result);
   } catch (err) {
-    console.log(err);
+    Logger.logError(err);
     return res.status(404).send(err);
   }
 });
