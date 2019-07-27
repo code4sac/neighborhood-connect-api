@@ -3,8 +3,8 @@
 API and backend for the Neighborhood Connect project
 
 ## Table of Contents
-
-- [Database Tables](#database-tables)
+- [Requirements](#requirements)
+- [Database](#database)
   - [Schema](#schema)
   - [User](#user)
   - [User_Type](#user_type)
@@ -19,9 +19,38 @@ API and backend for the Neighborhood Connect project
   - [`/org/:org_id/priorities`](#/org/:org_id/priorities)
   - [`/org/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id)
 
-# Database Tables
+# Requirements
+To get this project up and running, you will need: 
+* [Node.js](https://nodejs.org/en/)
+* [NPM](https://www.npmjs.com/get-npm)
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
 
-## Schema
+#Getting Started
+
+
+# Database
+
+## Local Development DB
+This project uses a Docker container to host the Postgres database. To start it up, open a command terminal and run: 
+```
+docker-compose up
+```
+You will need to install Docker and Docker Compose if you don't have them already. 
+If you already have Postgres installed and running on your computer, you may need to stop it's service before spinning up the dockerized database so that the ports don't conflict
+```
+sudo service postgresql stop
+```
+Once the database is up and running, you can generate the schema and populate it with test data using the db migrations. 
+
+## DB Migrations
+The database is versioned using db-migrate. To generate the database schema and populate it, with the test data, run: 
+```
+npm run dev-db-refresh
+```
+The database.json is configured to point to the Dockerized
+
+## Database Schema
 
 ![Schema Table](visualization.png)
 
