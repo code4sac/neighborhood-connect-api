@@ -15,11 +15,44 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.createTable('organization_contact', {
+    id: { 
+      type: 'int', 
+      primaryKey: true, 
+      autoIncrement: true 
+    },
+    user_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'user',
+        mapping: 'id',
+        name: 'organization_contact_user_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    organization_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'organization',
+        mapping: 'id',
+        name: 'organization_contact_organization_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+
+  });
 };
 
 exports.down = function(db) {
-  return null;
+  return db.dropTable('organization_contact', { ifExists:true } );
 };
 
 exports._meta = {

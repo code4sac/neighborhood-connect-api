@@ -15,11 +15,78 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.createTable('user', {
+    id: { 
+      type: 'int', 
+      primaryKey: true, 
+      autoIncrement: true 
+    },
+    password: {
+      type: 'string',
+      notNull: true
+    },
+    first_name: {
+      type: 'string',
+      notNull: true
+    },
+    last_name: {
+      type: 'string',
+      notNull: true
+    },
+    user_type_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'user',
+        mapping: 'id',
+        name: 'user_user_type_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    phone: {
+      type: 'string',
+      notNull: true
+    },
+    email: {
+      type: 'string',
+      notNull: true
+    },
+    organization_id : {
+      type: 'int',
+      notNull: false,
+      foreignKey: {
+        table: 'organization',
+        mapping: 'id',
+        name: 'user_organization_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    notification_type_id : {
+      type: 'int',
+      defaultValue: 1,
+      notNull: true,
+      foreignKey: {
+        table: 'notification_type',
+        mapping: 'id',
+        name: 'user_notification_type_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+
+  });
 };
 
 exports.down = function(db) {
-  return null;
+  return db.dropTable('user', { ifExists: true });
 };
 
 exports._meta = {

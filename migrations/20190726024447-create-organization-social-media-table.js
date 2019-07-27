@@ -15,11 +15,38 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.createTable('organization_social_media', {
+    id: { 
+      type: 'int', 
+      primaryKey: true, 
+      autoIncrement: true 
+    },
+    organization_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'organization',
+        mapping: 'id',
+        name: 'organization_social_media_organization_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    type: {
+      notNull: true,
+      type: 'string',
+    },
+    url: {
+      notNull: true,
+      type: 'string',
+    }
+  });
 };
 
 exports.down = function(db) {
-  return null;
+  return db.dropTable('organization_social_media', { ifExists:true } );
 };
 
 exports._meta = {

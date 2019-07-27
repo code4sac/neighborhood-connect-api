@@ -15,11 +15,82 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.createTable('priority', {
+    id: { 
+      type: 'int', 
+      primaryKey: true, 
+      autoIncrement: true 
+    },
+    priority_type_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'priority_type',
+        mapping: 'id',
+        name: 'priority_priority_type_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    description: {
+      type: 'int',
+      notNull: true
+    },
+    visibility: {
+      type: 'boolean',
+      notNull: true
+    },
+    priority_status_type_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'priority_status_type',
+        mapping: 'id',
+        name: 'priority_priority_status_type_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    organization_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'organization',
+        mapping: 'id',
+        name: 'priority_organization_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+    rank : {
+      type: 'int',
+      notNull: true,
+    },
+    user_id : {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        table: 'priority',
+        mapping: 'id',
+        name: 'priority_user_id_fk',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+      }
+    },
+
+  });
 };
 
 exports.down = function(db) {
-  return null;
+  return db.dropTable('priority', { ifExists:true } );
 };
 
 exports._meta = {

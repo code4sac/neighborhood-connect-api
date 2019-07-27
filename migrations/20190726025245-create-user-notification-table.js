@@ -15,11 +15,21 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.createTable('notification_type', {
+    id: { 
+      type: 'int', 
+      primaryKey: true, 
+      autoIncrement: true 
+    },
+    name: {
+      type: 'string',
+      notNull: true
+    }
+  });
 };
 
 exports.down = function(db) {
-  return null;
+  return db.dropTable('notification_type', { ifExists:true });
 };
 
 exports._meta = {
