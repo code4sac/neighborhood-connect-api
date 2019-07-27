@@ -20,7 +20,7 @@ app.use('/priorities', priorityRouter);
 app.use('/orgs', organizations);
 app.use('/users', users);
 app.use('/types', types);
-app.use('/events', actions);
+app.use('/actions', actions);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
