@@ -35,7 +35,7 @@ exports.up = function(db) {
       }
     },
     description: {
-      type: 'int',
+      type: 'string',
       notNull: true
     },
     visibility: {
