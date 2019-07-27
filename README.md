@@ -20,14 +20,28 @@ API and backend for the Neighborhood Connect project
   - [`/org/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id)
 
 # Requirements
-To get this project up and running, you will need: 
+To get this project setup, you will need: 
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://www.npmjs.com/get-npm)
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/)
 
-#Getting Started
+# Getting Up and Running
 
+```
+cd neighborhood-connect-api
+```
+
+In a seperate command terminal window, run: 
+```
+docker-compose up
+```
+Switch back to your main terminal and run: 
+```
+npm install
+npm run dev-db-refresh
+npm start
+```
 
 # Database
 
@@ -48,7 +62,7 @@ The database is versioned using db-migrate. To generate the database schema and 
 ```
 npm run dev-db-refresh
 ```
-The database.json is configured to point to the Dockerized
+The database.json is configured to point to the local database in Docker
 
 ## Database Schema
 
