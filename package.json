@@ -1,7 +1,7 @@
 {
 	"name": "neighborhood-connect-api",
 	"version": "0.1.0",
-	"description": "Api for neighborhood",
+	"description": "Api for neighborhood connect app.",
 	"main": "app.js",
 	"scripts": {
 		"start": "nodemon app.js",

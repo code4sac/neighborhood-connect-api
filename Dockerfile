@@ -1,12 +1,12 @@
 FROM node:10
 
-WORKDIR /opt/neighborhood-connect/
+WORKDIR /opt/neighborhood-connect-api/
 
-COPY package*.json ./
+COPY package*.json /opt/neighborhood-connect-api/
 RUN npm install
 
-COPY . .
+COPY . /opt/neighborhood-connect-api/
 
-EXPOSE 3000
+EXPOSE 8080
 
 CMD [ "npm", "start:prod" ]
