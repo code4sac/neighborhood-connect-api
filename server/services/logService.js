@@ -3,8 +3,19 @@ const Utilities = require('../../utils.js');
 
 const logger = log4js.getLogger();
 
-// set level to error or fatal if in production.
-logger.level = (Utilities.isProdEnv()) ? 'error' : 'info';
+log4js.configure({
+  appenders: {
+    'out': {
+      type: 'stdout',
+    },
+  },
+  categories: {
+    default: {
+      appenders: ['out'],
+      level: (Utilities.isProdEnv()) ? 'error' : 'debug',
+    },
+  },
+});
 
 module.exports = {
   logError: (message) => {
@@ -18,5 +29,8 @@ module.exports = {
   },
   logInfo: (message) => {
     logger.info(message);
+  },
+  logTrace: (message) => {
+    logger.trace(message);
   },
 };
