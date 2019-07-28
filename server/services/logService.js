@@ -6,13 +6,13 @@ const logger = log4js.getLogger();
 log4js.configure({
   appenders: {
     'out': {
-      type: 'stdout',
+      type: ((Utilities.isProdEnv()) ? 'stderr' : 'stdout'),
     },
   },
   categories: {
     default: {
       appenders: ['out'],
-      level: (Utilities.isProdEnv()) ? 'error' : 'debug',
+      level: ((Utilities.isProdEnv()) ? 'error' : 'debug'),
     },
   },
 });
