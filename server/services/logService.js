@@ -1,5 +1,5 @@
 const log4js = require('log4js');
-const Utilities = require('../utils.js');
+const Utilities = require('../../utils.js');
 
 const logger = log4js.getLogger();
 

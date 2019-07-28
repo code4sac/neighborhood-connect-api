@@ -1,5 +1,5 @@
 const db = require('./db');
-const Utilities = require('../utilities.js');
+const Utilities = require('../../utils.js');
 
 module.exports = {
   async getOrg(id) {

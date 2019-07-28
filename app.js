@@ -1,8 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const Utilities = require('../utils.js');
-const Logger = require('logService.js');
+const Utilities = require('./utils.js');
+const Logger = require('./server/services/logService');
 
 const priorityRouter = require('./server/controllers/priorityRouter');
 const organizations = require('./server/controllers/orgRouter.js');

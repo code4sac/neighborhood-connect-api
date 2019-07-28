@@ -3,7 +3,7 @@
 // 2. Write update statement
 
 const db = require('./db');
-const Utilities = require('../utilities.js');
+const Utilities = require('../../utils.js');
 const Logger = require('../services/logService.js');
 
 module.exports = {

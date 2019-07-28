@@ -7,4 +7,6 @@ const Utilities = {
   },
 };
 
-module.exports.Utilities = Utilities;
+module.exports = {
+  utilities: Utilities,
+};
