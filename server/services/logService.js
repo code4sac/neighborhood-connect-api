@@ -4,9 +4,9 @@ const Utilities = require('../../utils.js');
 const logger = log4js.getLogger();
 
 // set level to error or fatal if in production.
-logger.setLevel(((Utilities.isProdEnv()) ? 'error' : 'info'));
+logger.level = (Utilities.isProdEnv()) ? 'error' : 'info';
 
-const Logger = {
+module.exports = {
   logError: (message) => {
     logger.error(message);
   },
@@ -20,5 +20,3 @@ const Logger = {
     logger.info(message);
   },
 };
-
-module.exports.Logger = Logger;

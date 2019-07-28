@@ -8,7 +8,7 @@ AWS.config.loadFromPath('configs/aws.config.json');
 const ses = new AWS.SES();
 const sns = new AWS.SNS();
 
-const NotificationService = {
+module.exports = {
   sendEmail: async (toEmail, subjectText, bodyText) => {
     try {
       const params = {
@@ -55,5 +55,3 @@ const NotificationService = {
     }
   },
 };
-
-module.exports.NotificationService = NotificationService;

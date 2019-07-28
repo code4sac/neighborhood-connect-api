@@ -84,7 +84,7 @@ const isTokenValid = async (token) => {
   }
 };
 
-const AuthService = {
+module.exports = {
   checkToken: async (req, res, next) => {
     try {
       // Express headers are auto converted to lowercase
@@ -284,5 +284,3 @@ const AuthService = {
     }
   },
 };
-
-module.exports = AuthService;
