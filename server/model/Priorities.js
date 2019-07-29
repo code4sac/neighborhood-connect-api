@@ -36,7 +36,7 @@ module.exports = {
     //     throw err;
     // }
 
-    // const rankResponse = await db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
+    // const rankResponse = awaiGETt db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
     // const rank = rankResponse.rows[0].max + 1;
 
     const dbColString = Object.keys(body).join(", ");
@@ -57,6 +57,7 @@ module.exports = {
       const result = await db.query(dbStatement);
       return result;
     } catch (err) {
+      console.log(err);
       return err;
     }
   },
@@ -106,17 +107,29 @@ module.exports = {
   },
 
   // *** Patch Priority Rank ***
-  async updatePriorityRank(priorityId, rankId) {
+  async updateRank(body) {
+    const { promotedId, demotedId, promotedRank, demotedRank } = body;
+
     try {
       const results = await db.query(`
-        UPDATE test.priority
-        SET rank = ${rankId}
-        WHERE id = ${priorityId}
-      `);
-      return results;
+      UPDATE test.priority
+      SET rank = ${promotedRank}
+      WHERE id = ${promotedId}
+    `);
+      console.log("results updated: ", results.rows[0]);
     } catch (err) {
-      console.log(err);
-      return err;
+      console.log("error 3", err);
+    }
+
+    try {
+      const results = await db.query(`
+      UPDATE test.priority
+      SET rank = ${demotedRank}
+      WHERE id = ${demotedId}
+    `);
+      return;
+    } catch (err) {
+      console.log("error 4: ", err);
     }
   }
 
