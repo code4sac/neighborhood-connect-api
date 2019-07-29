@@ -5,17 +5,21 @@
 const db = require('./db');
 const Utilities = require('../../utils.js');
 const Logger = require('../services/logService.js');
+const notificationService = require('../services/notificationService');
+
+// used to get all prirorities, and to get a single priority
+// (with the addition of a WHERE clause)
+const GET_ALL_PRIORITIES = `SELECT pt.id, pt.name AS type, p.description, pst.name AS status,
+                            CONCAT(u.first_name, ' ', u.last_name) AS creator, o.name AS neighborhood
+                            FROM test.priority p
+                            INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
+                            INNER JOIN test.priority_status_type pst ON p.priority_status_type_id = pst.id
+                            INNER JOIN test.user u ON p.user_id = u.id
+                            INNER JOIN test.organization o ON p.organization_id = o.id`;
 
 module.exports = {
   async getAllPriorities() {
-    return db.query(`
-      SELECT pt.id, pt.name AS type, p.description, pst.name AS status,
-      CONCAT(u.first_name, ' ', u.last_name) AS creator, o.name AS neighborhood
-      FROM test.priority p
-      INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
-      INNER JOIN test.priority_status_type pst ON p.priority_status_type_id = pst.id
-      INNER JOIN test.user u ON p.user_id = u.id
-      INNER JOIN test.organization o ON p.organization_id = o.id`);
+    return db.query(GET_ALL_PRIORITIES);
   },
 
   async getActionsByPriority(priorityId) {
@@ -38,7 +42,7 @@ module.exports = {
     //     throw err;
     // }
 
-    // const rankResponse = await db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
+    // const rankResponse = awaiGETt db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
     // const rank = rankResponse.rows[0].max + 1;
 
     const dbColString = Object.keys(body).join(", ");
@@ -51,14 +55,32 @@ module.exports = {
       })
       .join(", ");
 
-    const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString});`;
+    // the 'RETURNING id' part at the end gives back the
+    // newly inserted priority id via `result.rows[0].id`  
+    const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString}) RETURNING id;`;
 
     Logger.logDebug(dbStatement);
     
     try {
       const result = await db.query(dbStatement);
+      // get the 'pretty' info needed for the notification
+      const newPriority = await db.query(`${GET_ALL_PRIORITIES} 
+                                          WHERE p.id = ${result.rows[0].id}`);
+
+      notificationService.sendEmail('e@earldamron.com', 'New Priority Created',
+          `A new neighborhood priority has been created. Here's the information about it:
+
+          Neighborhood: ${newPriority.rows[0].neighborhood}
+          Type: ${newPriority.rows[0].type}
+          Created By: ${newPriority.rows[0].creator}
+          Description: ${newPriority.rows[0].description}
+
+          Direct Link: <direct link here...>
+        `);
+
       return result;
     } catch (err) {
+      Logger.logError(err);
       return err;
     }
   },
@@ -108,14 +130,21 @@ module.exports = {
   },
 
   // *** Patch Priority Rank ***
-  async updatePriorityRank(priorityId, rankId) {
+  async updateRank(body) {
+    const { promotedId, demotedId, promotedRank, demotedRank } = body;
     try {
-      const results = await db.query(`
-        UPDATE test.priority
-        SET rank = ${rankId}
-        WHERE id = ${priorityId}
-      `);
-      return results;
+      const updatePriority = await db.query(`
+      UPDATE test.priority
+      SET rank = ${promotedRank}
+      WHERE id = ${promotedId}
+    `);
+
+      const demotePriority = await db.query(`
+      UPDATE test.priority
+      SET rank = ${demotedRank}
+      WHERE id = ${demotedId}
+    `);
+      return null;
     } catch (err) {
       Logger.logError(err);
       return err;

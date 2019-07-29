@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 const db = require('./db');
+const email = require("../services/emailService");
+// once needed --> const sms = require("../services/smsService");
 
 module.exports = {
   async getActions(id) {
@@ -36,10 +38,30 @@ module.exports = {
       INSERT INTO action (action_type_id, description,
         visibility, priority_id, user_id, title)
       VALUES (${action_type_id}, '${description}', ${visibility},
-      ${priority_id}, ${user_id}, '${title}')
+      ${priority_id}, ${user_id}, '${title}') RETURNING id
     `;
     try {
-      await db.query(query);
+      const result = await db.query(query);
+
+      // get the 'pretty' info needed for the notification
+      const newAction = await db.query(`SELECT a.title, a.description, a.timestamp, at.name as action_type, p.description AS priority_description, CONCAT(u.first_name, ' ', u.last_name) AS creator
+                                        FROM test.action a
+                                              INNER JOIN test.action_type at ON a.action_type_id = at.id
+                                              INNER JOIN test.priority p ON a.priority_id = p.id
+                                              INNER JOIN test.user u ON a.user_id = u.id
+                                          WHERE a.id = ${result.rows[0].id}`);
+
+      email.sendEmail("e@earldamron.com", 
+        `New Action Taken on Priority: ${newAction.rows[0].priority_description}`, 
+`A new action has been taken on this priority. Here's the information about it:
+
+Title: ${newAction.rows[0].title}
+Event: ${newAction.rows[0].description}
+Created By: ${newAction.rows[0].creator}
+
+Direct Link: <direct link here...>
+          `);
+
       return 1;
     } catch (err) {
       return err;

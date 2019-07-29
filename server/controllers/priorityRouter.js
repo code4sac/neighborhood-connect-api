@@ -8,7 +8,7 @@ const {
   getPriorityByOrganization,
   updatePriorityByOrganization,
   getActionsByPriority,
-  updatePriorityRank
+  updateRank
 } = require("../model/Priorities.js");
 
 // Get all Priorities
@@ -25,29 +25,29 @@ priorityRouter.get("/", async (req, res) => {
 priorityRouter.post("/", async (req, res) => {
   try {
     const result = await createPriority(req.body);
-    res.status(200).send(result);
+    res.status(200).send();
+    //p;
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
+// Update a priority rank
+priorityRouter.post("/updateRank", async (req, res) => {
+  try {
+    await updateRank(req.body);
+    res.status(200).send();
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
 // Get actions for a priority
 priorityRouter.get("/:priorityId/actions", async (req, res) => {
   const { priorityId } = req.params;
   try {
     const result = await getActionsByPriority(priorityId);
     res.status(200).send(result.rows);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-// Patch a priority rank
-priorityRouter.patch("/:priorityId/:rankId", async (req, res) => {
-  const { priorityId, rankId } = req.params;
-  try {
-    const results = updatePriorityRank(priorityId, rankId);
-    res.status(200).send();
   } catch (err) {
     res.status(400).send(err);
   }
