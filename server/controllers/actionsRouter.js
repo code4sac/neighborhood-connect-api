@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const result = await createAction(req.body);
   if (result === 1) {
-    res.status(201).send(result);
+    res.status(200).send(201); // result);
   } else {
     res.status(500).send(result);
   }
