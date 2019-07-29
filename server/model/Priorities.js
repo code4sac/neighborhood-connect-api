@@ -109,27 +109,21 @@ module.exports = {
   // *** Patch Priority Rank ***
   async updateRank(body) {
     const { promotedId, demotedId, promotedRank, demotedRank } = body;
-
     try {
-      const results = await db.query(`
+      const updatePriority = await db.query(`
       UPDATE test.priority
       SET rank = ${promotedRank}
       WHERE id = ${promotedId}
     `);
-      console.log("results updated: ", results.rows[0]);
-    } catch (err) {
-      console.log("error 3", err);
-    }
 
-    try {
-      const results = await db.query(`
+      const demotePriority = await db.query(`
       UPDATE test.priority
       SET rank = ${demotedRank}
       WHERE id = ${demotedId}
     `);
-      return;
+      return null;
     } catch (err) {
-      console.log("error 4: ", err);
+      throw err;
     }
   }
 
