@@ -26,7 +26,7 @@ priorityRouter.post("/", async (req, res) => {
   try {
     const result = await createPriority(req.body);
     res.status(200).send();
-    p;
+    //p;
   } catch (err) {
     res.status(400).send(err);
   }
