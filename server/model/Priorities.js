@@ -2,9 +2,10 @@
 // 1. Write insert statement
 // 2. Write update statement
 
-const db = require("./db");
-const email = require("../services/emailService");
-// once needed --> const sms = require("../services/smsService");
+const db = require('./db');
+const Utilities = require('../../utils.js');
+const Logger = require('../services/logService.js');
+const notificationService = require('../services/notificationService');
 
 // used to get all prirorities, and to get a single priority
 // (with the addition of a WHERE clause)
@@ -48,8 +49,8 @@ module.exports = {
 
     const dbValueString = Object.values(body)
       .map(value => {
-        if (value === null) return "null";
-        if (typeof value === "string") return "'" + value + "'";
+        if (value === null) return 'null';
+        if (Utilities.isValueString(value)) return "'" + value + "'";
         return value;
       })
       .join(", ");
@@ -58,29 +59,28 @@ module.exports = {
     // newly inserted priority id via `result.rows[0].id`  
     const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString}) RETURNING id;`;
 
-    console.log(dbStatement);
-
+    Logger.logDebug(dbStatement);
+    
     try {
       const result = await db.query(dbStatement);
       // get the 'pretty' info needed for the notification
       const newPriority = await db.query(`${GET_ALL_PRIORITIES} 
                                           WHERE p.id = ${result.rows[0].id}`);
 
-      email.sendEmail("e@earldamron.com", 
-        "New Priority Created", 
-`A new neighborhood priority has been created. Here's the information about it:
+      notificationService.sendEmail('e@earldamron.com', 'New Priority Created',
+          `A new neighborhood priority has been created. Here's the information about it:
 
-Neighborhood: ${newPriority.rows[0].neighborhood}
-Type: ${newPriority.rows[0].type}
-Created By: ${newPriority.rows[0].creator}
-Description: ${newPriority.rows[0].description}
+          Neighborhood: ${newPriority.rows[0].neighborhood}
+          Type: ${newPriority.rows[0].type}
+          Created By: ${newPriority.rows[0].creator}
+          Description: ${newPriority.rows[0].description}
 
-Direct Link: <direct link here...>
-          `);
+          Direct Link: <direct link here...>
+        `);
 
       return result;
     } catch (err) {
-        console.log(err);
+      Logger.logError(err);
       return err;
     }
   },
@@ -146,7 +146,8 @@ Direct Link: <direct link here...>
     `);
       return null;
     } catch (err) {
-      throw err;
+      Logger.logError(err);
+      return err;
     }
   }
 

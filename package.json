@@ -1,10 +1,11 @@
 {
-	"name": "testapp",
-	"version": "1.0.0",
-	"description": "",
+	"name": "neighborhood-connect-api",
+	"version": "0.1.0",
+	"description": "Api for neighborhood connect app.",
 	"main": "app.js",
 	"scripts": {
 		"start": "nodemon app.js",
+		"start:prod": "node NODE_ENV=production app.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "./node_modules/eslint/bin/eslint.js .",
 		"lint:fix": "./node_modules/eslint/bin/eslint.js --fix ."
@@ -17,8 +18,8 @@
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
 		"jwk-to-pem": "^2.0.1",
+		"log4js": "^4.5.1",
 		"morgan": "^1.9.1",
-		"nodemon": "^1.19.1",
 		"pg": "^7.11.0"
 	},
 	"devDependencies": {
@@ -28,6 +29,7 @@
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-node": "^9.1.0",
 		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.0"
+		"eslint-plugin-standard": "^4.0.0",
+		"nodemon": "^1.19.1"
 	}
 }
