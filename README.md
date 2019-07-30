@@ -44,9 +44,14 @@ npm start
 ```
 
 # Database
-
+## Configuration 
+The database connection configuration is managed in file:
+```
+./server/model/config.js
+```
+The config file points to the local dev DB by default. 
 ## Local Development DB
-This project uses a Docker container to host the Postgres database. To start it up, open a command terminal and run: 
+This project uses a Docker container to host the local Postgres database. To start it up, open a command terminal and run: 
 ```
 docker-compose up
 ```
@@ -62,7 +67,12 @@ The database is versioned using db-migrate. To generate the database schema and 
 ```
 npm run dev-db-refresh
 ```
-The database.json is configured to point to the local database in Docker
+
+The database connection configuration is managed in file:
+```
+./database.json
+```
+The file points to the local dev DB in Docker by default. 
 
 ## Database Schema
 
