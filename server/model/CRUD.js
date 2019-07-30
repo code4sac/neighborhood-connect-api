@@ -1,5 +1,4 @@
 const db = require('./db');
-const Utilities = require('../../utils.js');
 
 module.exports = {
   // while this may be useful boilerplate, most queries should be
@@ -27,7 +26,7 @@ module.exports = {
     const dbValueString = Object.values(body)
         .map((value) => {
           if (value === null) return 'null';
-          if (Utilities.isValueString(value)) return '\'' + value + '\'';
+          if (typeof value === 'string') return '\'' + value + '\'';
           return value;
         })
         .join(', ');

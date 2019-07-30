@@ -2,7 +2,6 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 const {getOrg, getOrgUsers, postOrg} = require('../model/Organizations');
-const Logger = require('../services/logService.js');
 
 // DRY consider refactoring
 router.get('/', async (req, res) => {
@@ -19,7 +18,7 @@ router.post('/', async (req, res) => {
     await postOrg(req.body);
     res.sendStatus(200);
   } catch (err) {
-    Logger.logError(err);
+    console.log(err);
     res.status(404).send(err);
   }
 });
@@ -28,7 +27,7 @@ router.get('/:orgId', async (req, res) => {
   try {
     res.status(200).send(await getOrg(req.params.orgId));
   } catch (err) {
-    Logger.logError(err);
+    console.log(err);
     res.status(404).send(err);
   }
 });
