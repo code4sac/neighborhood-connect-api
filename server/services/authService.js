@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const jwkToPem = require('jwk-to-pem');
 const promiseUtil = require('util');
-const Logger = require('logService.js');
+const logService = require('logService.js');
 
 
 AWS.config.region = 'us-east-2';
@@ -69,17 +69,17 @@ const isTokenValid = async (token) => {
       const key = AWS.config.tokenKeys.filter((key) => key.kid === decoded.header.kid);
       const pem = jwkToPem(key[0]);
       const jwtVerifyProm = promiseUtil.promisify(jwt.verify);
-      
+
       // PEM format required to decode JWT
       const response = await jwtVerifyProm(token, pem);
 
-      Logger.logDebug(response);
+      logService.logDebug(response);
       return response;
     } else {
       return false;
     }
   } catch (err) {
-    Logger.logError(err);
+    logService.logError(err);
     return false;
   }
 };
@@ -108,7 +108,7 @@ module.exports = {
         });
       }
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
 
       return res.json({
         success: false,
@@ -125,10 +125,10 @@ module.exports = {
 
       const data = await cognitoIdentityServiceProvider.getUser(params).promise();
 
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },
@@ -149,10 +149,10 @@ module.exports = {
 
       const data = await cognitoIdentityServiceProvider.initiateAuth(params).promise();
 
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },
@@ -177,10 +177,10 @@ module.exports = {
 
       const data = await cognitoIdentityServiceProvider.initiateAuth(params).promise();
 
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },
@@ -195,10 +195,10 @@ module.exports = {
 
       const data = await cognitoIdentityServiceProvider.changePassword(params).promise();
 
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },
@@ -217,10 +217,10 @@ module.exports = {
 
       const data = await cognitoIdentityServiceProvider.confirmForgotPassword(params).promise();
 
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },
@@ -237,10 +237,10 @@ module.exports = {
 
       const data = await cognitoIdentityServiceProvider.forgotPassword(params).promise();
 
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },
@@ -276,10 +276,10 @@ module.exports = {
       const data = await cognitoIdentityServiceProvider.signUp(params).promise();
 
       // successfully signed-up
-      Logger.logDebug(data);
+      logService.logDebug(data);
       return data;
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
       return err;
     }
   },

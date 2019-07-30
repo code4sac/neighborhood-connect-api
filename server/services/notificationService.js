@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const Logger = require('./logService.js');
+const logService = require('./logService.js');
 
 const SourceEmail = 'neighborhoodconnect.sac@gmail.com';
 
@@ -34,9 +34,9 @@ module.exports = {
 
       const data = await ses.sendEmail(params).promise();
 
-      Logger.logDebug(data.MessageId);
+      logService.logDebug(data.MessageId);
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
     }
   },
   sendSMS: async (phoneNumber, message) => {
@@ -49,9 +49,9 @@ module.exports = {
       // Create the promise and SES service object
       const data = await sns.publish(params).promise();
 
-      Logger.logDebug(data.MessageId);
+      logService.logDebug(data.MessageId);
     } catch (err) {
-      Logger.logError(err);
+      logService.logError(err);
     }
   },
 };

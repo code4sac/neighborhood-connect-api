@@ -8,11 +8,11 @@ const {
   getPriorityByOrganization,
   updatePriorityByOrganization,
   getActionsByPriority,
-  updateRank
-} = require("../model/Priorities.js");
+  updateRank,
+} = require('../model/Priorities.js');
 
 // Get all Priorities
-priorityRouter.get("/", async (req, res) => {
+priorityRouter.get('/', async (req, res) => {
   try {
     const result = await getAllPriorities();
     res.status(200).send(result.rows);
@@ -22,7 +22,7 @@ priorityRouter.get("/", async (req, res) => {
 });
 
 // Post a new priority
-priorityRouter.post("/", async (req, res) => {
+priorityRouter.post('/', async (req, res) => {
   try {
     const result = await createPriority(req.body);
     res.status(200).send();
@@ -33,7 +33,7 @@ priorityRouter.post("/", async (req, res) => {
 });
 
 // Update a priority rank
-priorityRouter.post("/updateRank", async (req, res) => {
+priorityRouter.post('/updateRank', async (req, res) => {
   try {
     await updateRank(req.body);
     res.status(200).send();
@@ -43,7 +43,7 @@ priorityRouter.post("/updateRank", async (req, res) => {
   }
 });
 // Get actions for a priority
-priorityRouter.get("/:priorityId/actions", async (req, res) => {
+priorityRouter.get('/:priorityId/actions', async (req, res) => {
   const { priorityId } = req.params;
   try {
     const result = await getActionsByPriority(priorityId);
@@ -54,7 +54,7 @@ priorityRouter.get("/:priorityId/actions", async (req, res) => {
 });
 
 // Get priorities by organization
-priorityRouter.get("/orgs/:orgId", async (req, res) => {
+priorityRouter.get('/orgs/:orgId', async (req, res) => {
   const { orgId } = req.params;
   try {
     const result = await getAllPrioritiesByOrganization(orgId);
@@ -65,7 +65,7 @@ priorityRouter.get("/orgs/:orgId", async (req, res) => {
 });
 
 // Get priority by organization
-priorityRouter.get("/orgs/:orgId/:priorityId", async (req, res) => {
+priorityRouter.get('s/orgs/:orgId/:priorityId', async (req, res) => {
   const { orgId, priorityId } = req.params;
   try {
     res.status(200).send(await getPriorityByOrganization(orgId, priorityId));
