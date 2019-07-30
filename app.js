@@ -1,8 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const Utilities = require('./utils.js');
-const Logger = require('./server/services/logService');
 
 const priorityRouter = require('./server/controllers/priorityRouter');
 const organizations = require('./server/controllers/orgRouter.js');
@@ -12,10 +10,9 @@ const actions = require('./server/controllers/actionsRouter.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
 // Middleware
 app.use(express.json());
-app.use(morgan((Utilities.isProdEnv()) ? 'tiny' : 'dev'));
+app.use(morgan('dev'));
 app.use(cors());
 
 // Routes
@@ -26,5 +23,5 @@ app.use('/types', types);
 app.use('/actions', actions);
 
 app.listen(PORT, () => {
-  Logger.logDebug(`Listening on port ${PORT}`);
+  console.log(`Listening on port ${PORT}`);
 });
