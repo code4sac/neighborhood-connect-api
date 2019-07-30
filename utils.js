@@ -5,4 +5,7 @@ module.exports = {
   isValueString: (str) => {
     return (typeof(str) === 'string' || str instanceof String);
   },
+  dbValueStringify: (field) => {
+    return ((field === null) ? 'null' : `'${field}'`);
+  },
 };

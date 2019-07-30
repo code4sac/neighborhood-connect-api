@@ -1,5 +1,6 @@
 const db = require('./db');
 const Utilities = require('../../utils.js');
+const logService = require('../services/logService');
 
 module.exports = {
   async getOrg(id) {
@@ -10,6 +11,7 @@ module.exports = {
       contact.phone as contact_phone, contact.email as contact_email,
       concat(owner.first_name, ' ', owner.last_name) as owner_name`
       : 'org.id, org.name, org.district, org.logo_url';
+
     const tables = id
       ? `organization org
       INNER JOIN organization_type ot ON ot.id = org.organization_type_id
@@ -18,21 +20,27 @@ module.exports = {
       LEFT JOIN organization_owner ow ON org.id = ow.organization_id
       LEFT JOIN "user" owner ON owner.id = oc.user_id`
       : 'organization org';
+
     const selectors = id
       ? `WHERE org.id = ${id}`
       : '';
+
     return db.query(`SELECT ${fields} FROM ${tables} ${selectors}`);
   },
 
   async getOrgUsers(id) {
     // make option for more detail on user?
     const fields = `u.first_name, u.last_name, u.email, u.phone, ut.name, nt.type`;
+
     let tables = `"user" u`;
+
     if (id !== undefined) {
       tables += ` INNER JOIN user_type ut ON u.user_type_id = ut.id
         INNER JOIN notifiication_type nt ON u.notification_type_id = nt.id`;
     }
+
     const selectors = `WHERE u.id = ${id}`;
+
     return db.query(`SELECT (${fields}) FROM ${tables} ${selectors}`);
   },
   // -> check if name already exists
@@ -41,10 +49,17 @@ module.exports = {
     const values = [];
 
     Object.keys(body).forEach((field) => {
-      if (Utilities.isValueString(field)) fields.push(field);
-      else throw Error('Invalid column');
-      if (Utilities.isValueString(body[field])) values.push(`'${body[field]}'`);
-      else values.push(body[field]);
+      if (Utilities.isValueString(field)) {
+        fields.push(field);
+      } else {
+        throw Error('Invalid column');
+      }
+
+      if (Utilities.isValueString(body[field])) {
+        values.push(`'${body[field]}'`);
+      } else {
+        values.push(body[field]);
+      }
     });
 
     return db.query(`INSERT INTO organization (${fields.join(', ')}) VALUES (${values.join(', ')})`);

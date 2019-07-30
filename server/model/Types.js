@@ -1,4 +1,5 @@
 const db = require('./db');
+const logService = require('../services/logService');
 
 module.exports = {
   getTypes(cb) {

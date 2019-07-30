@@ -15,5 +15,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "object-curly-space": "off",
+        "max-len": "off"
     }
 }

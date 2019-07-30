@@ -45,26 +45,31 @@ module.exports = {
     // const rankResponse = awaiGETt db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
     // const rank = rankResponse.rows[0].max + 1;
 
-    const dbColString = Object.keys(body).join(", ");
+    const dbColString = Object.keys(body).join(', ');
 
-    const dbValueString = Object.values(body)
-      .map(value => {
-        if (value === null) return 'null';
-        if (Utilities.isValueString(value)) return "'" + value + "'";
-        return value;
-      })
-      .join(", ");
+    const dbValueString = Object.values(body).map(value => {
+      if (value === null) {
+        return 'null';
+      }
+
+      if (Utilities.isValueString(value)) {
+        return `'${value}'`;
+      }
+
+      return value;
+    }).join(', ');
 
     // the 'RETURNING id' part at the end gives back the
-    // newly inserted priority id via `result.rows[0].id`  
+    // newly inserted priority id via `result.rows[0].id`
     const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString}) RETURNING id;`;
 
     Logger.logDebug(dbStatement);
-    
+
     try {
       const result = await db.query(dbStatement);
+
       // get the 'pretty' info needed for the notification
-      const newPriority = await db.query(`${GET_ALL_PRIORITIES} 
+      const newPriority = await db.query(`${GET_ALL_PRIORITIES}
                                           WHERE p.id = ${result.rows[0].id}`);
 
       notificationService.sendEmail('e@earldamron.com', 'New Priority Created',
@@ -134,22 +139,23 @@ module.exports = {
     const { promotedId, demotedId, promotedRank, demotedRank } = body;
     try {
       const updatePriority = await db.query(`
-      UPDATE test.priority
-      SET rank = ${promotedRank}
-      WHERE id = ${promotedId}
-    `);
+        UPDATE test.priority
+        SET rank = ${promotedRank}
+        WHERE id = ${promotedId}
+      `);
 
       const demotePriority = await db.query(`
-      UPDATE test.priority
-      SET rank = ${demotedRank}
-      WHERE id = ${demotedId}
-    `);
+        UPDATE test.priority
+        SET rank = ${demotedRank}
+        WHERE id = ${demotedId}
+      `);
+
       return null;
     } catch (err) {
       Logger.logError(err);
       return err;
     }
-  }
+  },
 
   // async getPriorityByDistrict(distId, priorityId) {
   //     try {
