@@ -1,9 +1,9 @@
 const AWS = require('aws-sdk');
-const Logger = require('logService.js');
+const Logger = require('./logService.js');
 
 const SourceEmail = 'neighborhoodconnect.sac@gmail.com';
 
-AWS.config.loadFromPath('configs/aws.config.json');
+AWS.config.loadFromPath(`${process.cwd()}/server/configs/aws.config.json`);
 
 const ses = new AWS.SES();
 const sns = new AWS.SNS();

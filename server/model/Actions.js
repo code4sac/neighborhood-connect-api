@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 const db = require('./db');
-const email = require("../services/emailService");
-// once needed --> const sms = require("../services/smsService");
+const email = require('../services/notificationService');
 
 module.exports = {
   async getActions(id) {
@@ -51,9 +50,8 @@ module.exports = {
                                               INNER JOIN test.user u ON a.user_id = u.id
                                           WHERE a.id = ${result.rows[0].id}`);
 
-      email.sendEmail("e@earldamron.com", 
-        `New Action Taken on Priority: ${newAction.rows[0].priority_description}`, 
-`A new action has been taken on this priority. Here's the information about it:
+      await email.sendEmail('e@earldamron.com', `New Action Taken on Priority: ${newAction.rows[0].priority_description}`,
+      `A new action has been taken on this priority. Here's the information about it:
 
 Title: ${newAction.rows[0].title}
 Event: ${newAction.rows[0].description}
@@ -62,9 +60,10 @@ Created By: ${newAction.rows[0].creator}
 Direct Link: <direct link here...>
           `);
 
-      return 1;
+      return true;
     } catch (err) {
-      return err;
+      logService.logError(err);
+      return false;
     }
   },
 };
