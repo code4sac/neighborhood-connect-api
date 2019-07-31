@@ -122,7 +122,8 @@ Direct Link: <direct link here...>
   async getAllPrioritiesByDistrict(districtId) {
     try {
       return db.query(`
-        SELECT p.* as stat FROM test.priority p INNER JOIN test.organization o on p.organization_id = o.id
+        SELECT p.*, pt.name AS priorityType FROM test.priority p INNER JOIN test.organization o on p.organization_id = o.id
+         INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
         WHERE o.district = '${districtId}'`);
     } catch (err) {
       throw err;
@@ -133,7 +134,8 @@ Direct Link: <direct link here...>
   async getAllPrioritiesByType(priorityType) {
     try {
       return db.query(`
-          SELECT p.* FROM test.priority p
+          SELECT p.*, pt.name AS priorityType FROM test.priority p
+            INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
           WHERE p.priority_type_id = '${priorityType}'`);
     } catch (err) {
       throw err;
