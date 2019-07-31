@@ -53,15 +53,15 @@ API and backend for the Neighborhood Connect project
 | [`/types` ](#/types)                   | GET    |             |     X     |
 | [`/types/:type_id` ](#/types/:type_id) | GET    |             |     X     |
 
-### Events
+### Actions
 NEEDS REVIEW FOR NAMING
 | Endpoint                                                             | METHOD | Description | Completed |
 |:-|:-|:-|:-|
-| [`/events` ](#/events)                                               | GET    |             |     X     |
-| [`/events` ](#/events)                                               | POST   |             |     X     |
-| [`/events/priorities/:priority_id` ](#/events/priority/:priority_id) | GET    |             |     X     |
-| [`/events/types/:type_id` ](#/events/types/:types_id)                | GET    |             |     X     |
-| [`/events/:event_id` ](#/events/:events_id)                          | GET    |             |     X     |
+| [`/actions` ](#/actions)                                               | GET    |             |     X     |
+| [`/actions` ](#/actions)                                               | POST   |             |     X     |
+| [`/actions/priorities/:priority_id` ](#/actions/priority/:priority_id) | GET    |             |     X     |
+| [`/actions/types/:type_id` ](#/actions/types/:types_id)                | GET    |             |     X     |
+| [`/actions/:event_id` ](#/actions/:events_id)                          | GET    |             |     X     |
 
 ### Organizations
 
