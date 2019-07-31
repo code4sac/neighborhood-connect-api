@@ -2,8 +2,8 @@
 // 1. Write insert statement
 // 2. Write update statement
 
-const db = require("./db");
-const email = require("../services/emailService");
+const db = require('./db');
+const email = require('../services/emailService');
 // once needed --> const sms = require("../services/smsService");
 
 // used to get all prirorities, and to get a single priority
@@ -44,18 +44,18 @@ module.exports = {
     // const rankResponse = awaiGETt db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
     // const rank = rankResponse.rows[0].max + 1;
 
-    const dbColString = Object.keys(body).join(", ");
+    const dbColString = Object.keys(body).join(', ');
 
     const dbValueString = Object.values(body)
-      .map(value => {
-        if (value === null) return "null";
-        if (typeof value === "string") return "'" + value + "'";
-        return value;
-      })
-      .join(", ");
+        .map((value) => {
+          if (value === null) return 'null';
+          if (typeof value === 'string') return '\'' + value + '\'';
+          return value;
+        })
+        .join(', ');
 
     // the 'RETURNING id' part at the end gives back the
-    // newly inserted priority id via `result.rows[0].id`  
+    // newly inserted priority id via `result.rows[0].id`
     const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString}) RETURNING id;`;
 
     console.log(dbStatement);
@@ -66,9 +66,9 @@ module.exports = {
       const newPriority = await db.query(`${GET_ALL_PRIORITIES} 
                                           WHERE p.id = ${result.rows[0].id}`);
 
-      email.sendEmail("e@earldamron.com", 
-        "New Priority Created", 
-`A new neighborhood priority has been created. Here's the information about it:
+      email.sendEmail('e@earldamron.com',
+          'New Priority Created',
+          `A new neighborhood priority has been created. Here's the information about it:
 
 Neighborhood: ${newPriority.rows[0].neighborhood}
 Type: ${newPriority.rows[0].type}
@@ -80,7 +80,7 @@ Direct Link: <direct link here...>
 
       return result;
     } catch (err) {
-        console.log(err);
+      console.log(err);
       return err;
     }
   },
@@ -112,18 +112,19 @@ Direct Link: <direct link here...>
   async updatePriorityByOrganization(orgId, priorityId) {
     try {
       const res = await db.query(``);
-      return ({ rows } = res);
+      return ({rows} = res);
     } catch (err) {
       throw err;
     }
   },
 
   // *** By District ***
-  async getAllPrioritiesByDistrict(distId) {
+  async getAllPrioritiesByDistrict(districtId) {
     try {
+      console.log(`BY DISTRICT ${districtId}`);
       return db.query(`
-        SELECT * FROM test.priority
-        WHERE test.priority.organization_id = ${distId};`);
+        SELECT o.* FROM test.priority p INNER JOIN test.organization o on p.organization_id = o.id
+        WHERE o.district = '${districtId}'`);
     } catch (err) {
       throw err;
     }
@@ -131,7 +132,7 @@ Direct Link: <direct link here...>
 
   // *** Patch Priority Rank ***
   async updateRank(body) {
-    const { promotedId, demotedId, promotedRank, demotedRank } = body;
+    const {promotedId, demotedId, promotedRank, demotedRank} = body;
     try {
       const updatePriority = await db.query(`
       UPDATE test.priority
@@ -148,7 +149,7 @@ Direct Link: <direct link here...>
     } catch (err) {
       throw err;
     }
-  }
+  },
 
   // async getPriorityByDistrict(distId, priorityId) {
   //     try {
