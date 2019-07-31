@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const priorityRouter = require('./server/controllers/priorityRouter');
 const organizations = require('./server/controllers/orgRouter.js');
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
+app.use(bodyParser());
 
 // Routes
 app.use('/priorities', priorityRouter);
