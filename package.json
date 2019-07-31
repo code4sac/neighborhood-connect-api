@@ -7,7 +7,8 @@
 		"start": "nodemon app.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "./node_modules/eslint/bin/eslint.js .",
-		"lint:fix": "./node_modules/eslint/bin/eslint.js --fix ."
+		"lint:fix": "./node_modules/eslint/bin/eslint.js --fix .",
+		"seed": "node ./seed-scripts/index.js"
 	},
 	"author": "",
 	"license": "ISC",
@@ -27,6 +28,8 @@
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-node": "^9.1.0",
 		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.0"
+		"eslint-plugin-standard": "^4.0.0",
+		"event-stream": "^4.0.1",
+		"faker": "^4.1.0"
 	}
 }

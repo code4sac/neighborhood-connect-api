@@ -1,0 +1,585 @@
+7	Stormdrain Flooding	true	1	2	1	1
+6	Parking Permits for EX Road	true	3	2	2	1
+8	Encampment at School Park Z	true	3	2	3	1
+5	Pot Holes on ABC Parkway	true	4	2	4	1
+1	Strays near Main Street	true	1	2	5	1
+2	Playground Remodeling	true	1	3	1	2
+4	Trash Heap at Highway 555 Overpass	true	1	3	2	2
+3	Graffiti on Corner of X and Y	true	4	3	3	2
+1	Strays near Main Street	true	4	3	4	2
+6	Parking Permits for EX Road	true	1	3	5	2
+3	Graffiti on Corner of X and Y	true	3	4	1	3
+5	Pot Holes on ABC Parkway	true	1	4	2	3
+1	Strays near Main Street	true	3	4	3	3
+2	Playground Remodeling	true	3	4	4	3
+7	Stormdrain Flooding	true	4	4	5	3
+8	Encampment at School Park Z	true	4	5	1	4
+1	Strays near Main Street	true	2	5	2	4
+4	Trash Heap at Highway 555 Overpass	true	3	5	3	4
+5	Pot Holes on ABC Parkway	true	4	5	4	4
+7	Stormdrain Flooding	true	4	5	5	4
+3	Graffiti on Corner of X and Y	true	3	6	1	5
+4	Trash Heap at Highway 555 Overpass	true	4	6	2	5
+6	Parking Permits for EX Road	true	1	6	3	5
+7	Stormdrain Flooding	true	1	6	4	5
+8	Encampment at School Park Z	true	2	6	5	5
+8	Encampment at School Park Z	true	4	7	1	6
+6	Parking Permits for EX Road	true	1	7	2	6
+2	Playground Remodeling	true	4	7	3	6
+1	Strays near Main Street	true	4	7	4	6
+7	Stormdrain Flooding	true	3	7	5	6
+4	Trash Heap at Highway 555 Overpass	true	1	8	1	7
+3	Graffiti on Corner of X and Y	true	1	8	2	7
+5	Pot Holes on ABC Parkway	true	3	8	3	7
+7	Stormdrain Flooding	true	4	8	4	7
+2	Playground Remodeling	true	2	8	5	7
+6	Parking Permits for EX Road	true	4	9	1	8
+8	Encampment at School Park Z	true	1	9	2	8
+3	Graffiti on Corner of X and Y	true	2	9	3	8
+1	Strays near Main Street	true	2	9	4	8
+7	Stormdrain Flooding	true	1	9	5	8
+3	Graffiti on Corner of X and Y	true	3	10	1	9
+1	Strays near Main Street	true	3	10	2	9
+2	Playground Remodeling	true	3	10	3	9
+4	Trash Heap at Highway 555 Overpass	true	1	10	4	9
+6	Parking Permits for EX Road	true	3	10	5	9
+6	Parking Permits for EX Road	true	2	11	1	10
+8	Encampment at School Park Z	true	3	11	2	10
+3	Graffiti on Corner of X and Y	true	4	11	3	10
+4	Trash Heap at Highway 555 Overpass	true	4	11	4	10
+7	Stormdrain Flooding	true	2	11	5	10
+8	Encampment at School Park Z	true	3	12	1	11
+1	Strays near Main Street	true	2	12	2	11
+6	Parking Permits for EX Road	true	2	12	3	11
+3	Graffiti on Corner of X and Y	true	1	12	4	11
+5	Pot Holes on ABC Parkway	true	3	12	5	11
+4	Trash Heap at Highway 555 Overpass	true	2	13	1	12
+6	Parking Permits for EX Road	true	2	13	2	12
+3	Graffiti on Corner of X and Y	true	4	13	3	12
+7	Stormdrain Flooding	true	4	13	4	12
+8	Encampment at School Park Z	true	1	13	5	12
+4	Trash Heap at Highway 555 Overpass	true	2	14	1	13
+7	Stormdrain Flooding	true	2	14	2	13
+5	Pot Holes on ABC Parkway	true	4	14	3	13
+2	Playground Remodeling	true	4	14	4	13
+3	Graffiti on Corner of X and Y	true	4	14	5	13
+3	Graffiti on Corner of X and Y	true	4	15	1	14
+8	Encampment at School Park Z	true	4	15	2	14
+1	Strays near Main Street	true	1	15	3	14
+4	Trash Heap at Highway 555 Overpass	true	4	15	4	14
+5	Pot Holes on ABC Parkway	true	4	15	5	14
+4	Trash Heap at Highway 555 Overpass	true	3	16	1	15
+7	Stormdrain Flooding	true	4	16	2	15
+1	Strays near Main Street	true	3	16	3	15
+3	Graffiti on Corner of X and Y	true	1	16	4	15
+5	Pot Holes on ABC Parkway	true	4	16	5	15
+8	Encampment at School Park Z	true	3	17	1	16
+7	Stormdrain Flooding	true	4	17	2	16
+4	Trash Heap at Highway 555 Overpass	true	3	17	3	16
+1	Strays near Main Street	true	1	17	4	16
+3	Graffiti on Corner of X and Y	true	1	17	5	16
+2	Playground Remodeling	true	3	18	1	17
+4	Trash Heap at Highway 555 Overpass	true	1	18	2	17
+8	Encampment at School Park Z	true	2	18	3	17
+6	Parking Permits for EX Road	true	2	18	4	17
+1	Strays near Main Street	true	3	18	5	17
+6	Parking Permits for EX Road	true	3	19	1	18
+5	Pot Holes on ABC Parkway	true	4	19	2	18
+3	Graffiti on Corner of X and Y	true	1	19	3	18
+2	Playground Remodeling	true	1	19	4	18
+1	Strays near Main Street	true	1	19	5	18
+3	Graffiti on Corner of X and Y	true	2	20	1	19
+4	Trash Heap at Highway 555 Overpass	true	2	20	2	19
+2	Playground Remodeling	true	1	20	3	19
+6	Parking Permits for EX Road	true	3	20	4	19
+1	Strays near Main Street	true	4	20	5	19
+7	Stormdrain Flooding	true	4	22	1	20
+5	Pot Holes on ABC Parkway	true	2	22	2	20
+4	Trash Heap at Highway 555 Overpass	true	3	22	3	20
+8	Encampment at School Park Z	true	3	22	4	20
+3	Graffiti on Corner of X and Y	true	4	22	5	20
+6	Parking Permits for EX Road	true	2	23	1	21
+3	Graffiti on Corner of X and Y	true	2	23	2	21
+5	Pot Holes on ABC Parkway	true	3	23	3	21
+4	Trash Heap at Highway 555 Overpass	true	2	23	4	21
+7	Stormdrain Flooding	true	2	23	5	21
+2	Playground Remodeling	true	4	24	1	22
+5	Pot Holes on ABC Parkway	true	3	24	2	22
+4	Trash Heap at Highway 555 Overpass	true	4	24	3	22
+3	Graffiti on Corner of X and Y	true	1	24	4	22
+1	Strays near Main Street	true	3	24	5	22
+6	Parking Permits for EX Road	true	1	25	1	23
+5	Pot Holes on ABC Parkway	true	2	25	2	23
+4	Trash Heap at Highway 555 Overpass	true	4	25	3	23
+1	Strays near Main Street	true	1	25	4	23
+7	Stormdrain Flooding	true	1	25	5	23
+5	Pot Holes on ABC Parkway	true	2	26	1	24
+4	Trash Heap at Highway 555 Overpass	true	4	26	2	24
+1	Strays near Main Street	true	3	26	3	24
+6	Parking Permits for EX Road	true	1	26	4	24
+7	Stormdrain Flooding	true	4	26	5	24
+7	Stormdrain Flooding	true	2	27	1	25
+8	Encampment at School Park Z	true	3	27	2	25
+6	Parking Permits for EX Road	true	2	27	3	25
+1	Strays near Main Street	true	1	27	4	25
+3	Graffiti on Corner of X and Y	true	3	27	5	25
+1	Strays near Main Street	true	3	28	1	26
+8	Encampment at School Park Z	true	4	28	2	26
+7	Stormdrain Flooding	true	1	28	3	26
+2	Playground Remodeling	true	2	28	4	26
+6	Parking Permits for EX Road	true	4	28	5	26
+2	Playground Remodeling	true	2	30	1	27
+7	Stormdrain Flooding	true	1	30	2	27
+8	Encampment at School Park Z	true	3	30	3	27
+5	Pot Holes on ABC Parkway	true	2	30	4	27
+6	Parking Permits for EX Road	true	4	30	5	27
+3	Graffiti on Corner of X and Y	true	3	31	1	28
+4	Trash Heap at Highway 555 Overpass	true	3	31	2	28
+1	Strays near Main Street	true	3	31	3	28
+7	Stormdrain Flooding	true	2	31	4	28
+8	Encampment at School Park Z	true	4	31	5	28
+4	Trash Heap at Highway 555 Overpass	true	2	32	1	29
+1	Strays near Main Street	true	3	32	2	29
+3	Graffiti on Corner of X and Y	true	3	32	3	29
+5	Pot Holes on ABC Parkway	true	1	32	4	29
+2	Playground Remodeling	true	2	32	5	29
+3	Graffiti on Corner of X and Y	true	4	33	1	30
+1	Strays near Main Street	true	1	33	2	30
+4	Trash Heap at Highway 555 Overpass	true	2	33	3	30
+6	Parking Permits for EX Road	true	3	33	4	30
+2	Playground Remodeling	true	4	33	5	30
+8	Encampment at School Park Z	true	3	34	1	31
+6	Parking Permits for EX Road	true	1	34	2	31
+1	Strays near Main Street	true	4	34	3	31
+2	Playground Remodeling	true	3	34	4	31
+7	Stormdrain Flooding	true	1	34	5	31
+4	Trash Heap at Highway 555 Overpass	true	4	35	1	32
+3	Graffiti on Corner of X and Y	true	4	35	2	32
+2	Playground Remodeling	true	1	35	3	32
+8	Encampment at School Park Z	true	4	35	4	32
+6	Parking Permits for EX Road	true	4	35	5	32
+6	Parking Permits for EX Road	true	4	36	1	33
+1	Strays near Main Street	true	1	36	2	33
+5	Pot Holes on ABC Parkway	true	4	36	3	33
+2	Playground Remodeling	true	4	36	4	33
+3	Graffiti on Corner of X and Y	true	4	36	5	33
+6	Parking Permits for EX Road	true	2	37	1	34
+2	Playground Remodeling	true	2	37	2	34
+4	Trash Heap at Highway 555 Overpass	true	3	37	3	34
+1	Strays near Main Street	true	4	37	4	34
+3	Graffiti on Corner of X and Y	true	1	37	5	34
+2	Playground Remodeling	true	4	38	1	35
+3	Graffiti on Corner of X and Y	true	3	38	2	35
+5	Pot Holes on ABC Parkway	true	3	38	3	35
+1	Strays near Main Street	true	3	38	4	35
+4	Trash Heap at Highway 555 Overpass	true	4	38	5	35
+8	Encampment at School Park Z	true	2	39	1	36
+4	Trash Heap at Highway 555 Overpass	true	4	39	2	36
+1	Strays near Main Street	true	2	39	3	36
+5	Pot Holes on ABC Parkway	true	1	39	4	36
+6	Parking Permits for EX Road	true	1	39	5	36
+6	Parking Permits for EX Road	true	2	40	1	37
+2	Playground Remodeling	true	2	40	2	37
+8	Encampment at School Park Z	true	2	40	3	37
+5	Pot Holes on ABC Parkway	true	1	40	4	37
+4	Trash Heap at Highway 555 Overpass	true	3	40	5	37
+2	Playground Remodeling	true	1	41	1	38
+3	Graffiti on Corner of X and Y	true	1	41	2	38
+1	Strays near Main Street	true	1	41	3	38
+7	Stormdrain Flooding	true	2	41	4	38
+5	Pot Holes on ABC Parkway	true	3	41	5	38
+6	Parking Permits for EX Road	true	2	42	1	39
+1	Strays near Main Street	true	3	42	2	39
+8	Encampment at School Park Z	true	3	42	3	39
+4	Trash Heap at Highway 555 Overpass	true	1	42	4	39
+3	Graffiti on Corner of X and Y	true	3	42	5	39
+1	Strays near Main Street	true	3	43	1	40
+8	Encampment at School Park Z	true	2	43	2	40
+6	Parking Permits for EX Road	true	1	43	3	40
+3	Graffiti on Corner of X and Y	true	3	43	4	40
+2	Playground Remodeling	true	3	43	5	40
+8	Encampment at School Park Z	true	2	44	1	41
+1	Strays near Main Street	true	3	44	2	41
+6	Parking Permits for EX Road	true	3	44	3	41
+7	Stormdrain Flooding	true	4	44	4	41
+4	Trash Heap at Highway 555 Overpass	true	4	44	5	41
+8	Encampment at School Park Z	true	3	45	1	42
+5	Pot Holes on ABC Parkway	true	3	45	2	42
+1	Strays near Main Street	true	1	45	3	42
+2	Playground Remodeling	true	4	45	4	42
+7	Stormdrain Flooding	true	4	45	5	42
+1	Strays near Main Street	true	3	46	1	43
+4	Trash Heap at Highway 555 Overpass	true	1	46	2	43
+5	Pot Holes on ABC Parkway	true	3	46	3	43
+8	Encampment at School Park Z	true	3	46	4	43
+3	Graffiti on Corner of X and Y	true	1	46	5	43
+1	Strays near Main Street	true	4	47	1	44
+2	Playground Remodeling	true	2	47	2	44
+4	Trash Heap at Highway 555 Overpass	true	2	47	3	44
+6	Parking Permits for EX Road	true	4	47	4	44
+3	Graffiti on Corner of X and Y	true	4	47	5	44
+4	Trash Heap at Highway 555 Overpass	true	2	48	1	45
+7	Stormdrain Flooding	true	2	48	2	45
+6	Parking Permits for EX Road	true	1	48	3	45
+3	Graffiti on Corner of X and Y	true	2	48	4	45
+2	Playground Remodeling	true	1	48	5	45
+7	Stormdrain Flooding	true	2	49	1	46
+4	Trash Heap at Highway 555 Overpass	true	2	49	2	46
+6	Parking Permits for EX Road	true	4	49	3	46
+2	Playground Remodeling	true	2	49	4	46
+8	Encampment at School Park Z	true	2	49	5	46
+4	Trash Heap at Highway 555 Overpass	true	1	50	1	47
+2	Playground Remodeling	true	1	50	2	47
+3	Graffiti on Corner of X and Y	true	2	50	3	47
+8	Encampment at School Park Z	true	2	50	4	47
+1	Strays near Main Street	true	2	50	5	47
+3	Graffiti on Corner of X and Y	true	4	51	1	48
+1	Strays near Main Street	true	1	51	2	48
+2	Playground Remodeling	true	1	51	3	48
+8	Encampment at School Park Z	true	1	51	4	48
+7	Stormdrain Flooding	true	1	51	5	48
+1	Strays near Main Street	true	3	52	1	49
+2	Playground Remodeling	true	2	52	2	49
+8	Encampment at School Park Z	true	4	52	3	49
+3	Graffiti on Corner of X and Y	true	4	52	4	49
+4	Trash Heap at Highway 555 Overpass	true	3	52	5	49
+6	Parking Permits for EX Road	true	4	53	1	50
+3	Graffiti on Corner of X and Y	true	3	53	2	50
+2	Playground Remodeling	true	3	53	3	50
+1	Strays near Main Street	true	3	53	4	50
+5	Pot Holes on ABC Parkway	true	3	53	5	50
+5	Pot Holes on ABC Parkway	true	4	54	1	51
+1	Strays near Main Street	true	2	54	2	51
+4	Trash Heap at Highway 555 Overpass	true	1	54	3	51
+7	Stormdrain Flooding	true	3	54	4	51
+3	Graffiti on Corner of X and Y	true	1	54	5	51
+8	Encampment at School Park Z	true	3	55	1	52
+6	Parking Permits for EX Road	true	1	55	2	52
+3	Graffiti on Corner of X and Y	true	1	55	3	52
+2	Playground Remodeling	true	1	55	4	52
+1	Strays near Main Street	true	1	55	5	52
+3	Graffiti on Corner of X and Y	true	1	56	1	53
+6	Parking Permits for EX Road	true	4	56	2	53
+4	Trash Heap at Highway 555 Overpass	true	2	56	3	53
+5	Pot Holes on ABC Parkway	true	1	56	4	53
+8	Encampment at School Park Z	true	3	56	5	53
+6	Parking Permits for EX Road	true	4	57	1	54
+4	Trash Heap at Highway 555 Overpass	true	2	57	2	54
+8	Encampment at School Park Z	true	4	57	3	54
+7	Stormdrain Flooding	true	2	57	4	54
+2	Playground Remodeling	true	1	57	5	54
+2	Playground Remodeling	true	4	58	1	55
+1	Strays near Main Street	true	3	58	2	55
+7	Stormdrain Flooding	true	3	58	3	55
+3	Graffiti on Corner of X and Y	true	4	58	4	55
+4	Trash Heap at Highway 555 Overpass	true	3	58	5	55
+2	Playground Remodeling	true	4	59	1	56
+7	Stormdrain Flooding	true	3	59	2	56
+5	Pot Holes on ABC Parkway	true	3	59	3	56
+1	Strays near Main Street	true	3	59	4	56
+8	Encampment at School Park Z	true	2	59	5	56
+5	Pot Holes on ABC Parkway	true	4	60	1	57
+7	Stormdrain Flooding	true	4	60	2	57
+3	Graffiti on Corner of X and Y	true	1	60	3	57
+6	Parking Permits for EX Road	true	2	60	4	57
+1	Strays near Main Street	true	1	60	5	57
+1	Strays near Main Street	true	2	61	1	58
+2	Playground Remodeling	true	1	61	2	58
+8	Encampment at School Park Z	true	3	61	3	58
+3	Graffiti on Corner of X and Y	true	3	61	4	58
+5	Pot Holes on ABC Parkway	true	2	61	5	58
+2	Playground Remodeling	true	2	62	1	59
+6	Parking Permits for EX Road	true	2	62	2	59
+1	Strays near Main Street	true	4	62	3	59
+7	Stormdrain Flooding	true	4	62	4	59
+5	Pot Holes on ABC Parkway	true	4	62	5	59
+2	Playground Remodeling	true	1	63	1	60
+8	Encampment at School Park Z	true	2	63	2	60
+4	Trash Heap at Highway 555 Overpass	true	1	63	3	60
+3	Graffiti on Corner of X and Y	true	1	63	4	60
+1	Strays near Main Street	true	1	63	5	60
+3	Graffiti on Corner of X and Y	true	1	64	1	61
+8	Encampment at School Park Z	true	2	64	2	61
+7	Stormdrain Flooding	true	4	64	3	61
+6	Parking Permits for EX Road	true	3	64	4	61
+4	Trash Heap at Highway 555 Overpass	true	3	64	5	61
+4	Trash Heap at Highway 555 Overpass	true	3	65	1	62
+1	Strays near Main Street	true	3	65	2	62
+7	Stormdrain Flooding	true	2	65	3	62
+3	Graffiti on Corner of X and Y	true	2	65	4	62
+6	Parking Permits for EX Road	true	2	65	5	62
+5	Pot Holes on ABC Parkway	true	4	66	1	63
+4	Trash Heap at Highway 555 Overpass	true	2	66	2	63
+3	Graffiti on Corner of X and Y	true	2	66	3	63
+6	Parking Permits for EX Road	true	4	66	4	63
+2	Playground Remodeling	true	1	66	5	63
+8	Encampment at School Park Z	true	1	67	1	64
+7	Stormdrain Flooding	true	3	67	2	64
+1	Strays near Main Street	true	2	67	3	64
+6	Parking Permits for EX Road	true	3	67	4	64
+3	Graffiti on Corner of X and Y	true	1	67	5	64
+6	Parking Permits for EX Road	true	2	68	1	65
+7	Stormdrain Flooding	true	4	68	2	65
+2	Playground Remodeling	true	1	68	3	65
+8	Encampment at School Park Z	true	2	68	4	65
+1	Strays near Main Street	true	3	68	5	65
+5	Pot Holes on ABC Parkway	true	2	69	1	66
+2	Playground Remodeling	true	4	69	2	66
+6	Parking Permits for EX Road	true	4	69	3	66
+8	Encampment at School Park Z	true	1	69	4	66
+1	Strays near Main Street	true	3	69	5	66
+4	Trash Heap at Highway 555 Overpass	true	2	70	1	67
+8	Encampment at School Park Z	true	3	70	2	67
+6	Parking Permits for EX Road	true	4	70	3	67
+7	Stormdrain Flooding	true	1	70	4	67
+5	Pot Holes on ABC Parkway	true	3	70	5	67
+8	Encampment at School Park Z	true	4	71	1	68
+5	Pot Holes on ABC Parkway	true	4	71	2	68
+7	Stormdrain Flooding	true	4	71	3	68
+2	Playground Remodeling	true	4	71	4	68
+3	Graffiti on Corner of X and Y	true	1	71	5	68
+8	Encampment at School Park Z	true	2	72	1	69
+3	Graffiti on Corner of X and Y	true	4	72	2	69
+4	Trash Heap at Highway 555 Overpass	true	4	72	3	69
+2	Playground Remodeling	true	3	72	4	69
+7	Stormdrain Flooding	true	1	72	5	69
+6	Parking Permits for EX Road	true	1	73	1	70
+8	Encampment at School Park Z	true	1	73	2	70
+5	Pot Holes on ABC Parkway	true	2	73	3	70
+2	Playground Remodeling	true	1	73	4	70
+4	Trash Heap at Highway 555 Overpass	true	2	73	5	70
+5	Pot Holes on ABC Parkway	true	2	74	1	71
+2	Playground Remodeling	true	2	74	2	71
+3	Graffiti on Corner of X and Y	true	4	74	3	71
+4	Trash Heap at Highway 555 Overpass	true	4	74	4	71
+1	Strays near Main Street	true	1	74	5	71
+7	Stormdrain Flooding	true	1	75	1	72
+3	Graffiti on Corner of X and Y	true	1	75	2	72
+8	Encampment at School Park Z	true	1	75	3	72
+1	Strays near Main Street	true	1	75	4	72
+5	Pot Holes on ABC Parkway	true	4	75	5	72
+3	Graffiti on Corner of X and Y	true	2	76	1	73
+8	Encampment at School Park Z	true	4	76	2	73
+2	Playground Remodeling	true	1	76	3	73
+1	Strays near Main Street	true	4	76	4	73
+5	Pot Holes on ABC Parkway	true	2	76	5	73
+3	Graffiti on Corner of X and Y	true	2	78	1	74
+2	Playground Remodeling	true	4	78	2	74
+8	Encampment at School Park Z	true	4	78	3	74
+4	Trash Heap at Highway 555 Overpass	true	1	78	4	74
+5	Pot Holes on ABC Parkway	true	3	78	5	74
+7	Stormdrain Flooding	true	3	79	1	75
+4	Trash Heap at Highway 555 Overpass	true	1	79	2	75
+2	Playground Remodeling	true	2	79	3	75
+8	Encampment at School Park Z	true	1	79	4	75
+3	Graffiti on Corner of X and Y	true	4	79	5	75
+2	Playground Remodeling	true	4	81	1	76
+1	Strays near Main Street	true	4	81	2	76
+7	Stormdrain Flooding	true	1	81	3	76
+8	Encampment at School Park Z	true	3	81	4	76
+3	Graffiti on Corner of X and Y	true	1	81	5	76
+6	Parking Permits for EX Road	true	4	82	1	77
+4	Trash Heap at Highway 555 Overpass	true	3	82	2	77
+3	Graffiti on Corner of X and Y	true	4	82	3	77
+5	Pot Holes on ABC Parkway	true	2	82	4	77
+2	Playground Remodeling	true	3	82	5	77
+2	Playground Remodeling	true	2	83	1	78
+8	Encampment at School Park Z	true	3	83	2	78
+1	Strays near Main Street	true	4	83	3	78
+7	Stormdrain Flooding	true	4	83	4	78
+5	Pot Holes on ABC Parkway	true	1	83	5	78
+8	Encampment at School Park Z	true	4	84	1	79
+7	Stormdrain Flooding	true	4	84	2	79
+6	Parking Permits for EX Road	true	1	84	3	79
+4	Trash Heap at Highway 555 Overpass	true	2	84	4	79
+1	Strays near Main Street	true	4	84	5	79
+7	Stormdrain Flooding	true	1	85	1	80
+2	Playground Remodeling	true	1	85	2	80
+6	Parking Permits for EX Road	true	1	85	3	80
+5	Pot Holes on ABC Parkway	true	2	85	4	80
+4	Trash Heap at Highway 555 Overpass	true	3	85	5	80
+1	Strays near Main Street	true	1	86	1	81
+2	Playground Remodeling	true	2	86	2	81
+5	Pot Holes on ABC Parkway	true	1	86	3	81
+4	Trash Heap at Highway 555 Overpass	true	3	86	4	81
+7	Stormdrain Flooding	true	3	86	5	81
+3	Graffiti on Corner of X and Y	true	4	87	1	82
+8	Encampment at School Park Z	true	3	87	2	82
+4	Trash Heap at Highway 555 Overpass	true	3	87	3	82
+6	Parking Permits for EX Road	true	2	87	4	82
+1	Strays near Main Street	true	1	87	5	82
+4	Trash Heap at Highway 555 Overpass	true	1	88	1	83
+8	Encampment at School Park Z	true	4	88	2	83
+6	Parking Permits for EX Road	true	1	88	3	83
+2	Playground Remodeling	true	3	88	4	83
+5	Pot Holes on ABC Parkway	true	4	88	5	83
+6	Parking Permits for EX Road	true	3	89	1	84
+4	Trash Heap at Highway 555 Overpass	true	2	89	2	84
+5	Pot Holes on ABC Parkway	true	2	89	3	84
+8	Encampment at School Park Z	true	4	89	4	84
+2	Playground Remodeling	true	4	89	5	84
+3	Graffiti on Corner of X and Y	true	3	90	1	85
+8	Encampment at School Park Z	true	4	90	2	85
+7	Stormdrain Flooding	true	2	90	3	85
+2	Playground Remodeling	true	3	90	4	85
+1	Strays near Main Street	true	4	90	5	85
+8	Encampment at School Park Z	true	4	91	1	86
+4	Trash Heap at Highway 555 Overpass	true	1	91	2	86
+2	Playground Remodeling	true	1	91	3	86
+6	Parking Permits for EX Road	true	4	91	4	86
+1	Strays near Main Street	true	2	91	5	86
+7	Stormdrain Flooding	true	2	92	1	87
+6	Parking Permits for EX Road	true	3	92	2	87
+3	Graffiti on Corner of X and Y	true	2	92	3	87
+2	Playground Remodeling	true	2	92	4	87
+8	Encampment at School Park Z	true	1	92	5	87
+5	Pot Holes on ABC Parkway	true	4	93	1	88
+8	Encampment at School Park Z	true	2	93	2	88
+3	Graffiti on Corner of X and Y	true	1	93	3	88
+4	Trash Heap at Highway 555 Overpass	true	4	93	4	88
+7	Stormdrain Flooding	true	1	93	5	88
+8	Encampment at School Park Z	true	1	95	1	89
+1	Strays near Main Street	true	1	95	2	89
+2	Playground Remodeling	true	1	95	3	89
+4	Trash Heap at Highway 555 Overpass	true	2	95	4	89
+7	Stormdrain Flooding	true	2	95	5	89
+1	Strays near Main Street	true	3	96	1	90
+2	Playground Remodeling	true	2	96	2	90
+5	Pot Holes on ABC Parkway	true	2	96	3	90
+7	Stormdrain Flooding	true	3	96	4	90
+8	Encampment at School Park Z	true	4	96	5	90
+1	Strays near Main Street	true	2	97	1	91
+3	Graffiti on Corner of X and Y	true	1	97	2	91
+7	Stormdrain Flooding	true	2	97	3	91
+6	Parking Permits for EX Road	true	1	97	4	91
+4	Trash Heap at Highway 555 Overpass	true	1	97	5	91
+5	Pot Holes on ABC Parkway	true	2	98	1	92
+3	Graffiti on Corner of X and Y	true	3	98	2	92
+8	Encampment at School Park Z	true	3	98	3	92
+6	Parking Permits for EX Road	true	4	98	4	92
+4	Trash Heap at Highway 555 Overpass	true	2	98	5	92
+2	Playground Remodeling	true	2	99	1	93
+6	Parking Permits for EX Road	true	3	99	2	93
+5	Pot Holes on ABC Parkway	true	4	99	3	93
+7	Stormdrain Flooding	true	4	99	4	93
+4	Trash Heap at Highway 555 Overpass	true	3	99	5	93
+8	Encampment at School Park Z	true	4	100	1	94
+3	Graffiti on Corner of X and Y	true	2	100	2	94
+4	Trash Heap at Highway 555 Overpass	true	2	100	3	94
+7	Stormdrain Flooding	true	4	100	4	94
+6	Parking Permits for EX Road	true	2	100	5	94
+1	Strays near Main Street	true	4	101	1	95
+8	Encampment at School Park Z	true	2	101	2	95
+2	Playground Remodeling	true	2	101	3	95
+5	Pot Holes on ABC Parkway	true	1	101	4	95
+4	Trash Heap at Highway 555 Overpass	true	2	101	5	95
+1	Strays near Main Street	true	4	102	1	96
+8	Encampment at School Park Z	true	1	102	2	96
+3	Graffiti on Corner of X and Y	true	1	102	3	96
+6	Parking Permits for EX Road	true	4	102	4	96
+2	Playground Remodeling	true	3	102	5	96
+7	Stormdrain Flooding	true	1	103	1	97
+8	Encampment at School Park Z	true	4	103	2	97
+2	Playground Remodeling	true	3	103	3	97
+4	Trash Heap at Highway 555 Overpass	true	1	103	4	97
+1	Strays near Main Street	true	4	103	5	97
+7	Stormdrain Flooding	true	1	104	1	98
+4	Trash Heap at Highway 555 Overpass	true	3	104	2	98
+2	Playground Remodeling	true	2	104	3	98
+1	Strays near Main Street	true	4	104	4	98
+8	Encampment at School Park Z	true	3	104	5	98
+8	Encampment at School Park Z	true	1	105	1	99
+3	Graffiti on Corner of X and Y	true	4	105	2	99
+2	Playground Remodeling	true	3	105	3	99
+4	Trash Heap at Highway 555 Overpass	true	1	105	4	99
+6	Parking Permits for EX Road	true	2	105	5	99
+3	Graffiti on Corner of X and Y	true	4	106	1	100
+8	Encampment at School Park Z	true	1	106	2	100
+1	Strays near Main Street	true	3	106	3	100
+2	Playground Remodeling	true	3	106	4	100
+6	Parking Permits for EX Road	true	1	106	5	100
+7	Stormdrain Flooding	true	3	107	1	101
+1	Strays near Main Street	true	2	107	2	101
+3	Graffiti on Corner of X and Y	true	2	107	3	101
+2	Playground Remodeling	true	4	107	4	101
+4	Trash Heap at Highway 555 Overpass	true	2	107	5	101
+5	Pot Holes on ABC Parkway	true	2	108	1	102
+7	Stormdrain Flooding	true	1	108	2	102
+6	Parking Permits for EX Road	true	3	108	3	102
+1	Strays near Main Street	true	3	108	4	102
+2	Playground Remodeling	true	1	108	5	102
+8	Encampment at School Park Z	true	4	109	1	103
+4	Trash Heap at Highway 555 Overpass	true	1	109	2	103
+5	Pot Holes on ABC Parkway	true	4	109	3	103
+2	Playground Remodeling	true	1	109	4	103
+6	Parking Permits for EX Road	true	1	109	5	103
+8	Encampment at School Park Z	true	1	110	1	104
+2	Playground Remodeling	true	3	110	2	104
+5	Pot Holes on ABC Parkway	true	3	110	3	104
+4	Trash Heap at Highway 555 Overpass	true	1	110	4	104
+6	Parking Permits for EX Road	true	2	110	5	104
+2	Playground Remodeling	true	2	111	1	105
+8	Encampment at School Park Z	true	3	111	2	105
+5	Pot Holes on ABC Parkway	true	2	111	3	105
+4	Trash Heap at Highway 555 Overpass	true	1	111	4	105
+6	Parking Permits for EX Road	true	1	111	5	105
+4	Trash Heap at Highway 555 Overpass	true	4	112	1	106
+8	Encampment at School Park Z	true	2	112	2	106
+5	Pot Holes on ABC Parkway	true	4	112	3	106
+1	Strays near Main Street	true	1	112	4	106
+7	Stormdrain Flooding	true	3	112	5	106
+6	Parking Permits for EX Road	true	1	113	1	107
+5	Pot Holes on ABC Parkway	true	1	113	2	107
+2	Playground Remodeling	true	4	113	3	107
+3	Graffiti on Corner of X and Y	true	2	113	4	107
+7	Stormdrain Flooding	true	2	113	5	107
+7	Stormdrain Flooding	true	2	114	1	108
+5	Pot Holes on ABC Parkway	true	1	114	2	108
+6	Parking Permits for EX Road	true	4	114	3	108
+2	Playground Remodeling	true	2	114	4	108
+4	Trash Heap at Highway 555 Overpass	true	3	114	5	108
+1	Strays near Main Street	true	4	115	1	109
+3	Graffiti on Corner of X and Y	true	4	115	2	109
+7	Stormdrain Flooding	true	3	115	3	109
+2	Playground Remodeling	true	4	115	4	109
+6	Parking Permits for EX Road	true	1	115	5	109
+1	Strays near Main Street	true	1	116	1	110
+3	Graffiti on Corner of X and Y	true	3	116	2	110
+5	Pot Holes on ABC Parkway	true	3	116	3	110
+2	Playground Remodeling	true	1	116	4	110
+8	Encampment at School Park Z	true	2	116	5	110
+3	Graffiti on Corner of X and Y	true	1	117	1	111
+6	Parking Permits for EX Road	true	4	117	2	111
+5	Pot Holes on ABC Parkway	true	4	117	3	111
+2	Playground Remodeling	true	4	117	4	111
+4	Trash Heap at Highway 555 Overpass	true	2	117	5	111
+8	Encampment at School Park Z	true	1	118	1	112
+6	Parking Permits for EX Road	true	1	118	2	112
+5	Pot Holes on ABC Parkway	true	1	118	3	112
+4	Trash Heap at Highway 555 Overpass	true	3	118	4	112
+7	Stormdrain Flooding	true	1	118	5	112
+4	Trash Heap at Highway 555 Overpass	true	4	119	1	113
+8	Encampment at School Park Z	true	2	119	2	113
+2	Playground Remodeling	true	3	119	3	113
+3	Graffiti on Corner of X and Y	true	2	119	4	113
+7	Stormdrain Flooding	true	2	119	5	113
+2	Playground Remodeling	true	4	120	1	114
+8	Encampment at School Park Z	true	1	120	2	114
+1	Strays near Main Street	true	1	120	3	114
+5	Pot Holes on ABC Parkway	true	3	120	4	114
+3	Graffiti on Corner of X and Y	true	1	120	5	114
+3	Graffiti on Corner of X and Y	true	2	122	1	115
+8	Encampment at School Park Z	true	3	122	2	115
+1	Strays near Main Street	true	1	122	3	115
+4	Trash Heap at Highway 555 Overpass	true	4	122	4	115
+7	Stormdrain Flooding	true	2	122	5	115
+4	Trash Heap at Highway 555 Overpass	true	2	123	1	116
+6	Parking Permits for EX Road	true	1	123	2	116
+8	Encampment at School Park Z	true	3	123	3	116
+3	Graffiti on Corner of X and Y	true	2	123	4	116
+1	Strays near Main Street	true	1	123	5	116
+5	Pot Holes on ABC Parkway	true	1	124	1	117
+1	Strays near Main Street	true	3	124	2	117
+2	Playground Remodeling	true	3	124	3	117
+3	Graffiti on Corner of X and Y	true	3	124	4	117
+6	Parking Permits for EX Road	true	3	124	5	117

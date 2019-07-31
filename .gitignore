@@ -1,4 +1,7 @@
 node_modules/
+Users.tsv
+Orgs.tsv
+Contacts.tsv
 config.js
 aws.config.json
 .idea
