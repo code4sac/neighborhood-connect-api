@@ -121,10 +121,20 @@ Direct Link: <direct link here...>
   // *** By District ***
   async getAllPrioritiesByDistrict(districtId) {
     try {
-      console.log(`BY DISTRICT ${districtId}`);
       return db.query(`
-        SELECT o.* FROM test.priority p INNER JOIN test.organization o on p.organization_id = o.id
+        SELECT p.* as stat FROM test.priority p INNER JOIN test.organization o on p.organization_id = o.id
         WHERE o.district = '${districtId}'`);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  // *** By Type ***
+  async getAllPrioritiesByType(priorityType) {
+    try {
+      return db.query(`
+          SELECT p.* FROM test.priority p
+          WHERE p.priority_type_id = '${priorityType}'`);
     } catch (err) {
       throw err;
     }

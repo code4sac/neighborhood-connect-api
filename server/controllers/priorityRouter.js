@@ -9,6 +9,7 @@ const {
   updatePriorityByOrganization,
   getActionsByPriority,
   getAllPrioritiesByDistrict,
+  getAllPrioritiesByType,
   updateRank,
 } = require('../model/Priorities.js');
 
@@ -75,7 +76,17 @@ priorityRouter.get('/district/:district', async (req, res) => {
     res.status(400).send(err);
   }
 });
-
+// Get priorities by type
+priorityRouter.get('/type/:type', async (req, res) => {
+  const {type} = req.params;
+  try {
+    const result = await getAllPrioritiesByType(type);
+    res.status(200).send(result.rows);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+getAllPrioritiesByType;
 // Get priority by organization
 priorityRouter.get('/orgs/:orgId/:priorityId', async (req, res) => {
   const {orgId, priorityId} = req.params;
