@@ -1,2 +1,4 @@
 database.json
 node_modules/
+aws.config.json
+.idea

@@ -5,19 +5,23 @@ API and backend for the Neighborhood Connect project
 ## Table of Contents
 - [Requirements](#requirements)
 - [Database](#database)
+- [Getting Started](#getting-started)
+- [Database Tables](#database-tables)
   - [Schema](#schema)
-  - [User](#user)
-  - [User_Type](#user_type)
-  - [Organization_Contact](#organization_contact)
-  - [Organization_Owner](#organization_owner)
-- [Endpoints](#endpoints)
-  - [`/orgs/:org_id/users`](#/orgs/:org_id/users)
-  - [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id)
-  - [`/orgs/`](#/orgs/)
-  - [`/orgs/:org_id/`](#/orgs/:org_id/)
-  - [`/org/priorities`](#/org/priorities)
-  - [`/org/:org_id/priorities`](#/org/:org_id/priorities)
-  - [`/org/:org_id/priorities/:priorities_id`](#/org/:org_id/priorities/:priorities_id)
+- [API Endpoints](#api-endpoints)
+  - [Priorities](#priorities)
+  - [Priority Types](#priority-types)
+  - [Events](#events)
+  - [Organizations](#organizations)
+  - [Users](#users)
+- [Data requests and responses](#data-requests-and-responses)
+- [Notes](#notes)
+
+# Getting Started
+
+- Run `npm i` from the command line
+- copy the file at /server/model/config.example.js -> config.js and fill in the password and host information
+- Run `npm start`
 
 # Requirements
 To get this project setup, you will need: 
@@ -75,44 +79,288 @@ The database connection configuration is managed in file:
 The file points to the local dev DB in Docker by default. 
 
 ## Database Schema
+### Schema
+
 
 ![Schema Table](visualization.png)
 
 [Back to table of Contents](#table-of-contents)
 
-# Endpoints
+# API Endpoints
 
-### Users
+## Priorities
 
-| Endpoint                       | METHOD | Description |
-| ------------------------------ | ------ | ----------- |
-| `/orgs/:org_id/users`          | POST   |             |
-| `/orgs/:org_id/users/:user_id` | PATCH  |             |
-| `/orgs/:org_id/users/:user_id` | GET    |             |
-| `/orgs/:org_id/users/:user_id` | UPDATE |             |
-| `/orgs/:org_id/users/:user_id` | DELETE |             |
+| Endpoint                                          | METHOD | Description                | Completed |
+|:-|:-|:-|:-|
+| [`/priorities`]()                                 | GET    | All priorities             |     X     |
+| [`/priorities`]()                                 | POST   | Add new priority           |           |
+| [`/priorities`]()                                 | PATCH  | Update priority            |           |
+| [`/priorities/:priority_id`]()                    | GET    | Single priority            |           |
+| [`/priorities/:priority_id/actions`]()            | GET    | All actions for a priority |     X     |
+| [`/priorities/orgs/:org_id`]()                    | GET    | All priorities by org      |     X     |
+| [`/priorities/orgs/:org_id/:dist_id`]()           | GET    | Single priorities by org   |     X     |
+| [`/priorities/types/:type_id`]()                  | GET    | All priorities by type     |           |
+| [`/priorities/dist/:district_id`]()               | GET    | All priorities by district |           |
 
-### Org
+### Priority Types
 
-| Endpoint         | METHOD | Description |
-| ---------------- | ------ | ----------- |
-| `/orgs/`         | GET    |             |
-| `/orgs/:org_id/` | GET    |             |
-| `/orgs/:org_id/` | PATCH  |             |
+| Endpoint                               | METHOD | Description | Completed |
+|:-|:-|:-|:-|
+| [`/types` ](#/types)                   | GET    |             |     X     |
+| [`/types/:type_id` ](#/types/:type_id) | GET    |             |     X     |
 
-### Priorities
+### Events
+NEEDS REVIEW FOR NAMING
+| Endpoint                                                             | METHOD | Description | Completed |
+|:-|:-|:-|:-|
+| [`/events` ](#/events)                                               | GET    |             |     X     |
+| [`/events` ](#/events)                                               | POST   |             |     X     |
+| [`/events/priorities/:priority_id` ](#/events/priority/:priority_id) | GET    |             |     X     |
+| [`/events/types/:type_id` ](#/events/types/:types_id)                | GET    |             |     X     |
+| [`/events/:event_id` ](#/events/:events_id)                          | GET    |             |     X     |
 
-| Endpoint                                 | METHOD | Description |
-| ---------------------------------------- | ------ | ----------- |
-| `/org/priorities/`                       | GET    |             |
-| `/org/:org_id/priorities`                | GET    |             |
-| `/org/:org_id/priorities/:priorities_id` | GET    |             |
+### Organizations
+
+| Endpoint                                                                               | METHOD | Description | Completed |
+|:-|:-|:-|:-|
+| [`/orgs`](#/orgs)                                                                      | GET    |             |     X     |
+| [`/orgs`](#/orgs)                                                                      | POST   |             |     X     |
+| [`/orgs`](#/orgs)                                                                      | PATCH  |             |           |
+| [`/orgs/:org_id`](#/orgs/:org_id)                                                      | GET    |             |     X     |
+| [`/orgs/:org_id/users`](#/orgs/:org_id/users)                                          | GET    |             |     X     |
+| [`/orgs/:org_id/users/:user_id`](#/orgs/:org_id/users/:user_id)                        | GET    |             |     X     |
+| [`/orgs/:org_id/priorities`](#/orgs/:org_id/priorities)                                | GET    |             |           |
+| [`/orgs/:org_id/priorities/:priorities_id`](#/orgs/:org_id/priorities/:priorities_id)  | GET    |             |           |
+
+### [Users](#users-reponses)
+
+| Endpoint                                      | METHOD | Description | Completed |
+|:-|:-|:-|:-|
+| [`/users`](#/users)                           | GET    |             |     X     |
+| [`/users`](#/users)                           | POST   |             |           |
+| [`/users/:user_id`](#/users)                  | PATCH  |             |           |
+| [`/users/:user_id`](#/users/:user_id)         | GET    |             |     X     |
+| [`/users/orgs/:org_id`](#/users/orgs/:org_id) | GET    |             |     X     |
 
 [Back to table of Contents](#table-of-contents)
 
 # Data requests and responses
 
-Below are all expected request body shapes and data responses
+## Users Responses
+
+## `/users`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/users/:user_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/users/orgs/:org_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/orgs`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/orgs/:org_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+---
+
+**Method:** PATCH
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/orgs/priorities`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/orgs/:org_id/priorities`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/orgs/:org_id/priorities/:priorities_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
 
 ## `/orgs/:org_id/users`
 
@@ -228,7 +476,7 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-## `/orgs/`
+## `/priorities`
 
 **Method:** GET
 
@@ -252,53 +500,7 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-## `/orgs/:org_id/`
-
-**Method:** GET
-
-Structure of request
-
-```
-{
-
-}
-```
-
-**HTTP Status:**
-
-Structure of response:
-
-```
-{
-
-}
-```
-
----
-
-**Method:** PATH
-
-Structure of request
-
-```
-{
-
-}
-```
-
-**HTTP Status:**
-
-Structure of response:
-
-```
-{
-
-}
-```
-
-[Back to table of Contents](#table-of-contents)
-
-## `/orgs/priorities/`
+## `/priorities/type/:type_id`
 
 **Method:** GET
 
@@ -322,7 +524,7 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-## `/orgs/:org_id/priorities`
+## `/priorities/district/:disctrict_id`
 
 **Method:** GET
 
@@ -346,7 +548,7 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-## `/orgs/:org_id/priorities/:priorities_id`
+## `/types`
 
 **Method:** GET
 
@@ -370,13 +572,125 @@ Structure of response:
 
 [Back to table of Contents](#table-of-contents)
 
-/priorities/org/:org_id -- returns a list of priorities for this organization
+## `/types/:type_id`
 
-/priorities/district/:district_id -- returns sorted list of priorities for all orgs in that district .
+**Method:** GET
 
-/priorities/type/:type_id -- returns sorted list of priorities which have this type . Can be combined with org or district forms
+Structure of request
 
-/priorities/org/42/type/77 -- returns sorted list of priorities for organization 42 which have type 77
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/events`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/events/priorities/:priority_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/events/types/:type_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
+
+## `/events/:event_id`
+
+**Method:** GET
+
+Structure of request
+
+```
+{
+
+}
+```
+
+**HTTP Status:**
+
+Structure of response:
+
+```
+{
+
+}
+```
+
+[Back to table of Contents](#table-of-contents)
 
 actions:
 
@@ -389,3 +703,8 @@ CRUD for:
 - organization
 - organization type
 - event
+
+# Notes
+## Outstanding Design Questions
+- Should all requests but GET be directed to the path for that entity?
+ex: all non-Get requests regarding users is directed to users
