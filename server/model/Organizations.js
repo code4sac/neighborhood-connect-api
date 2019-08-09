@@ -1,6 +1,11 @@
 const db = require('./db');
 
 module.exports = {
+  
+  async getAll(id, cb) {
+    return db.query(`select * from organization`, cb);// where id = ${id}`, cb)
+  },
+
   async getOrg(id) {
     // needs type
     const fields = id

@@ -3,7 +3,8 @@
 API and backend for the Neighborhood Connect project
 
 ## Table of Contents
-
+- [Requirements](#requirements)
+- [Database](#database)
 - [Getting Started](#getting-started)
 - [Database Tables](#database-tables)
   - [Schema](#schema)
@@ -22,9 +23,64 @@ API and backend for the Neighborhood Connect project
 - copy the file at /server/model/config.example.js -> config.js and fill in the password and host information
 - Run `npm start`
 
-# Database Tables
+# Requirements
+To get this project setup, you will need: 
+* [Node.js](https://nodejs.org/en/)
+* [NPM](https://www.npmjs.com/get-npm)
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
 
+# Getting Up and Running
+
+```
+cd neighborhood-connect-api
+```
+
+In a seperate command terminal window, run: 
+```
+docker-compose up
+```
+Switch back to your main terminal and run: 
+```
+npm install
+npm run dev-db-refresh
+npm start
+```
+
+# Database
+## Configuration 
+The database connection configuration is managed in file:
+```
+./server/model/config.js
+```
+The config file points to the local dev DB by default. 
+## Local Development DB
+This project uses a Docker container to host the local Postgres database. To start it up, open a command terminal and run: 
+```
+docker-compose up
+```
+You will need to install Docker and Docker Compose if you don't have them already. 
+If you already have Postgres installed and running on your computer, you may need to stop it's service before spinning up the dockerized database so that the ports don't conflict
+```
+sudo service postgresql stop
+```
+Once the database is up and running, you can generate the schema and populate it with test data using the db migrations. 
+
+## DB Migrations
+The database is versioned using db-migrate. To generate the database schema and populate it, with the test data, run: 
+```
+npm run dev-db-refresh
+```
+
+The database connection configuration is managed in file:
+```
+./database.json
+```
+The file points to the local dev DB in Docker by default. 
+
+## Database Schema
 ### Schema
+
 
 ![Schema Table](visualization.png)
 

@@ -1,33 +1,41 @@
 {
-	"name": "testapp",
-	"version": "1.0.0",
-	"description": "",
-	"main": "app.js",
-	"scripts": {
-		"start": "nodemon app.js",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"lint": "./node_modules/eslint/bin/eslint.js .",
-		"lint:fix": "./node_modules/eslint/bin/eslint.js --fix ."
-	},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"aws-sdk": "~2.496.0",
-		"cors": "^2.8.5",
-		"express": "^4.17.1",
-		"jsonwebtoken": "^8.5.1",
-		"jwk-to-pem": "^2.0.1",
-		"morgan": "^1.9.1",
-		"nodemon": "^1.19.1",
-		"pg": "^7.11.0"
-	},
-	"devDependencies": {
-		"eslint": "^6.1.0",
-		"eslint-config-google": "^0.13.0",
-		"eslint-config-standard": "^13.0.1",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-node": "^9.1.0",
-		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.0"
-	}
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "debug": "nodemon --inspect app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js --fix .",
+    "db-migrate": "db-migrate up",
+    "db-rollback": "db-migrate down",
+    "db-reset": "db-migrate reset",
+    "db-refresh": "db-migrate reset; db-migrate reset:seed; db-migrate up; db-migrate up:seed;",
+    "dev-db-refresh": "db-migrate reset; db-migrate reset:seed; db-migrate reset:seed-test-data; db-migrate up; db-migrate up:seed; db-migrate up:seed-test-data;"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "~2.496.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "db-migrate": "^0.11.6",
+    "db-migrate-pg": "^1.0.0",
+    "nodemon": "^1.19.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
 }

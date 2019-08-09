@@ -4,7 +4,7 @@ const router = require('express').Router();
 // unused?
 // const users = require('../model/Users');
 const {getAll, getOne, create, update} = require('../model/CRUD');
-const table = 'test.user';
+const table = 'user';
 
 router.get('/', async (req, res) => {
   try {

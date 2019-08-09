@@ -45,10 +45,10 @@ module.exports = {
 
       // get the 'pretty' info needed for the notification
       const newAction = await db.query(`SELECT a.title, a.description, a.timestamp, at.name as action_type, p.description AS priority_description, CONCAT(u.first_name, ' ', u.last_name) AS creator
-                                        FROM test.action a
-                                              INNER JOIN test.action_type at ON a.action_type_id = at.id
-                                              INNER JOIN test.priority p ON a.priority_id = p.id
-                                              INNER JOIN test.user u ON a.user_id = u.id
+                                        FROM action a
+                                              INNER JOIN action_type at ON a.action_type_id = at.id
+                                              INNER JOIN priority p ON a.priority_id = p.id
+                                              INNER JOIN user u ON a.user_id = u.id
                                           WHERE a.id = ${result.rows[0].id}`);
 
       email.sendEmail("e@earldamron.com", 

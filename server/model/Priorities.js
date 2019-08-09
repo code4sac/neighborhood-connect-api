@@ -4,17 +4,17 @@
 
 const db = require('./db');
 const email = require('../services/emailService');
-// once needed --> const sms = require("../services/smsService");
 
-// used to get all prirorities, and to get a single priority
-// (with the addition of a WHERE clause)
+
 const GET_ALL_PRIORITIES = `SELECT pt.id, pt.name AS type, p.description, pst.name AS status,
                             CONCAT(u.first_name, ' ', u.last_name) AS creator, o.name AS neighborhood
-                            FROM test.priority p
-                            INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
-                            INNER JOIN test.priority_status_type pst ON p.priority_status_type_id = pst.id
-                            INNER JOIN test.user u ON p.user_id = u.id
-                            INNER JOIN test.organization o ON p.organization_id = o.id`;
+                            FROM priority p
+                            INNER JOIN priority_type pt ON p.priority_type_id = pt.id
+                            INNER JOIN priority_status_type pst ON p.priority_status_type_id = pst.id
+                            INNER JOIN "user" u ON p.user_id = u.id
+                            INNER JOIN organization o ON p.organization_id = o.id`;
+
+
 
 module.exports = {
   async getAllPriorities() {
@@ -25,24 +25,13 @@ module.exports = {
     return db.query(`
       SELECT p.id, p.rank, a.id, a.title, a.description AS event, a.timestamp,
       CONCAT(u.first_name, ' ', u.last_name) AS creator
-      FROM test.action a INNER JOIN test.priority p ON a.priority_id = p.id
-      INNER JOIN test.user u ON a.user_id = u.id
+      FROM action a INNER JOIN priority p ON a.priority_id = p.id
+      INNER JOIN "user" u ON a.user_id = u.id
       WHERE p.id = ${priorityId};`);
   },
 
   // *** By Organization ***
   async createPriority(body) {
-    // console.log(`${Object.keys(body)}`);
-    // try {
-    //     // insert into test.priority () values ()
-    //     const res = await db.query(``);
-    //     return { rows } = res;
-    // } catch (err) {
-    //     throw err;
-    // }
-
-    // const rankResponse = awaiGETt db.query(`select max(rank) from (select rank from test.priority where id=${body.id})`);
-    // const rank = rankResponse.rows[0].max + 1;
 
     const dbColString = Object.keys(body).join(', ');
 
@@ -56,7 +45,7 @@ module.exports = {
 
     // the 'RETURNING id' part at the end gives back the
     // newly inserted priority id via `result.rows[0].id`
-    const dbStatement = `INSERT INTO test.priority (${dbColString}) VALUES (${dbValueString}) RETURNING id;`;
+    const dbStatement = `INSERT INTO priority (${dbColString}) VALUES (${dbValueString}) RETURNING id;`;
 
     console.log(dbStatement);
 
@@ -89,7 +78,7 @@ Direct Link: <direct link here...>
     try {
       return db.query(`
         SELECT p.*, pt.name AS priorityType
-        FROM test.priority p INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
+        FROM priority p INNER JOIN priority_type pt ON p.priority_type_id = pt.id
         WHERE p.organization_id = ${orgId};`);
     } catch (err) {
       throw err;
@@ -99,9 +88,9 @@ Direct Link: <direct link here...>
   async getPriorityByOrganization(orgId, priorityId) {
     try {
       return db.query(`
-        SELECT * FROM test.priority
-        WHERE test.priority.organization_id = ${orgId}
-        AND test.priority.id = ${priorityId}
+        SELECT * FROM priority
+        WHERE priority.organization_id = ${orgId}
+        AND priority.id = ${priorityId}
       `);
     } catch (err) {
       throw err;
@@ -122,8 +111,8 @@ Direct Link: <direct link here...>
   async getAllPrioritiesByDistrict(districtId) {
     try {
       return db.query(`
-        SELECT p.*, pt.name AS priorityType FROM test.priority p INNER JOIN test.organization o on p.organization_id = o.id
-         INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
+        SELECT p.*, pt.name AS priorityType FROM priority p INNER JOIN organization o on p.organization_id = o.id
+         INNER JOIN priority_type pt ON p.priority_type_id = pt.id
         WHERE o.district = '${districtId}'`);
     } catch (err) {
       throw err;
@@ -134,8 +123,8 @@ Direct Link: <direct link here...>
   async getAllPrioritiesByType(priorityType) {
     try {
       return db.query(`
-          SELECT p.*, pt.name AS priorityType FROM test.priority p
-            INNER JOIN test.priority_type pt ON p.priority_type_id = pt.id
+          SELECT p.*, pt.name AS priorityType FROM priority p
+            INNER JOIN priority_type pt ON p.priority_type_id = pt.id
           WHERE p.priority_type_id = '${priorityType}'`);
     } catch (err) {
       throw err;
@@ -147,13 +136,13 @@ Direct Link: <direct link here...>
     const {promotedId, demotedId, promotedRank, demotedRank} = body;
     try {
       const updatePriority = await db.query(`
-      UPDATE test.priority
+      UPDATE priority
       SET rank = ${promotedRank}
       WHERE id = ${promotedId}
     `);
 
       const demotePriority = await db.query(`
-      UPDATE test.priority
+      UPDATE priority
       SET rank = ${demotedRank}
       WHERE id = ${demotedId}
     `);
@@ -163,16 +152,4 @@ Direct Link: <direct link here...>
     }
   },
 
-  // async getPriorityByDistrict(distId, priorityId) {
-  //     try {
-  //         const res = await db.query(`SELECT * FROM test.priority
-  //                                     WHERE test.priority.organization_id = ${orgId}
-  //                                     AND test.priority.id = ${priorityId}
-  //                                     `);
-  //         return { rows } = res;
-  //     } catch (err) {
-  //         console.log(err);
-  //         throw err;
-  //     }
-  // }
 };
