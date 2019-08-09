@@ -1,10 +1,11 @@
 {
-  "development": {
-    "driver": "pg",
-    "user": "username",
-    "password": "password",
-    "host": "localhost",
-    "database": "nc",
-    "schema": "public"
-  }
+    "development": {
+      "driver": "pg",
+      "user": "username",
+      "password": "password",
+      "host": "localhost",
+      "database": "nc",
+      "schema": "public"
+    }
 }
+  
