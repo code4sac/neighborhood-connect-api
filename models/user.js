@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'user_type',
+        model: 'UserType',
         key: 'id',
       },
     },
@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'organization',
+        model: 'Organization',
         key: 'id',
       },
     },
@@ -49,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1',
       references: {
-        model: 'notification_type',
+        model: 'NotificationType',
         key: 'id',
       },
     },

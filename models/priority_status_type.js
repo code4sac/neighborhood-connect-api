@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('priority_status_type', {
+  return sequelize.define('PriorityStatusType', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('notification_type', {
+  return sequelize.define('NotificationType', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
