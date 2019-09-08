@@ -41,11 +41,12 @@ const checkAndMigrateLegacy = async () => {
     const migrations = await client.query('SELECT * FROM migrations');
     await migrations.rows
         .filter((row) => row.name.startsWith('/'))
-        .reduce(async (lastPromise, row) => {
+        .map((row) => row.name.slice(1) + '.js')
+        .reduce(async (lastPromise, migration) => {
           await lastPromise;
           return client.query({
             text: `INSERT INTO "SequelizeMeta"(name) VALUES($1)`,
-            values: [row.name.slice(1)],
+            values: [migration],
           });
         }, Promise.resolve());
 
