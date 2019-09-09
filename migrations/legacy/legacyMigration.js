@@ -39,13 +39,22 @@ const checkAndMigrateLegacy = async () => {
     }
 
     const migrations = await client.query('SELECT * FROM migrations');
+
+    /* Move pg migrations table to SequelizeMeta migrations table
+    1. Find all 'migrations' entries that begin with /, which are the non-seed
+    transactions.
+    2. Remove the beginning '/' and add '.js' for Sequelize compatibility.
+    3. Insert migration information into SequelizeMeta table.
+    4. Rename pg 'migrations' table to 'legacy_migrations' for backup and
+    to prevent running this script on that table again.
+    */
     await migrations.rows
         .filter((row) => row.name.startsWith('/'))
         .map((row) => row.name.slice(1) + '.js')
         .reduce(async (lastPromise, migration) => {
           await lastPromise;
           return client.query({
-            text: `INSERT INTO "SequelizeMeta"(name) VALUES($1)`,
+            text: 'INSERT INTO "SequelizeMeta"(name) VALUES($1)',
             values: [migration],
           });
         }, Promise.resolve());
