@@ -4,6 +4,8 @@
     "password": "password",
     "database": "nc",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "sequelize_seed_data"
   }
 }

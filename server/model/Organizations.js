@@ -1,10 +1,21 @@
 const db = require('./db');
+const { Organization, OrganizationType } = require('../../sequelize/models');
+
 
 module.exports = {
   
   async getAll(id, cb) {
+    
+    const organizations = Organization.findAll({include: OrganizationType});
+    return organizations; 
+    
+  },
+
+  /*
+  aync getAll(id, cb) {
     return db.query(`select * from organization`, cb);// where id = ${id}`, cb)
   },
+  */
 
   async getOrg(id) {
     // needs type

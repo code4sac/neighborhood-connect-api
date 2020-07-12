@@ -11,6 +11,8 @@
     "lint:fix": "./node_modules/eslint/bin/eslint.js --fix .",
     "db-migrate": "npx sequelize-cli db:migrate",
     "db-rollback": "npx sequelize-cli db:migrate:undo",
+    "db-seed": "npx sequelize-cli db:seed:all",
+    "db-seed-reset": "npx sequelize-cli db:seed:undo:all",
     "db-reset": "npx sequelize-cli db:migrate:undo:all",
     "db-refresh": "run-script-os",
     "db-refresh:default": "db-migrate reset; db-migrate reset:seed; db-migrate up; db-migrate up:seed;",

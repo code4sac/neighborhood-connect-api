@@ -1,13 +1,13 @@
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
-const {getOrg, getOrgUsers, postOrg} = require('../model/Organizations');
+const {getOrg, getOrgUsers, postOrg, getAll} = require('../model/Organizations');
 
 // DRY consider refactoring
 router.get('/', async (req, res) => {
   try {
-    const result = await getOrg(null);
-    res.status(200).send(result.rows);
+    const result = await getAll(null, null);
+    res.json(result);
   } catch (err) {
     res.status(404).send(err);
   }
