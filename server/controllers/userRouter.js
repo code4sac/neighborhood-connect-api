@@ -3,13 +3,15 @@ const router = require('express').Router();
 
 // unused?
 // const users = require('../model/Users');
-const {getAll, getOne, create, update} = require('../model/CRUD');
+const { getOne, create, update} = require('../model/CRUD');
+const { getAll } = require('../model/Users');
+
 const table = 'user';
 
 router.get('/', async (req, res) => {
   try {
-    const result = await getAll(table);
-    res.status(200).send(result.rows);
+    const result = await getAll();
+    res.json(result);
   } catch (err) {
     res.status(404).send(err);
   }

@@ -1,6 +1,25 @@
 const db = require('../model/db');
 
+const { User, UserType, NotificationType, Organization } = require('../../sequelize/models');
+
 module.exports = {
+
+  getAll: async () => {
+    try{
+      return await User.findAll({
+        include: [
+          UserType,
+          NotificationType,
+          Organization
+        ]
+      })
+    }
+    catch (e) {
+      console.error(e);
+    } 
+    return null; 
+  },
+
   // should not send all columns, as pw is still in the db tables
   readUser: async (id) => {
     return db.query(
