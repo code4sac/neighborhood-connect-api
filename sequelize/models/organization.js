@@ -56,9 +56,10 @@ module.exports = (sequelize, DataTypes) => {
   
   Organization.associate = models => {
     Organization.belongsTo(models.OrganizationType, { foreignKey: 'organization_type_id' });
+    Organization.hasMany(models.OrganizationSocialMedia, { foreignKey: 'organization_id' });
   };
-  
 
+  
   return Organization;
 
 }

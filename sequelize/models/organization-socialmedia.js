@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+
+
 module.exports = (sequelize, DataTypes) => {
   class OrganizationSocialMedia extends Model {
     /**
@@ -12,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+
   };
   OrganizationSocialMedia.init({
     name: DataTypes.STRING
@@ -21,3 +25,29 @@ module.exports = (sequelize, DataTypes) => {
   });
   return OrganizationSocialMedia;
 };
+
+module.exports = (sequelize, DataTypes) => {
+  const OrganizationSocialMedia = sequelize.define('OrganizationSocialMedia', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    url: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+},
+{
+  tableName: 'organization_social_media',
+  freezeTableName: true,
+  timestamps: false
+});
+  return OrganizationSocialMedia;
+}

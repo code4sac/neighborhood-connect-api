@@ -1,14 +1,22 @@
 const db = require('./db');
-const { Organization, OrganizationType } = require('../../sequelize/models');
+const { Organization, OrganizationType, OrganizationSocialMedia  } = require('../../sequelize/models');
 
 
 module.exports = {
   
   async getAll(id, cb) {
-    
-    const organizations = Organization.findAll({include: OrganizationType});
-    return organizations; 
-    
+    try{
+      return await Organization.findAll({
+        include: [
+          OrganizationType,  
+          OrganizationSocialMedia
+        ]
+      })
+    }
+    catch (e) {
+      console.error(e);
+    } 
+    return null; 
   },
 
   /*
