@@ -24,12 +24,6 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false
     });
 
-    /*
-    OrganizationType.associate = models => {
-      OrganizationType.belongsTo(models.Organization, { foreignKey: 'organization_type_id' });
-    };
-    */
-
     return OrganizationType; 
 }
 
