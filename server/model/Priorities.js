@@ -4,7 +4,7 @@
 
 const db = require('./db');
 const email = require('../services/emailService');
-const { Priority, Organization, User, PriorityType, PriorityStatusType  } = require('../../sequelize/models');
+const { Priority, Action, Organization, User, PriorityType, PriorityStatusType  } = require('../../sequelize/models');
 
 
 
@@ -25,6 +25,7 @@ module.exports = {
     try{
       return await Priority.findAll({
         include: [
+          Action,
           PriorityType, 
           PriorityStatusType
         ]

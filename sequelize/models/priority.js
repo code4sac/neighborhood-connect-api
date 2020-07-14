@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     Priority.belongsTo(models.PriorityType, { foreignKey: 'priority_type_id' });
     Priority.belongsTo(models.User, { foreignKey: 'user_id' });
     Priority.belongsTo(models.Organization, { foreignKey: 'organization_id' });
+    Priority.hasMany(models.Action, {foreignKey: 'priority_id'});
   };
 
   
