@@ -4,6 +4,8 @@
 
 const db = require('./db');
 const email = require('../services/emailService');
+const { Priority, Organization, User, PriorityType, PriorityStatusType  } = require('../../sequelize/models');
+
 
 
 const GET_ALL_PRIORITIES = `SELECT pt.id, pt.name AS type, p.description, pst.name AS status,
@@ -17,6 +19,24 @@ const GET_ALL_PRIORITIES = `SELECT pt.id, pt.name AS type, p.description, pst.na
 
 
 module.exports = {
+
+
+  async getAll() {
+    try{
+      return await Priority.findAll({
+        include: [
+          PriorityType, 
+          PriorityStatusType
+        ]
+      })
+    }
+    catch (e) {
+      console.error(e);
+    } 
+    return null; 
+  },
+
+
   async getAllPriorities() {
     return db.query(GET_ALL_PRIORITIES);
   },

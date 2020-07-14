@@ -3,9 +3,6 @@ const {
   Model
 } = require('sequelize');
 
-
-
-
 module.exports = (sequelize, DataTypes) => {
   const Organization = sequelize.define('Organization', {
     id: {
