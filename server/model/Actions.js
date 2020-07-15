@@ -42,6 +42,7 @@ module.exports = {
   },
 
   async createAction(body) {
+    console.log(body);
     const {
       action_type_id,
       description,
@@ -81,6 +82,7 @@ Direct Link: <direct link here...>
 
       return 1;
     } catch (err) {
+      console.log(err);
       return err;
     }
   },

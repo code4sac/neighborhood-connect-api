@@ -1,5 +1,5 @@
 const db = require('./db');
-const { Organization, OrganizationType, OrganizationSocialMedia  } = require('../../sequelize/models');
+const { Organization, OrganizationType, OrganizationSocialMedia, User  } = require('../../sequelize/models');
 
 
 module.exports = {
@@ -9,7 +9,15 @@ module.exports = {
       return await Organization.findAll({
         include: [
           OrganizationType,  
-          OrganizationSocialMedia
+          OrganizationSocialMedia,
+          {
+            model: User,
+            as: 'owner'
+          },
+          {
+            model: User,
+            as: 'contact'
+          }
         ]
       })
     }
