@@ -1,10 +1,37 @@
 const db = require('./db');
+const { Organization, OrganizationType, OrganizationSocialMedia, User  } = require('../../sequelize/models');
+
 
 module.exports = {
   
   async getAll(id, cb) {
+    try{
+      return await Organization.findAll({
+        include: [
+          OrganizationType,  
+          OrganizationSocialMedia,
+          {
+            model: User,
+            as: 'owner'
+          },
+          {
+            model: User,
+            as: 'contact'
+          }
+        ]
+      })
+    }
+    catch (e) {
+      console.error(e);
+    } 
+    return null; 
+  },
+
+  /*
+  aync getAll(id, cb) {
     return db.query(`select * from organization`, cb);// where id = ${id}`, cb)
   },
+  */
 
   async getOrg(id) {
     // needs type

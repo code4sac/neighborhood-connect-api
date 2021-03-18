@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 
 const {
+  getAll,
   getActions,
   getActionsByPriority,
   getActionsByType,
@@ -10,14 +11,15 @@ const {
 
 router.get('/', async (req, res) => {
   try {
-    const results = await getActions();
-    res.status(200).send(results.rows);
+    const results = await getAll();
+    res.json(results);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
 router.post('/', async (req, res) => {
+  console.log('Post New Action');
   const result = await createAction(req.body);
   if (result === 1) {
     res.status(200).send(201); // result);

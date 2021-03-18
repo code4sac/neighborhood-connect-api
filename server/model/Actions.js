@@ -1,9 +1,26 @@
 /* eslint-disable camelcase */
 const db = require('./db');
 const email = require("../services/emailService");
+const { Action, ActionType  } = require('../../sequelize/models');
+
 // once needed --> const sms = require("../services/smsService");
 
 module.exports = {
+
+  async getAll() {
+    try{
+      return await Action.findAll({
+        include: [
+          ActionType
+        ]
+      })
+    }
+    catch (e) {
+      console.error(e);
+    } 
+    return null; 
+  },
+
   async getActions(id) {
     const query = `SELECT * FROM action ${id ? `WHERE id = ${id}` : ''}`;
     return db.query(query);
@@ -25,6 +42,7 @@ module.exports = {
   },
 
   async createAction(body) {
+    console.log(body);
     const {
       action_type_id,
       description,
@@ -64,6 +82,7 @@ Direct Link: <direct link here...>
 
       return 1;
     } catch (err) {
+      console.log(err);
       return err;
     }
   },
