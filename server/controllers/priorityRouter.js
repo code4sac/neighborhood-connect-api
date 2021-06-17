@@ -14,8 +14,23 @@ const {
   updateRank,
 } = require('../model/Priorities.js');
 
+// Middleware to check if the user is authenticated
+function isUserAuthenticated(req, res, next) {
+  //console.log("checking isUserAuthed  object? ", req.user);
+  if (req.user) {
+      const emails = req.user.emails;
+      const u = emails.find(email => email.value === "kevinfries916@gmail.com" && email.verified);
+      console.log(u);
+      if (u) {
+        next();
+      }
+  } else {
+    res.status(403).send(req.user + ', You must login! <a href="/auth/google">Sign in with Google</a>');
+  }
+}
+
 // Get all Priorities
-priorityRouter.get('/', async (req, res) => {
+priorityRouter.get('/', isUserAuthenticated, async (req, res) => {
   try {
     const result = await getAll();
     res.json(result);
@@ -25,7 +40,7 @@ priorityRouter.get('/', async (req, res) => {
 });
 
 // Post a new priority
-priorityRouter.post('/', async (req, res) => {
+priorityRouter.post('/', isUserAuthenticated, async (req, res) => {
   try {
     const result = await createPriority(req.body);
     res.status(200).send();

@@ -14,7 +14,6 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-
 const app = express();
 
 const USER_DATA = [ // should be a database or something persistant
@@ -22,6 +21,12 @@ const USER_DATA = [ // should be a database or something persistant
   {email:"test2@gmail.com", provider:"facebook"} // user data from OAuth has no password
 ]
 
+const authorization_data = {
+  "kevinfries916@gmail.com": {
+    "neighborhood": "Ben Ali Community",
+    "roles": ["add_priority", "update_priority", "delete_priority", "sort_priorities"]
+  }
+}
 // cookieSession config
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
@@ -34,6 +39,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(passport.initialize()); // Used to initialize passport
 app.use(passport.session()); // Used to persist login sessions
+app.use(cookieParser());
 
 // Utility functions for checking if a user exists in the DATA array - Note: DATA array is flushed after every restart of server
 function FindOrCreate(user){
@@ -75,6 +81,21 @@ app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
+// Routes
+app.get('/whoami.json', (req, res) => {
+  const token = req.cookies["jwt"];
+  // verify a token symmetric
+  // VERIFY should pull back the data at this point.  Doesn't work?
+  
+  jwt.verify(token, "secret", function(err, x) {
+    console.log("any err", err);
+    console.log("verify token", x);
+    res.send(x.data);
+  });
+
+  // Is it common practice to retrieve the user data this way?
+
+});
 
 app.get("/auth/google", passport.authenticate("google", {
   scope: ["profile", "email"]
@@ -92,11 +113,12 @@ app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => 
     email: req.user._json.email,
     provider: req.user.provider }
   console.log("USER is " + user.email)
-    console.log("other json is " + JSON.stringify(req.user._json));
+    //console.log("other json is " + JSON.stringify(req.user._json));
   FindOrCreate(user)
   let token = jwt.sign({
       data: user
-      }, 'secret', { expiresIn: 60 }); // expiry in seconds
+      }, 'secret', { expiresIn: 60 * 60 }); // expiry in seconds
+
   res.cookie('jwt', token)
   res.redirect('/secret');
 });
@@ -124,7 +146,7 @@ passport.deserializeUser((user, done) => {
 
 // Middleware to check if the user is authenticated
 function isUserAuthenticated(req, res, next) {
-  console.log("checking isUserAuthed")
+  console.log("checking isUserAuthed", req.user)
   if (req.user) {
       next();
   } else {
@@ -140,4 +162,12 @@ app.get('/secret', isUserAuthenticated, (req, res) => {
   }
   
   res.send('You have reached the secret route  ' + user_string);
+});
+
+//  logout route
+app.get('/logout', function(req, res) {
+  console.log("log out user " + req.user);
+  req.logout();
+  console.log("log out user " + req.user);
+  res.redirect('/');
 });
