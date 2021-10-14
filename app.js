@@ -35,7 +35,8 @@ app.use(cookieSession({
 const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
-app.use(morgan('dev'));
+
+app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' }));
 app.use(cors());
 app.use(passport.initialize()); // Used to initialize passport
 app.use(passport.session()); // Used to persist login sessions
@@ -84,13 +85,14 @@ app.get('/', (req, res) => {
 // Routes
 app.get('/whoami.json', (req, res) => {
   const token = req.cookies["jwt"];
+  
   // verify a token symmetric
   // VERIFY should pull back the data at this point.  Doesn't work?
   
   jwt.verify(token, "secret", function(err, x) {
     console.log("any err", err);
     console.log("verify token", x);
-    res.send(x.data);
+    res.send(x);
   });
 
   // Is it common practice to retrieve the user data this way?
@@ -130,9 +132,6 @@ app.use('/users', users);
 app.use('/types', types);
 app.use('/actions', actions);
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
 
 // Used to stuff a piece of information into a cookie
 passport.serializeUser((user, done) => {
@@ -171,3 +170,5 @@ app.get('/logout', function(req, res) {
   console.log("log out user " + req.user);
   res.redirect('/');
 });
+
+module.exports = app;
